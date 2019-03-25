@@ -25,8 +25,13 @@ body, html {
 /* 入力フォームその２　中央にどん！ */
 .form-signin2 {
 	width: 100%;
-	padding: 115px;
+	padding: 65px 115px 115px;
 	margin: auto;
+}
+
+/* 右に実装したい時 */
+.right{
+	text-align: right;
 }
 
 .card-midium {
