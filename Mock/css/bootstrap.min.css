@@ -1410,10 +1410,17 @@ img {
 }
 
 hr {
-	margin-top: 20px;
-	margin-bottom: 20px;
+	margin-bottom: 50px;
 	border: 0;
 	border-top: 1px solid #eee
+}
+
+/* アンダーライン */
+hr.borderline {
+height: 1px;
+background-color: #000000;
+border: none;
+color: #000000;
 }
 
 .sr-only {

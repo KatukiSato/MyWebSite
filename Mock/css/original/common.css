@@ -28,7 +28,7 @@ body, html {
 /* 入力フォームその２　中央にどん！ */
 .form-signin3 {
 	width: 	100%;
-	padding: 25px 115px 115px;
+	padding: 45px 115px 115px;
 	margin: auto;
 }
 
@@ -41,11 +41,13 @@ body, html {
 .bottom{
 	text-align: left;
 }
-/*  */
-.horizontal{
-	text-align: left;
-	margin-left: 3rem;
-	max-width: 600px;
+/* テキストをビッグにしたい */
+.big{
+	font-size: larger;
+}
+
+/* 下にせんを引く */
+,borderline{
 
 }
 
@@ -66,8 +68,8 @@ body, html {
 
 /* 確認画面用 */
 .card-midium2{
-    background-color: #c0c0c0;
-    padding: 40px 10px 400px;
+    background-color: #fdf5e6;
+    padding: 40px 10px;
     margin: 100px 500px 25px;
     margin-top: 50px;
     -moz-border-radius: 2px;
