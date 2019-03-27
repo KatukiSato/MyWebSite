@@ -46,10 +46,25 @@ body, html {
 	font-size: larger;
 }
 
-/* 下にせんを引く */
-,borderline{
 
+/* アンダーライン */
+.borderline {
+height: 1px;
+background-color: #000000;
+border: none;
+color: #000000;
 }
+
+
+/* アンダーライン マージンあり*/
+.borderline2 {
+height: 1px;
+background-color: #000000;
+border: none;
+color: #000000;
+margin-bottom: 50px;
+}
+
 
 /*  商品説明に使用*/
 .card-title {
