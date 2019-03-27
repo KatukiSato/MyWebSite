@@ -46,6 +46,11 @@ body, html {
 	font-size: larger;
 }
 
+/*グリッドの真ん中にどーん！  */
+.wrap {
+  position: relative;
+}
+
 
 /* アンダーライン */
 .borderline {
