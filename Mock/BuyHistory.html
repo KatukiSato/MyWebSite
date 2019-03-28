@@ -8,7 +8,7 @@
 <meta name="author" content="">
 
 
-<title>ログアウト</title>
+<title>購入履歴一覧</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -30,8 +30,8 @@
 		<form class="form-inline">
 			<div class="container">
 				<div class="row">
-					<div class ="col-12 form-inline" style="padding: 3px;">
-						<input class="form-control mr-sm-1" type="search" size ="140">
+					<div class="col-12 form-inline" style="padding: 3px;">
+						<input class="form-control mr-sm-1" type="search" size="140">
 						<button class="btn btn-primary" type="submit">検索</button>
 					</div>
 				</div>
@@ -48,17 +48,42 @@
 		</div>
 
 	</nav>
+<body>
+	<span class="display-3">購入履歴一覧</span>
 
 	<div class="card-midium">
-		<div class="form-signin2">
-			<div class="important">
-				<h1>ログアウトに成功しました</h1>
-				<br>
-			</div>
-			<!--bootstrap.min の変更  -->
-			<button class="btn btn-lg btn-primary btn-block" type="submit">ＴＯＰページへ戻る</button>
-
+		<div class="row">
+			<div class=" col-3">日時</div>
+			<div class=" col-2">支払い方法</div>
+			<div class=" col-2">配達方法</div>
+			<div class=" col-3">金額</div>
+			<div class=" col-2"></div>
 		</div>
+		<hr class="borderline">
+
+		<div class="row">
+			<div class=" col-3">2019/03/28 12:08</div>
+			<div class=" col-2">現金</div>
+			<div class=" col-2">通常配達</div>
+			<div class=" col-3">123456789円</div>
+			<div class=" col-2">
+				<button class="btn btn-md btn-primary" type="submit">詳細</button>
+			</div>
+		</div>
+		<hr class="borderline">
+
+		<div class="row">
+			<div class=" col-3">2019/03/28 12:08</div>
+			<div class=" col-2">現金</div>
+			<div class=" col-2">通常配達</div>
+			<div class=" col-3">123456789円</div>
+			<div class=" col-2">
+				<button class="btn btn-md btn-primary" type="submit">詳細</button>
+			</div>
+		</div>
+		<hr class="borderline">
 	</div>
+	</div>
+
 </body>
 </html>

@@ -8,7 +8,7 @@
 <meta name="author" content="">
 
 
-<title>ログアウト</title>
+<title>ユーザ登録完了</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -30,8 +30,8 @@
 		<form class="form-inline">
 			<div class="container">
 				<div class="row">
-					<div class ="col-12 form-inline" style="padding: 3px;">
-						<input class="form-control mr-sm-1" type="search" size ="140">
+					<div class="col-12 form-inline" style="padding: 3px;">
+						<input class="form-control mr-sm-1" type="search" size="140">
 						<button class="btn btn-primary" type="submit">検索</button>
 					</div>
 				</div>
@@ -49,16 +49,51 @@
 
 	</nav>
 
-	<div class="card-midium">
-		<div class="form-signin2">
-			<div class="important">
-				<h1>ログアウトに成功しました</h1>
-				<br>
-			</div>
-			<!--bootstrap.min の変更  -->
-			<button class="btn btn-lg btn-primary btn-block" type="submit">ＴＯＰページへ戻る</button>
+<body>
 
+	<span class="display-3">商品詳細</span>
+
+	<div class="card">
+			<div class="container">
+			<br> <br>
+			<br> <br>
+			<div class="row">
+				<div class="col s6">
+						<div class="card-image">
+							<img src="img/5c35bd53.jpg" alt="サンプル" width="350" height="100%">
+
+					</div>
+				</div>
+				<div class="col s6">
+				<br>
+					<h4>商品名</h4>
+				<br>
+					<h5>○○円</h5>
+				<br>
+					<p>商品説明</p>
+				</div>
+			</div>
+			<br>
+			<br>
+						<div class="row center">
+				<div class="col m6">
+					<c:if test="${searchWord != null}">
+						<button class="btn btn-primary" type="submit" name="action">検索結果へ</button>
+					</c:if>
+				</div>
+
+				<div class="col s4">
+					<form action="ItemAdd" method="POST">
+						<input type="hidden" name="item_id" value="${item.id}">
+						<button class="btn btn-success" type="submit" name="action">
+							買い物かごに追加
+						</button>
+					</form>
+				</div>
+			</div>
 		</div>
+
 	</div>
+
 </body>
 </html>
