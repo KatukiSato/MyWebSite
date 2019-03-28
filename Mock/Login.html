@@ -25,15 +25,13 @@
 <body>
 
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark mt-3 mb-3">
-		<a class="navbar-brand" href="#">サイト名(実装時はトップページへ飛ばす)</a>
+		<a class="navbar-brand" href="TopPage.html">サイト名</a>
 	</nav>
 
 
 	<div class="text-center">
 
 		<form class="form-signin">
-
-			<img src="img/5c35bd53.jpg" alt="サンプル" width="150" height="150">
 
 			<h1>ログイン画面</h1>
 			<label for="inputEmail" class="sr-only">Email アドレス</label> <input
@@ -43,10 +41,14 @@
 				type="password" id="inputPassword" class="form-control"
 				placeholder="Password" required="">
 			<div class="checkbox mb-3">
-				<p>忘れちゃいました？</p>
-				<p>初めての方はユーザ情報を登録してください。</p>
+
+				<br>
+				<br> <a type="button" class="btn btn-sm btn-outline-danger"
+					href="NewEntry.html">初めての方はこちらからユーザ情報を登録してください。</a>
+
 			</div>
-			<button class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button>
+			<a class="btn btn-lg btn-primary btn-block" href="TopPage.html">ログイン</a>
+			<a class="btn btn-lg btn-danger btn-block" href="TopPage.html">ＴＯＰページへ</a>
 
 		</form>
 	</div>
