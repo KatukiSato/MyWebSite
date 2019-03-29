@@ -24,7 +24,7 @@
 <body class="text-center">
 
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark mt-3 mb-3">
-		<a class="navbar-brand" href="TopPage.html">サイト名</a>
+		<a class="navbar-brand" href="TopPage.html">ＥＣサイト</a>
 
 		<!--bootstrap.minの変更-->
 		<form class="form-inline">
@@ -44,50 +44,48 @@
 					href="Login.html">ログイン</a></li>
 				<li class="nav-item"><a class="nav-link" href="NewEntry.html">新規登録</a></li>
 				<li class="nav-item"><a class="nav-link" href="cart.html">買い物かご</a></li>
-				<li class="nav-item"><a class="nav-link" href="UserDetail.html">お客様情報</a></li>
+				<li class="nav-item"><a class="nav-link" href="UserDetail.html">○○さんの情報</a></li>
+				<li class="nav-item"><a class="nav-link" href="Logout.html">ログアウト</a></li>
 			</ul>
 		</div>
 
 	</nav>
-
 <body>
 
 	<span class="display-3">商品詳細</span>
 
 	<div class="card">
-			<div class="container">
-			<br> <br>
-			<br> <br>
+		<div class="container">
+			<br> <br> <br> <br>
 			<div class="row">
 				<div class="col s6">
-						<div class="card-image">
-							<img src="img/5c35bd53.jpg" alt="サンプル" width="350" height="100%">
+					<div class="card-image">
+						<img src="img/5c35bd53.jpg" alt="サンプル" width="350" height="100%">
 					</div>
 				</div>
 				<div class="col s6">
-				<br>
+					<br>
 					<h4>商品名</h4>
-				<br>
+					<br>
 					<h5>○○円</h5>
-				<br>
+					<br>
 					<p>商品説明</p>
 				</div>
 			</div>
-			<br>
-			<br>
-						<div class="row center">
+			<br> <br>
+			<div class="row center">
 				<div class="col m6">
 					<c:if test="${searchWord != null}">
-						<a class="btn btn-primary" type="submit" name="action" href="index.html">検索結果へ</a>
+						<a class="btn btn-primary" type="submit" name="action"
+							href="index.html">検索結果へ</a>
 					</c:if>
 				</div>
 
 				<div class="col s4">
 					<form action="ItemAdd" method="POST">
-						<input type="hidden" name="item_id" value="${item.id}">
-						<a class="btn btn-success" type="submit" name="action" href="cart.html">
-							買い物かごに追加
-						</a>
+						<input type="hidden" name="item_id" value="${item.id}"> <a
+							class="btn btn-success" type="submit" name="action"
+							href="cart.html"> 買い物かごに追加 </a>
 					</form>
 				</div>
 			</div>
