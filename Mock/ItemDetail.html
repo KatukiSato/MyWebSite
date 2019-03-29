@@ -72,23 +72,16 @@
 					<p>商品説明</p>
 				</div>
 			</div>
-			<br> <br>
-			<div class="row center">
-				<div class="col m6">
-					<c:if test="${searchWord != null}">
-						<a class="btn btn-primary" type="submit" name="action"
-							href="index.html">検索結果へ</a>
-					</c:if>
-				</div>
 
-				<div class="col s4">
-					<form action="ItemAdd" method="POST">
-						<input type="hidden" name="item_id" value="${item.id}"> <a
-							class="btn btn-success" type="submit" name="action"
-							href="cart.html"> 買い物かごに追加 </a>
-					</form>
-				</div>
-			</div>
+			<br>
+			<br>
+
+			<form action="ItemAdd" method="POST">
+				<input type="hidden" name="item_id" value="${item.id}"> <a
+					class="btn btn-success btn-block" type="submit" name="action"
+					href="cart.html"> 買い物かごに追加 </a>
+			</form>
+
 		</div>
 
 	</div>
