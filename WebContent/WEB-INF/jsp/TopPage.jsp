@@ -30,7 +30,7 @@
 <body class="text-center">
 
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark mt-3 mb-3">
-		<a class="navbar-brand" href="TopPage.html">ＥＣサイト</a>
+		<a class="navbar-brand" href="http://localhost:8080/MyWebSite/TopPage">ＥＣサイト</a>
 
 		<!--bootstrap.minの変更-->
 		<form class="form-inline">
@@ -48,7 +48,7 @@
 			<ul class="navbar-nav">
 				<li class="nav-item active"><a class="nav-link"
 					href="Login.html">ログイン</a></li>
-				<li class="nav-item"><a class="nav-link" href="NewEntry.html">新規登録</a></li>
+				<li class="nav-item"><a class="nav-link" href="http://localhost:8080/MyWebSite/NewEntry">新規登録</a></li>
 				<li class="nav-item"><a class="nav-link" href="cart.html">買い物かご</a></li>
 				<li class="nav-item"><a class="nav-link" href="UserDetail.html">○○さんの情報</a></li>
 				<li class="nav-item"><a class="nav-link" href="Logout.html">ログアウト</a></li>
@@ -63,22 +63,24 @@
 		<div class="container">
 			<h2>サイトからのオススメ</h2>
 			<div class="row">
-				<div class="col-md-3">
-					<div class="item-card mb-4 shadow-sm">
-						<a href="ItemDetail.html"><img src="img/肉とソーセージ.jpg"
-							alt="サンプル" class="card-img-top"></a>
-						<div class="card-body">
-							<p class="textOverflow">ココに商品名ひゃっはああああああああああああああああ</p>
-							<div class="d-flex justify-content-between align-items-center">
-								<div class="btn-group">
-									<a type="button" class="btn btn-sm btn-outline-secondary"
-										href="ItemDetail.html">商品詳細</a>
+				<c:forEach var="item" items="${itemList}">
+					<div class="col-md-3">
+						<div class="item-card mb-4 shadow-sm">
+							<a href="ItemDetail.html"><img src="img/${item.fileName}"
+								width="150" height="100%" class="card-img-top"></a>
+							<div class="card-body">
+								<p class="textOverflow">${item.name}</p>
+								<p class="textOverflow">${item.price}円</p>
+								<div class="d-flex justify-content-between align-items-center">
+									<div class="btn-group">
+										<a type="button" class="btn btn-sm btn-outline-secondary"
+											href="ItemDetail.html">商品詳細</a>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-
+				</c:forEach>
 			</div>
 		</div>
 	</div>
@@ -108,8 +110,8 @@
 				<c:forEach var="item" items="${itemList}">
 					<div class="col-md-4">
 						<div class="item-card mb-4 shadow-sm">
-
-							<a href="ItemDetail.html"><img src="${item.file_name}" alt="サンプル" width="150" height="100%" class="card-img-top"></a>
+							<a href="ItemDetail.html"><img src="img/${item.fileName}"
+								width="150" height="100%" class="card-img-top"></a>
 							<div class="card-body">
 								<p class="textOverflow">${item.name}</p>
 								<p class="textOverflow">${item.price}円</p>
@@ -118,7 +120,6 @@
 										<a type="button" class="btn btn-sm btn-outline-secondary"
 											href="ItemDetail.html">商品詳細</a>
 									</div>
-									<small class="text-muted">9 mins</small>
 								</div>
 							</div>
 						</div>
