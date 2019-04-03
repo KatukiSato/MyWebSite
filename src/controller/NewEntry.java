@@ -14,6 +14,7 @@ import beans.CustomerDataBeans;
 /**
  * Servlet implementation class NewEntry
  */
+
 @WebServlet("/NewEntry")
 public class NewEntry extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,34 +27,18 @@ public class NewEntry extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
+	/**
+	 * @author snowr
+	 *確認画面で戻る、もしくは入力情報に不備があった場合、データを残して戻る。
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 
-		//入力内容に誤りがある、確認画面で戻るボタン押し下げでアクセスしてきたときはセッションから入力情報を取得
-		CustomerDataBeans udb = session.getAttribute("udb") != null?(CustomerDataBeans) Helper.cutSessionAttribute(session, "udb"):new CustomerDataBeans();
-		String validationMessage = (String) Helper.cutSessionAttribute(session, "validationMessage");
+		CustomerDataBeans cdb = (CustomerDataBeans) session.getAttribute("udb");
+		String validationMessage = (String) session.getAttribute("validationMessage");
 
-		request.setAttribute("udb", udb);
-		request.setAttribute("validationMessage",validationMessage);
 
 		request.getRequestDispatcher(Helper.NEWENTRY_PAGE).forward(request, response);
 	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-
-		//入力内容に誤りがある、確認画面で戻るボタン押し下げでアクセスしてきたときはセッションから入力情報を取得
-		CustomerDataBeans udb = session.getAttribute("udb") != null?(CustomerDataBeans) Helper.cutSessionAttribute(session, "udb"):new CustomerDataBeans();
-		String validationMessage = (String) Helper.cutSessionAttribute(session, "validationMessage");
-
-		request.setAttribute("udb", udb);
-		request.setAttribute("validationMessage",validationMessage);
-
-		request.getRequestDispatcher(Helper.NEWENTRY_PAGE).forward(request, response);
-	}
-
 
 }

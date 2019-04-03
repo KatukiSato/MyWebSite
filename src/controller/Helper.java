@@ -25,6 +25,23 @@ public class Helper {
 		session.removeAttribute(str);
 
 		return test;
+
+
+	}
+
+	/**
+	 * @param isLoginIdform
+	 * @return
+	 * ログインIDは英数字のみにしておく。
+	 */
+	public static boolean isLoginIdform(String inputLoginId) {
+		// 英数字以外が入力されていたら
+		if (inputLoginId.matches("[0-9a-zA-Z-_]+")) {
+			return true;
+		}
+
+		return false;
+
 	}
 
 }

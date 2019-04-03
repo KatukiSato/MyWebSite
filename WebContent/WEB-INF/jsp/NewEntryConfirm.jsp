@@ -14,7 +14,7 @@
 <meta name="author" content="">
 
 
-<title>新規登録</title>
+<title>登録情報確認</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -35,39 +35,49 @@
 	<div class="card-midium2">
 		<div class="text-center">
 			<h3>登録する情報を確認してください</h3>
+			<p>${validationMessage}</p>
 		</div>
 
 		<form class="form-signin3">
-			<p>ログインID</p>
-			<p>サンプル</p>
+			<p class="text-left">ログインID</p>
+			<p>${udb.login_id}</p>
 			<hr class="borderline">
 
-			<p>ユーザ名</p>
-			<p>サンプル</p>
+			<br>
+			<br>
+
+			<p class="text-left">ユーザ名</p>
+			<p>${udb.name}</p>
 			<hr class="borderline">
 
-			<p>メールアドレス</p>
-			<p>サンプル</p>
+			<br>
+			<br>
+
+			<p class="text-left">メールアドレス</p>
+			<p>${udb.mail}</p>
 			<hr class="borderline">
 
-			<p>電話番号</p>
-			<p>サンプル</p>
+			<br>
+			<br>
+
+			<p class="text-left">電話番号</p>
+			<p>${udb.phone}</p>
 			<hr class="borderline">
 
-			<p>住所</p>
-			<p>サンプル</p>
+			<br>
+			<br>
+
+			<p class="text-left">住所</p>
+			<p>${udb.address}</p>
 			<hr class="borderline">
 
-			<p>パスワード(非表示)</p>
-			<p>サンプル</p>
-			<hr class="borderline">
 
-			<div class="form-inline">
-				<a class="btn btn-lg btn-danger btn-block" type="submit"
-					href="NewEntry.html">修正</a> <a
-					class="btn btn-lg btn-primary btn-block" type="submit"
-					href="EntrySuccess.html">登録</a>
-			</div>
+
+			<br> <br> <br>
+			<br> <a class="btn btn-lg btn-danger btn-block" type="submit"
+				href="http://localhost:8080/MyWebSite/NewEntry">修正</a> <a
+				class="btn btn-lg btn-primary btn-block" type="submit"
+				href="EntrySuccess.html">登録</a>
 	</div>
 	</form>
 
