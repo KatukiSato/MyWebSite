@@ -35,7 +35,7 @@
 	<div class="card-midium2">
 		<div class="text-center">
 			<h3>登録する情報を確認してください</h3>
-			<p>${validationMessage}</p>
+
 		</div>
 
 		<form class="form-signin3">

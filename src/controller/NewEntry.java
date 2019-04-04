@@ -29,14 +29,20 @@ public class NewEntry extends HttpServlet {
 
 	/**
 	 * @author snowr
-	 *確認画面で戻る、もしくは入力情報に不備があった場合、データを残して戻る。
+	 *保存したセッションを取り出して削除。やり直した場合、何も入力されていない状態にしている。
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 
 		CustomerDataBeans cdb = (CustomerDataBeans) session.getAttribute("udb");
-		String validationMessage = (String) session.getAttribute("validationMessage");
 
+		if(cdb == null) {
+			System.out.println("真っ新な状態で出ています。");
+		}else {
+			System.out.println("入力情報が残っています。");
+		}
+
+		session.getAttribute("validationMessage");
 
 		request.getRequestDispatcher(Helper.NEWENTRY_PAGE).forward(request, response);
 	}

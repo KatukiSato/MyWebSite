@@ -42,11 +42,9 @@ public class TopPage extends HttpServlet {
 			//リクエストスコープにセット
 			request.setAttribute("itemList", item);
 
-			//セッションにsearchWordが入っていたら破棄する
-			String searchWord = (String)session.getAttribute("searchWord");
-			if(searchWord != null) {
-				session.removeAttribute("searchWord");
-			}
+			//登録確認画面でＴＯＰペーシに戻った場合、入力情報を捨てる。エラーメッセージも？？
+			session.removeAttribute("udb");
+			session.removeAttribute("validationMessage");
 
 			request.getRequestDispatcher(Helper.TOP_PAGE).forward(request, response);
 		} catch (Exception e) {

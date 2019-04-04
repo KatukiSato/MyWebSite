@@ -35,10 +35,15 @@
 
 	<form  action="NewEntryConfirm" method="POST" class="form-signin">
 			<h1>新規ユーザ登録</h1>
+
+			<p>
+				<font color=red><strong>${validationMessage }</strong></font>
+			</p>
+
 			<div class ="bottom">
 
 			<label for="inputloginId">ログインID</label>
-				<input type="text" id="inputloginId" class="form-signin" name="login_id" placeholder="ログインID" required="" autofocus=""  value="${udb.login_id}">
+				<input type="text" id="inputloginId" class="form-signin" name="login_id" placeholder="ログインID(半角英数字)" required="" autofocus=""  value="${udb.login_id}">
 
 			<label for="inputName">ユーザ名</label>
 				<input type="text" id="inputName" class="form-signin" name="name" placeholder="ユーザ名" required="" autofocus="" value="${udb.name}">

@@ -64,29 +64,28 @@ public class NewEntryConfirm extends HttpServlet {
 
 			// 入力されているパスワードが確認用と等しいか
 			if (!inputPassword.equals(inputCheckPassword)) {
-				validationMessage += "入力されているパスワードと確認用パスワードが違います<br>";
+				validationMessage += "入力されているパスワードが違います。<br>修正してください。<br>";
 			}
 
 			// ログインIDの入力規則チェック 英数字 ハイフン のみ入力可能
 			if (!Helper.isLoginIdform(cdb.getLogin_id())) {
-				validationMessage += "半角英数とハイフンのみ入力できます";
+				validationMessage += "ログインIDは半角英数とハイフンのみ入力できます";
 			}
 
 			// loginIdの重複をチェック
-			if (CustomerDao.isMatchLoginId(inputloginId)) {
-				validationMessage += "ほかのユーザーが使用中のログインIDです";
+			if (!CustomerDao.isMatchLoginId(inputloginId)) {
+				validationMessage += "ほかのユーザーが使用中のログインIDです。";
 			}
 
 			// 問題がないなら登録完了画面へ。そうでないなら新規登録画面へ。
 			if (validationMessage.length() == 0) {
-				request.setAttribute("udb", cdb);
-//				request.getRequestDispatcher(Helper.REGIST_CONFIRM_PAGE).forward(request, response);
+				session.setAttribute("udb", cdb);
 				request.getRequestDispatcher(Helper.NEW_ENTRY_CONFIRM_PAGE).forward(request, response);
 
 			} else {
 				session.setAttribute("udb", cdb);
-				session.setAttribute("validationMessage", validationMessage);
-				request.getRequestDispatcher(Helper.NEW_ENTRY_CONFIRM_PAGE).forward(request, response);
+				request.setAttribute("validationMessage", validationMessage);
+				request.getRequestDispatcher(Helper.NEWENTRY_PAGE).forward(request, response);
 			}
 
 		} catch (Exception e) {
