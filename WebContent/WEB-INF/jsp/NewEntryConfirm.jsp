@@ -38,7 +38,7 @@
 
 		</div>
 
-		<form class="form-signin3">
+		<form  action="EntrySuccess" method="POST" class="form-signin3">
 			<p class="text-left">ログインID</p>
 			<p>${udb.login_id}</p>
 			<hr class="borderline">
@@ -74,10 +74,12 @@
 
 
 			<br> <br> <br>
-			<br> <a class="btn btn-lg btn-danger btn-block" type="submit"
-				href="http://localhost:8080/MyWebSite/NewEntry">修正</a> <a
-				class="btn btn-lg btn-primary btn-block" type="submit"
-				href="EntrySuccess.html">登録</a>
+			<br>
+			<button class="btn btn-lg btn-danger btn-block" type="submit"
+				name = "entry_button" value = "cancel">修正</button>
+
+			<button class="btn btn-lg btn-primary btn-block" type="submit"
+				name = "entry_button" value = "entry">登録</button>
 	</div>
 	</form>
 

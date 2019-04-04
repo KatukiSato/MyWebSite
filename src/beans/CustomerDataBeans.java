@@ -1,7 +1,5 @@
 package beans;
 
-import java.util.Date;
-
 public class CustomerDataBeans {
 
 	private int id;
@@ -11,7 +9,7 @@ public class CustomerDataBeans {
 	private String phone;
 	private String address;
 	private String login_password;
-	private Date create_date;
+//	private Date create_date;
 
 	// コンストラクタ
 	public CustomerDataBeans() {
@@ -79,11 +77,11 @@ public class CustomerDataBeans {
 		this.login_password = login_password;
 	}
 
-	public Date getCreate_date() {
-		return create_date;
-	}
-
-	public void setCreate_date(Date create_date) {
-		this.create_date = create_date;
-	}
+//	public Date getCreate_date() {
+//		return create_date;
+//	}
+//
+//	public void setCreate_date(Date create_date) {
+//		this.create_date = create_date;
+//	}
 }

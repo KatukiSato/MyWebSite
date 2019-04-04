@@ -7,7 +7,7 @@ import java.sql.SQLException;
 /*データベース接続 */
 public class DataBaseManager {
 	final private static String URL = "jdbc:mysql://localhost/";
-	final private static String DB_NAME = "mywebsite";
+	final private static String DB_NAME = "mywebsite?useUnicode=true&characterEncoding=utf8&useSSL=false";
 	final private static String USER = "root";
 	final private static String PASS = "password";
 

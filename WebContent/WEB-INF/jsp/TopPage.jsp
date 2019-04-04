@@ -46,8 +46,8 @@
 
 		<div class="collapse navbar-collapse justify-content-end">
 			<ul class="navbar-nav">
-				<li class="nav-item active"><a class="nav-link"
-					href="Login.html">ログイン</a></li>
+				<li class="nav-item active">
+					<a class="nav-link" href="http://localhost:8080/MyWebSite/Login">ログイン</a></li>
 				<li class="nav-item"><a class="nav-link" href="http://localhost:8080/MyWebSite/NewEntry">新規登録</a></li>
 				<li class="nav-item"><a class="nav-link" href="cart.html">買い物かご</a></li>
 				<li class="nav-item"><a class="nav-link" href="UserDetail.html">○○さんの情報</a></li>

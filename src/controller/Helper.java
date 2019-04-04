@@ -1,33 +1,33 @@
 package controller;
 
-import javax.servlet.http.HttpSession;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+import javax.xml.bind.DatatypeConverter;
+
 
 public class Helper {
 
+	/**
+	 * @author snowr
+	 *フォワード先一覧
+	 */
 	// TOPページ
 	static final String TOP_PAGE = "/WEB-INF/jsp/TopPage.jsp";
 
-	// TOPページ
+	// 新規登録入力フォーム
 	static final String NEWENTRY_PAGE = "/WEB-INF/jsp/NewEntry.jsp";
 
 	// 新規登録入力内容確認
 	static final String NEW_ENTRY_CONFIRM_PAGE = "/WEB-INF/jsp/NewEntryConfirm.jsp";
 
-	/**
-	 * セッションから指定データを取得（削除も一緒に行う）
-	 *
-	 * @param session
-	 * @param str
-	 * @return
-	 */
-	public static Object cutSessionAttribute(HttpSession session, String str) {
-		Object test = session.getAttribute(str);
-		session.removeAttribute(str);
+	//新規登録完了
+	static final String NEW_ENTRY_SUCCESS_PAGE = "/WEB-INF/jsp/EntrySuccess.jsp";
 
-		return test;
-
-
-	}
+	//ログイン画面
+	static final String LOGIN_PAGE = "/WEB-INF/jsp/Login.jsp";
 
 	/**
 	 * @param isLoginIdform
@@ -44,4 +44,23 @@ public class Helper {
 
 	}
 
+	/**
+	 * 暗号化に関わるもの
+	 * @param ango
+	 * @return
+	 * @throws NoSuchAlgorithmException
+	 */
+	public static String getAngo(String ango) throws NoSuchAlgorithmException{
+
+			String source = ango;
+
+			Charset charset = StandardCharsets.UTF_8;
+
+			String algorithm = "SHA-256";
+
+			byte[] bytes = MessageDigest.getInstance(algorithm).digest(source.getBytes(charset));
+			String result = DatatypeConverter.printHexBinary(bytes);
+
+		return result;
+	}
 }
