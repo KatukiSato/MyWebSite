@@ -29,6 +29,8 @@ public class Helper {
 	//ログイン画面
 	static final String LOGIN_PAGE = "/WEB-INF/jsp/Login.jsp";
 
+	static final String LOGOUT_PAGE = "/WEB-INF/jsp/Logout.jsp";
+
 	/**
 	 * @param isLoginIdform
 	 * @return

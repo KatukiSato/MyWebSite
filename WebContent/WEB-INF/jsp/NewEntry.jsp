@@ -37,7 +37,7 @@
 			<h1>新規ユーザ登録</h1>
 
 			<p>
-				<font color=red><strong>${validationMessage }</strong></font>
+				<font color=red><strong>${validationMessage}</strong></font>
 			</p>
 
 			<div class ="bottom">

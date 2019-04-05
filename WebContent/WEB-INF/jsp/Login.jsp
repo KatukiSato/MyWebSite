@@ -40,7 +40,7 @@
 			<h1>ログイン画面</h1>
 
 			<c:if test="${loginErrorMessage != null}">
-				<h3><font color=red>${loginErrorMessage}</font></h3>
+				<h3><font color ="red">${loginErrorMessage}</font></h3>
 				<br>
 			</c:if>
 

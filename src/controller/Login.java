@@ -42,6 +42,8 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		request.getAttribute("loginErrorMessage");
+
 		request.setCharacterEncoding("UTF-8");
 
 		HttpSession session = request.getSession();
@@ -55,14 +57,15 @@ public class Login extends HttpServlet {
 			if(customer != 0){
 				session.setAttribute("isLogin", true);
 				session.setAttribute("userId", customer);
+				session.setAttribute("logId", loginId);
 				response.sendRedirect("TopPage");
 				System.out.println("ログイン処理完了！");
 			}else{
 				session.setAttribute("loginId", loginId);
-				session.setAttribute("loginErrorMessage", "入力内容が正しくありません");
+				request.setAttribute("loginErrorMessage", "入力内容が正しくありません<br><br>正しいものを入力してください。");
 				System.out.println("エラーがでました。");
 
-				response.sendRedirect("Login");
+				request.getRequestDispatcher(Helper.LOGIN_PAGE).forward(request, response);
 			}
 
 		} catch (NoSuchAlgorithmException | SQLException e) {

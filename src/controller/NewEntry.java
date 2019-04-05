@@ -42,7 +42,7 @@ public class NewEntry extends HttpServlet {
 			System.out.println("入力情報が残っています。");
 		}
 
-		session.getAttribute("validationMessage");
+		request.getAttribute("validationMessage");
 
 		request.getRequestDispatcher(Helper.NEWENTRY_PAGE).forward(request, response);
 	}

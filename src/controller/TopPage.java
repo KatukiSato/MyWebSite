@@ -45,7 +45,7 @@ public class TopPage extends HttpServlet {
 			//登録確認画面でＴＯＰペーシに戻った場合、入力情報を捨てる。エラーメッセージも？？
 			session.removeAttribute("udb");
 			session.removeAttribute("validationMessage");
-			session.removeAttribute("loginErrorMessage");
+			session.removeAttribute("userId");
 
 			request.getRequestDispatcher(Helper.TOP_PAGE).forward(request, response);
 		} catch (Exception e) {

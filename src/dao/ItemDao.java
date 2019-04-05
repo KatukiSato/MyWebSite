@@ -11,6 +11,14 @@ import beans.ItemBeans;
 
 public class ItemDao {
 
+
+
+	/**
+	 * ＴＯＰページで商品をランダムに４つ並べる。
+	 * @param limit
+	 * @return
+	 * @throws SQLException
+	 */
 	public static ArrayList<ItemBeans> getRandItem(int limit) throws SQLException {
 		Connection con = null;
 		PreparedStatement st = null;
@@ -44,6 +52,5 @@ public class ItemDao {
 			}
 		}
 	}
-
 
 }
