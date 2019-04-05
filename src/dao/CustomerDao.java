@@ -81,13 +81,45 @@ public class CustomerDao {
 		}
 	}
 
-	public static int receiveUserId(String loginId, String password) throws SQLException {
+
+	/**
+	 * ユーザーテーブルからログインIdとパスワードを探すだけ。
+	 * @param loginId
+	 * @param password
+	 * @return
+	 * @throws SQLException
+	 * @throws NoSuchAlgorithmException
+	 */
+	public static int receiveUserId(String loginId, String password) throws SQLException, NoSuchAlgorithmException {
 		Connection con = null;
 		PreparedStatement st = null;
 		try {
 			con = DataBaseManager.getConnection();
 
-			st =con.prepareStatement("select * from t_user where login_id = ? and login_password = ?");
+			st =con.prepareStatement("select * from t_user where login_id = ? ");
+			st.setString(1, loginId);
 
+			ResultSet rs = st.executeQuery();
+
+			int customerId = 0;
+			while(rs.next()) {
+				if(Helper.getAngo(password).equals(rs.getString("login_password"))) {
+					customerId = rs.getInt("id");
+					System.out.println("これでどう？");
+					break;
+				}
+			}
+
+			System.out.println("データベースからログインIDとパスワードを探しました。");
+			return customerId;
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new SQLException(e);
+		} finally {
+			if (con != null) {
+				con.close();
+			}
 		}
+	}
 }

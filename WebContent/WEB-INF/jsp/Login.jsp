@@ -35,26 +35,35 @@
 
 	<div class="text-center">
 
-		<form class="form-signin">
+		<form action="Login" method="POST" class="form-signin">
 
 			<h1>ログイン画面</h1>
 
-					<input type="text"  class="form-control" placeholder="ログインID" required="" autofocus="">
+			<c:if test="${loginErrorMessage != null}">
+				<h3><font color=red>${loginErrorMessage}</font></h3>
+				<br>
+			</c:if>
 
-					<input type="password"  class="form-control" placeholder="Password" required="">
+			<input type="text" class="form-control" placeholder="ログインID"
+				required="" autofocus="" name="login_id" value="${inputLoginId}">
+
+			<input type="password" class="form-control" placeholder="Password"
+				required="" name="password">
 
 			<div class="checkbox mb-3">
 
-				<br> <br>
-				<a type="button" class="btn btn-sm btn-outline-danger" href="http://localhost:8080/MyWebSite/NewEntry">
-					初めての方はこちらからユーザ情報を登録してください。
-				</a>
+				<br> <br> <a type="button"
+					class="btn btn-sm btn-outline-gray"
+					href="http://localhost:8080/MyWebSite/NewEntry">
+					初めての方はこちらからユーザ情報を登録してください。 </a>
 
 			</div>
 
-			<a class="btn btn-lg btn-primary btn-block" href="http://localhost:8080/MyWebSite/TopPage">ログイン</a>
+			<button class="btn btn-lg btn-primary btn-block" type="submit"
+				name="action">ログイン</button>
 
-			<a class="btn btn-lg btn-danger btn-block" href="http://localhost:8080/MyWebSite/TopPage">ＴＯＰページへ</a>
+			<a class="btn btn-lg btn-danger btn-block"
+				href="http://localhost:8080/MyWebSite/TopPage">ＴＯＰページへ</a>
 
 		</form>
 	</div>

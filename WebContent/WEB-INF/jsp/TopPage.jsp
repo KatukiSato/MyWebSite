@@ -59,6 +59,8 @@
 
 	<main role="main"> <span class="display-1">ＥＣサイト</span>
 
+	<p>ようこそ${userId}さん </p>
+
 	<div class="album py-5 bg-light">
 		<div class="container">
 			<h2>サイトからのオススメ</h2>
