@@ -13,7 +13,7 @@
 <meta name="author" content="">
 
 
-<title>トップページ</title>
+<title>検索結果</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -63,22 +63,20 @@
 
 	</nav>
 
-	<main role="main"> <span class="display-1">ＥＣサイト</span>
-
-	<c:choose>
-	<c:when test="${logId == null}">
-	<h3>素敵なお買い物をしましょうか！！</h3>
-	</c:when>
-	<c:otherwise>
-	<h3>ようこそ<font color ="limegreen">${logId}</font>さん </h3>
-	</c:otherwise>
-	</c:choose>
-
 	<div class="album py-5 bg-light">
 		<div class="container">
-			<h2>サイトからのオススメ</h2>
+			<h1>検索結果</h1>
+			<c:choose>
+			<c:when test = "${search != null}">
+			<h2>検索内容：${search}</h2>
+			<h2>○○件の商品が検索と一致しました。</h2>
+			</c:when>
+			<c:otherwise>
+			<h3>商品を全て表示してあります。</h3>
+			</c:otherwise>
+			</c:choose>
 			<div class="row">
-				<c:forEach var="item" items="${itemList}">
+				<c:forEach var="item" items="${itemList}" varStatus="status">
 					<div class="col-md-3">
 						<div class="item-card mb-4 shadow-sm">
 							<a href="ItemDetail?item_id=${item.id}"><img src="img/${item.fileName}"
@@ -99,53 +97,5 @@
 			</div>
 		</div>
 	</div>
-
-	<div class="album py-5 bg-light">
-		<div class="container">
-			<h2>ランキング</h2>
-			<div class="row">
-				<div class="col-4">
-					<h1>
-						<font color=gold><strong>１位</strong></font>
-					</h1>
-				</div>
-				<div class="col-4">
-					<h1>
-						<font color=silver><strong>２位</strong></font>
-					</h1>
-				</div>
-				<div class="col-4">
-					<h1>
-						<font color=brown><strong>３位</strong></font>
-					</h1>
-				</div>
-			</div>
-
-			<div class="row">
-				<c:forEach var="item" items="${itemList}">
-					<div class="col-md-4">
-						<div class="item-card mb-4 shadow-sm">
-							<a href="ItemDetail.html"><img src="img/${item.fileName}"
-								width="200" height="200" class="card-img-top"></a>
-							<div class="card-body">
-								<p class="textOverflow">${item.name}</p>
-								<p class="textOverflow">${item.price}円</p>
-								<div class="d-flex justify-content-between align-items-center">
-									<div class="btn-group">
-										<a type="button" class="btn btn-sm btn-outline-secondary"
-											href="ItemDetail.html">商品詳細</a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</c:forEach>
-
-			</div>
-		</div>
-	</div>
-
-	</main>
-
 </body>
 </html>

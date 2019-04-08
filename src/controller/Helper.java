@@ -29,7 +29,14 @@ public class Helper {
 	//ログイン画面
 	static final String LOGIN_PAGE = "/WEB-INF/jsp/Login.jsp";
 
+	//ログアウト画面
 	static final String LOGOUT_PAGE = "/WEB-INF/jsp/Logout.jsp";
+
+	//商品詳細
+	static final String ITEM_PAGE = "/WEB-INF/jsp/ItemDetail.jsp";
+
+	//検索結果
+	static final String INDEX_PAGE = "/WEB-INF/jsp/Index.jsp";
 
 	/**
 	 * @param isLoginIdform

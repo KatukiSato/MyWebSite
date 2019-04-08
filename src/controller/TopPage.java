@@ -42,10 +42,18 @@ public class TopPage extends HttpServlet {
 			//リクエストスコープにセット
 			request.setAttribute("itemList", item);
 
-			//登録確認画面でＴＯＰペーシに戻った場合、入力情報を捨てる。エラーメッセージも？？
+			/*登録確認画面でＴＯＰペーシに戻った場合、入力情報を捨てる。エラーメッセージも？？
+			追記：　多分いらないと思うので、最終的に確認したら削除する　2019/04/08 14:11　　　　　　　
+			*/
 			session.removeAttribute("udb");
 			session.removeAttribute("validationMessage");
 			session.removeAttribute("userId");
+
+			//セッションにsearchWordが入っていたら破棄する
+			String searchWord = (String)session.getAttribute("searchWord");
+			if(searchWord != null) {
+				session.removeAttribute("searchWord");
+			}
 
 			request.getRequestDispatcher(Helper.TOP_PAGE).forward(request, response);
 		} catch (Exception e) {
