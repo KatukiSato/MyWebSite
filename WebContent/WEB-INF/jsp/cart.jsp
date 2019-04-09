@@ -74,16 +74,15 @@
 	<span class="display-3"><font color="limegreen">${logId}</font>さんの買い物かごの中身</span>
 
 	<div class="card">
-		<c:forEach var="item" items="${itemList}">
-			<div class="container">
-				<div class="row">
-					<div class="col-1"></div>
-					<div class="col-6">商品</div>
-					<div class="col-2">単価</div>
-					<div class="col-1">数量</div>
-					<div class="col-2">価格</div>
-				</div>
-
+		<div class="container">
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-6">商品</div>
+				<div class="col-2">単価</div>
+				<div class="col-1">数量</div>
+				<div class="col-2">価格</div>
+			</div>
+			<c:forEach var="item" items="${show}">
 				<hr class="borderline2">
 				<div class="row">
 					<div class="col-1">
@@ -92,7 +91,7 @@
 					<div class="col-sm-2">
 						<a href="ItemDetail?item_id=${item.id}"><img
 							src="img/${item.fileName}" alt="サンプル"
-							class="img-container--absolute-position"></a>
+							class="item-card"></a>
 					</div>
 					<div class="col-4">
 						<a href="ItemDetail?item_id=${item.id}">${item.name}</a>
@@ -109,32 +108,32 @@
 					</div>
 					<div class="col-2">123456789円</div>
 				</div>
-				<br> <br>
-
-				<hr class="borderline ">
-
-				<div class="row">
-					<div class="col-9"></div>
-					<div class="col-1">合計</div>
-					<div class="col-2">○○円</div>
-				</div>
 				<br>
-				<div class="container">
-					<div class="row">
-						<div class="col align-self-start">
-							<div class="text-left">
-								<a class="btn btn-danger" type="submit" href="cart.html">チェックした商品を買い物かごから削除</a>
-							</div>
-						</div>
+				<br>
+			</c:forEach>
+			<hr class="borderline ">
 
-						<div class="col align-self-end">
-							<a class="btn btn-success btn-block" type="submit"
-								href="Register.html">レジへ進む</a>
+			<div class="row">
+				<div class="col-9"></div>
+				<div class="col-1">合計</div>
+				<div class="col-2">○○円</div>
+			</div>
+			<br>
+			<div class="container">
+				<div class="row">
+					<div class="col align-self-start">
+						<div class="text-left">
+							<a class="btn btn-danger" type="submit" href="cart.html">チェックした商品を買い物かごから削除</a>
 						</div>
+					</div>
+
+					<div class="col align-self-end">
+						<a class="btn btn-success btn-block" type="submit"
+							href="Register.html">レジへ進む</a>
 					</div>
 				</div>
 			</div>
-		</c:forEach>
+		</div>
 	</div>
 </body>
 </html>

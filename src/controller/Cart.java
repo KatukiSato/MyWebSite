@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import beans.ItemBeans;
 import dao.CartDao;
-import dao.ItemDao;
 
 /**
  * Servlet implementation class Cart
@@ -55,20 +54,20 @@ public class Cart extends HttpServlet {
 			//商品をカートに入れる処理
 			int cart = CartDao.insertItem(login, quality, itemId);
 
-			//商品詳細を引っ張ってくる処理
-			ArrayList<ItemBeans> item = ItemDao.getItem(itemId);
+			//カートに入れられた商品を表示する処理
+			ArrayList<ItemBeans> show = CartDao.showCart(login);
 
 			//ログインされていない状態だったら、ログイン画面へ。
 			if(login == null) {
-			//ここの改善の余地はあるかも。　ログインIDがnullのまま登録されている原因か。
-				session.setAttribute("number", quality);
-				session.setAttribute("item", itemId);
+				//ここの改善の余地はあるかも。　ログインIDがnullのまま登録されている原因か。
+				//session.setAttribute("number", quality);
+				//session.setAttribute("item", itemId);
 				response.sendRedirect("Login");
 
 			} else if(login != null){
-				session.setAttribute("number", quality);
-				session.setAttribute("item", itemId);
-				session.setAttribute("itemList", item);
+//				session.setAttribute("number", quality);
+//				session.setAttribute("item", itemId);
+				session.setAttribute("show", show);
 
 				request.getRequestDispatcher(Helper.CART_PAGE).forward(request, response);
 
