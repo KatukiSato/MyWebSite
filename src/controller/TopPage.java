@@ -49,10 +49,10 @@ public class TopPage extends HttpServlet {
 			session.removeAttribute("validationMessage");
 			session.removeAttribute("userId");
 
-			//セッションにsearchWordが入っていたら破棄する
-			String searchWord = (String)session.getAttribute("searchWord");
+			//セッションにsearchが入っていたら破棄する
+			String searchWord = (String)session.getAttribute("search");
 			if(searchWord != null) {
-				session.removeAttribute("searchWord");
+				session.removeAttribute("search");
 			}
 
 			request.getRequestDispatcher(Helper.TOP_PAGE).forward(request, response);

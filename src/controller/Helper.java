@@ -38,6 +38,10 @@ public class Helper {
 	//検索結果
 	static final String INDEX_PAGE = "/WEB-INF/jsp/Index.jsp";
 
+	//お買い物かご
+	static final String CART_PAGE = "/WEB-INF/jsp/cart.jsp";
+
+
 	/**
 	 * @param isLoginIdform
 	 * @return

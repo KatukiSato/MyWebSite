@@ -33,28 +33,34 @@
 		<a class="navbar-brand" href="http://localhost:8080/MyWebSite/TopPage">ＥＣサイト</a>
 
 		<!--bootstrap.minの変更-->
-		<form action ="Index" class="form-inline">
+		<form action="Index" class="form-inline">
 			<div class="container">
 				<div class="row">
 					<div class=".col-lg-12 form-inline" style="padding: 3px;">
-						<input class="form-control mr-sm-1" type="search" size="130" name ="search">
+						<input class="form-control mr-sm-1" type="search" size="130"
+							name="search">
 						<button class="btn btn-primary" type="submit">検索</button>
 					</div>
 				</div>
 			</div>
 		</form>
 
+				<!--非ログイン状態の時に出すコマンド  -->
 		<div class="collapse navbar-collapse justify-content-end">
 			<ul class="navbar-nav">
 				<c:if test="${logId == null}">
 					<li class="nav-item active"><a class="nav-link"
 						href="http://localhost:8080/MyWebSite/Login">ログイン</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="http://localhost:8080/MyWebSite/NewEntry">新規登録</a></li>
 				</c:if>
-				<li class="nav-item"><a class="nav-link"
-					href="http://localhost:8080/MyWebSite/NewEntry">新規登録</a></li>
-				<li class="nav-item"><a class="nav-link" href="cart.html">買い物かご</a></li>
-				<li class="nav-item"><a class="nav-link" href="UserDetail.html">お客様情報</a></li>
+
+				<!--ログイン状態の時に出すコマンド  -->
 				<c:if test="${logId != null}">
+					<li class="nav-item"><a class="nav-link"
+						href="http://localhost:8080/MyWebSite/Cart">買い物かご</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="UserDetail.html">お客様情報</a></li>
 					<li class="nav-item active"><a class="nav-link"
 						href="http://localhost:8080/MyWebSite/Logout">ログアウト</a></li>
 				</c:if>
@@ -63,15 +69,15 @@
 
 	</nav>
 
-	<main role="main"> <span class="display-1">ＥＣサイト</span>
-
-	<c:choose>
-	<c:when test="${logId == null}">
-	<h3>素敵なお買い物をしましょうか！！</h3>
-	</c:when>
-	<c:otherwise>
-	<h3>ようこそ<font color ="limegreen">${logId}</font>さん </h3>
-	</c:otherwise>
+	<main role="main"> <span class="display-1">ＥＣサイト</span> <c:choose>
+		<c:when test="${logId == null}">
+			<h3>素敵なお買い物をしましょうか！！</h3>
+		</c:when>
+		<c:otherwise>
+			<h3>
+				ようこそ<font color="limegreen">${logId}</font>さん
+			</h3>
+		</c:otherwise>
 	</c:choose>
 
 	<div class="album py-5 bg-light">
@@ -81,8 +87,9 @@
 				<c:forEach var="item" items="${itemList}">
 					<div class="col-md-3">
 						<div class="item-card mb-4 shadow-sm">
-							<a href="ItemDetail?item_id=${item.id}"><img src="img/${item.fileName}"
-								 class="img-container--absolute-position"></a>
+							<a href="ItemDetail?item_id=${item.id}"><img
+								src="img/${item.fileName}"
+								class="img-container--absolute-position"></a>
 							<div class="card-body">
 								<p class="textOverflow">${item.name}</p>
 								<p class="textOverflow">${item.price}円</p>

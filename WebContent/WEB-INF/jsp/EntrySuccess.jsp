@@ -46,17 +46,22 @@
 			</div>
 		</form>
 
+				<!--非ログイン状態の時に出すコマンド  -->
 		<div class="collapse navbar-collapse justify-content-end">
 			<ul class="navbar-nav">
 				<c:if test="${logId == null}">
 					<li class="nav-item active"><a class="nav-link"
 						href="http://localhost:8080/MyWebSite/Login">ログイン</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="http://localhost:8080/MyWebSite/NewEntry">新規登録</a></li>
 				</c:if>
-				<li class="nav-item"><a class="nav-link"
-					href="http://localhost:8080/MyWebSite/NewEntry">新規登録</a></li>
-				<li class="nav-item"><a class="nav-link" href="cart.html">買い物かご</a></li>
-				<li class="nav-item"><a class="nav-link" href="UserDetail.html">お客様情報</a></li>
+
+				<!--ログイン状態の時に出すコマンド  -->
 				<c:if test="${logId != null}">
+					<li class="nav-item"><a class="nav-link"
+						href="http://localhost:8080/MyWebSite/Cart">買い物かご</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="UserDetail.html">お客様情報</a></li>
 					<li class="nav-item active"><a class="nav-link"
 						href="http://localhost:8080/MyWebSite/Logout">ログアウト</a></li>
 				</c:if>
@@ -64,6 +69,7 @@
 		</div>
 
 	</nav>
+
 	<div class="card-midium">
 		<div class="form-signin2">
 			<div class="important">

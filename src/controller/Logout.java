@@ -32,6 +32,8 @@ public class Logout extends HttpServlet {
 		session.setAttribute("isLogin", false);
 		session.removeAttribute("userId");
 		session.removeAttribute("logId");
+		session.removeAttribute("number");
+		session.removeAttribute("item");
 		request.getRequestDispatcher(Helper.LOGOUT_PAGE).forward(request, response);
 		System.out.println("ログアウト処理完了！");
 	}

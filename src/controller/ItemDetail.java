@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,9 +39,9 @@ public class ItemDetail extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("item_id"));
 
 		try {
-			ItemBeans item = ItemDao.getItem(id);
+			ArrayList<ItemBeans> item = ItemDao.getItem(id);
 
-			request.setAttribute("item", item);
+			request.setAttribute("itemList", item);
 		} catch (SQLException e) {
 			e.printStackTrace();
 			session.setAttribute("errorMessage", e.toString());

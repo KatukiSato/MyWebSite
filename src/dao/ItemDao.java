@@ -59,7 +59,7 @@ public class ItemDao {
 	 * @return
 	 * @throws SQLException
 	 */
-	public static ItemBeans getItem (int itemId) throws SQLException {
+	public static ArrayList<ItemBeans> getItem (int itemId) throws SQLException {
 		Connection con  = null;
 		PreparedStatement st = null;
 
@@ -71,19 +71,22 @@ public class ItemDao {
 
 			ResultSet rs = st.executeQuery();
 
-			ItemBeans item = new ItemBeans();
+			ArrayList<ItemBeans> itemList = new ArrayList<ItemBeans>();
 
-			if (rs.next()) {
+			while (rs.next()) {
+				ItemBeans item = new ItemBeans();
 				item.setId(rs.getInt("id"));
 				item.setName(rs.getString("name"));
 				item.setDetail(rs.getString("detail"));
 				item.setPrice(rs.getInt("price"));
 				item.setFileName(rs.getString("file_name"));
+				itemList.add(item);
 			}
 
 			System.out.println("商品詳細の取得に成功しました。");
 
-			return item;
+			return itemList;
+
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			throw new SQLException(e);
