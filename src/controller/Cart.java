@@ -43,6 +43,7 @@ public class Cart extends HttpServlet {
 			ArrayList<ItemBeans> show = CartDao.showCart(login);
 
 			session.setAttribute("show", show);
+			session.getAttribute("cart");
 		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
@@ -73,14 +74,23 @@ public class Cart extends HttpServlet {
 			//カートに入れられた商品を表示する処理
 			ArrayList<ItemBeans> show = CartDao.showCart(login);
 
-			//ログインされていない状態だったら、ログイン画面へ。
-			if(login == null) {
-				response.sendRedirect("Login");
-
-			} else if(login != null){
+			CartBeans check = CartDao.checkCartItem(login,itemId, quality);
+			if(check != null) {
 				session.setAttribute("show", show);
+				session.setAttribute("cart", cart);
 
 				request.getRequestDispatcher(Helper.CART_PAGE).forward(request, response);
+			} else {
+				//ログインされていない状態だったら、ログイン画面へ。
+				if(login == null) {
+					response.sendRedirect("Login");
+
+				} else if(login != null){
+					session.setAttribute("show", show);
+					session.setAttribute("cart", cart);
+
+					request.getRequestDispatcher(Helper.CART_PAGE).forward(request, response);
+				}
 			}
 
 		} catch ( Exception e) {
