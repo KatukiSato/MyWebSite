@@ -66,33 +66,35 @@ public class Cart extends HttpServlet {
 			int quality = Integer.parseInt (request.getParameter("quality"));
 			int itemId = Integer.parseInt(request.getParameter("item_id")) ;
 
-			session.setAttribute("test", itemId);
+			if(login == null) {
+				response.sendRedirect("Login");
 
-			//商品をカートに入れる処理
-			ArrayList<CartBeans> cart = CartDao.insertItem(login, quality, itemId);
+			} else if(login != null){
+				CartBeans check = CartDao.checkCartItem(login, itemId);
+				if(check != null) {
 
-			//カートに入れられた商品を表示する処理
-			ArrayList<ItemBeans> show = CartDao.showCart(login);
+					//商品をカートに入れる処理
+					ArrayList<CartBeans> cart = CartDao.insertItem(login, quality, itemId);
 
-			CartBeans check = CartDao.checkCartItem(login,itemId, quality);
-			if(check != null) {
-				session.setAttribute("show", show);
-				session.setAttribute("cart", cart);
+					//カートに入れられた商品を表示する処理
+					ArrayList<ItemBeans> show = CartDao.showCart(login);
 
-				request.getRequestDispatcher(Helper.CART_PAGE).forward(request, response);
-			} else {
-				//ログインされていない状態だったら、ログイン画面へ。
-				if(login == null) {
-					response.sendRedirect("Login");
-
-				} else if(login != null){
 					session.setAttribute("show", show);
 					session.setAttribute("cart", cart);
+					System.out.println("完全に新規です。");
+					request.getRequestDispatcher(Helper.CART_PAGE).forward(request, response);
 
+				} else  {
+
+					//カートに入れられた商品を表示する処理
+					ArrayList<ItemBeans> show = CartDao.showCart(login);
+
+					session.setAttribute("show", show);
+					System.out.println("重複しています");
+					//						session.setAttribute("cart", cart);
 					request.getRequestDispatcher(Helper.CART_PAGE).forward(request, response);
 				}
 			}
-
 		} catch ( Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();

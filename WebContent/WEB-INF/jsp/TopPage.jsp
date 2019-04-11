@@ -133,7 +133,7 @@
 					<div class="col-md-4">
 						<div class="item-card mb-4 shadow-sm">
 							<a href="ItemDetail.html"><img src="img/${item.fileName}"
-								width="200" height="200" class="card-img-top"></a>
+								 class="img-container--absolute-position"></a>
 							<div class="card-body">
 								<p class="textOverflow">${item.name}</p>
 								<p class="textOverflow">${item.price}円</p>

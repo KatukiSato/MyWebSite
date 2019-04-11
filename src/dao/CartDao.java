@@ -145,22 +145,22 @@ public class CartDao {
 	 * @return
 	 * @throws SQLException
 	 */
-	public static  CartBeans checkCartItem(String loginId, int quality, int itemId) throws SQLException {
+	public static  CartBeans checkCartItem(String loginId, int itemId) throws SQLException {
 		Connection con = null;
 		PreparedStatement st = null;
 
 		try {
 			con = DataBaseManager.getConnection();
 
-			st = con.prepareStatement("select * from cart where login_id = ?  and quality = ? and item_id = ?");
+			st = con.prepareStatement("select * from cart where login_id = ? and item_id = ?");
 			st.setString(1, loginId);
-			st.setInt(2, quality);
-			st.setInt(3, itemId);
+			st.setInt(2, itemId);
 
 			ResultSet rs = st.executeQuery();
 
 			CartBeans search = new CartBeans();
 			while(rs.next()) {
+				search.setId(rs.getInt("id"));
 				search.setLogin_id(rs.getString("login_id"));
 				search.setItem_id(rs.getInt("item_id"));
 			}
@@ -177,24 +177,24 @@ public class CartDao {
 		}
 	}
 
-	public static  CartBeans qualityUpdateWhenInsertCart(int quality, String loginId, int itemId) throws SQLException {
-		Connection con = null;
-		PreparedStatement st = null;
-
-		try {
-			con = DataBaseManager.getConnection();
-
-			st = con.prepareStatement("update cart set quality = ? where login_id = ? and item_id = ?");
-			st.setInt(1, quality);
-			st.setString(2, loginId);
-			st.setInt(3, itemId);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-			throw new SQLException(e);
-		} finally {
-			if (con != null) {
-				con.close();
-			}
-		}
-	}
+//	public static  CartBeans qualityUpdateWhenInsertCart(int quality, String loginId, int itemId) throws SQLException {
+//		Connection con = null;
+//		PreparedStatement st = null;
+//
+//		try {
+//			con = DataBaseManager.getConnection();
+//
+//			st = con.prepareStatement("update cart set quality = ? where login_id = ? and item_id = ?");
+//			st.setInt(1, quality);
+//			st.setString(2, loginId);
+//			st.setInt(3, itemId);
+//		} catch (Exception e) {
+//			System.out.println(e.getMessage());
+//			throw new SQLException(e);
+//		} finally {
+//			if (con != null) {
+//				con.close();
+//			}
+//		}
+//	}
 }
