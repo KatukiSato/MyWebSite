@@ -35,4 +35,10 @@ public class CartBeans implements Serializable{
 		this.item_id = item_id;
 	}
 
+	public void setUp( String loginId, int quality, int item_id) {
+		this.login_id = loginId;
+		this.quality = quality;
+		this.item_id = item_id;
+	}
+
 }

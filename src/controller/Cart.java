@@ -36,21 +36,23 @@ public class Cart extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
+
 		String login = (String) session.getAttribute("logId");
 
-		//カートに入れられた商品を表示する処理
 		try {
 			ArrayList<ItemBeans> show = CartDao.showCart(login);
 
 			session.setAttribute("show", show);
+			session.getAttribute("show");
 			session.getAttribute("cart");
 		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
-
 		request.getRequestDispatcher(Helper.CART_PAGE).forward(request, response);
+
 	}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -65,36 +67,40 @@ public class Cart extends HttpServlet {
 			String login = (String) session.getAttribute("logId");
 			int quality = Integer.parseInt (request.getParameter("quality"));
 			int itemId = Integer.parseInt(request.getParameter("item_id")) ;
+//			int id = Integer.parseInt(request.getParameter("id")) ;
 
+
+			CartBeans cb = new CartBeans();
+			cb.setUp(login, quality, itemId);
 			if(login == null) {
 				response.sendRedirect("Login");
 
 			} else if(login != null){
+
 				CartBeans check = CartDao.checkCartItem(login, itemId);
-				if(check != null) {
+				if (check.getQuality() == 0) {
 
 					//商品をカートに入れる処理
-					ArrayList<CartBeans> cart = CartDao.insertItem(login, quality, itemId);
+					CartDao.insertItem(cb);
 
 					//カートに入れられた商品を表示する処理
 					ArrayList<ItemBeans> show = CartDao.showCart(login);
 
 					session.setAttribute("show", show);
-					session.setAttribute("cart", cart);
+					session.setAttribute("cart", cb);
 					System.out.println("完全に新規です。");
 					request.getRequestDispatcher(Helper.CART_PAGE).forward(request, response);
+				} else {
+					CartDao.qualityUpdateCart(cb.getQuality(), check);
 
-				} else  {
-
-					//カートに入れられた商品を表示する処理
 					ArrayList<ItemBeans> show = CartDao.showCart(login);
-
 					session.setAttribute("show", show);
 					System.out.println("重複しています");
-					//						session.setAttribute("cart", cart);
+					session.setAttribute("cart", cb);
 					request.getRequestDispatcher(Helper.CART_PAGE).forward(request, response);
 				}
 			}
+
 		} catch ( Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
