@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.CartBeans;
-import beans.ItemBeans;
 import dao.CartDao;
 
 /**
@@ -40,11 +39,14 @@ public class Cart extends HttpServlet {
 		String login = (String) session.getAttribute("logId");
 
 		try {
-			ArrayList<ItemBeans> show = CartDao.showCart(login);
+			ArrayList<CartBeans> show = CartDao.showCart(login);
 
 			session.setAttribute("show", show);
 			session.getAttribute("show");
 			session.getAttribute("cart");
+			session.getAttribute("qchange");
+			session.removeAttribute("qchange");
+
 		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
@@ -68,6 +70,7 @@ public class Cart extends HttpServlet {
 			int quality = Integer.parseInt (request.getParameter("quality"));
 			int itemId = Integer.parseInt(request.getParameter("item_id")) ;
 //			int id = Integer.parseInt(request.getParameter("id")) ;
+			CartBeans check = CartDao.checkCartItem(login, itemId);
 
 
 			CartBeans cb = new CartBeans();
@@ -77,26 +80,30 @@ public class Cart extends HttpServlet {
 
 			} else if(login != null){
 
-				CartBeans check = CartDao.checkCartItem(login, itemId);
-				if (check.getQuality() == 0) {
+
+				if (check.getQuality() == 0 && check.getItem_id() == 0) {
 
 					//商品をカートに入れる処理
-					CartDao.insertItem(cb);
+					CartDao.insertItem(cb,itemId);
 
 					//カートに入れられた商品を表示する処理
-					ArrayList<ItemBeans> show = CartDao.showCart(login);
+					ArrayList<CartBeans> show = CartDao.showCart(login);
 
+
+					//セッションだとダメなので、修正するかも
 					session.setAttribute("show", show);
 					session.setAttribute("cart", cb);
 					System.out.println("完全に新規です。");
 					request.getRequestDispatcher(Helper.CART_PAGE).forward(request, response);
+
 				} else {
+					//既にカートに商品が登録されている時。
 					CartDao.qualityUpdateCart(cb.getQuality(), check);
 
-					ArrayList<ItemBeans> show = CartDao.showCart(login);
+					ArrayList<CartBeans> show = CartDao.showCart(login);
 					session.setAttribute("show", show);
-					System.out.println("重複しています");
-					session.setAttribute("cart", cb);
+					System.out.println("選んだ商品が重複していたので、個数を追加しました。");
+					session.setAttribute("cart2", cb);
 					request.getRequestDispatcher(Helper.CART_PAGE).forward(request, response);
 				}
 			}

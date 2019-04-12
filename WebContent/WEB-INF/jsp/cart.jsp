@@ -86,21 +86,25 @@
 					<hr class="borderline2">
 					<div class="row">
 						<div class="col-1">
-							<input type="checkbox" value="${item.id}" name="deleteCartItem">
+							<input type="checkbox" value="${item.item_id}"
+								name="deleteCartItem">
 						</div>
 						<div class="col-sm-2">
-							<a href="ItemDetail?item_id=${item.id}"><img
-								src="img/${item.fileName}" alt="サンプル" class="item-card"></a>
+							<a href="ItemDetail?item_id=${item.item_id}"><img
+								src="img/${item.file_name}" alt="サンプル" class="item-card"></a>
 						</div>
 						<div class="col-4">
-							<a href="ItemDetail?item_id=${item.id}">${item.name}</a>
+							<a href="ItemDetail?item_id=${item.item_id}">${item.name}</a>
 						</div>
 						<div class="col-2">${item.price}円</div>
 						<div class="col-1">
-
-							<p>${cart.quality}</p>
-
-
+							${item.quality} ${qchange.quality} <select name="qualityChange">
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+							</select>
 						</div>
 						<div class="col-2">123456789円</div>
 					</div>
@@ -125,8 +129,9 @@
 						</div>
 
 						<div class="col align-self-center">
+							<input type="hidden" name="item_id" value="${item.item_id}" value ="qualityChange">
 							<button class="btn btn-primary btn-block" type="submit"
-								name="cart_button" value="qualityChange">購入数の変更</button>
+								name="cart_button" value="Change">購入数の変更</button>
 						</div>
 
 						<div class="col align-self-end">

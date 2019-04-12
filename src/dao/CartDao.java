@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import base.DataBaseManager;
 import beans.CartBeans;
-import beans.ItemBeans;
 
 public class CartDao {
 
@@ -20,7 +19,7 @@ public class CartDao {
 	 * @return
 	 * @throws SQLException
 	 */
-	public static  void insertItem(CartBeans cb) throws SQLException {
+	public static  void insertItem(CartBeans cb, int itemId) throws SQLException {
 		CartBeans cartcb = new CartBeans();
 		Connection con = null;
 		PreparedStatement st = null;
@@ -31,21 +30,20 @@ public class CartDao {
 			st = con.prepareStatement("insert into cart(login_id,quality,item_id) values (?,?,?)");
 			st.setString(1, cb.getLogin_id());
 			st.setInt(2, cb.getQuality());
-			st.setInt(3, cb.getItem_id());
+			st.setInt(3, itemId);
 			st.executeUpdate();
-			System.out.println("試験");
 
-			st = con.prepareStatement(" select login_id, quality, item_id from cart where id =" + cb.getId());
+			st = con.prepareStatement(" select login_id, quality, item_id from cart where item_id =" + cb.getItem_id());
 			ResultSet rs = st.executeQuery();
 
 			while (rs.next()) {
-				cartcb.setId(rs.getInt("id"));
+				//				cartcb.setId(rs.getInt("id"));
 				cartcb.setLogin_id(rs.getString("login_id"));
 				cartcb.setQuality(rs.getInt("quality"));
 				cartcb.setItem_id(rs.getInt("item_id"));
 			}
 			st.close();
-			System.out.println("上手にいきますように");
+			System.out.println("買い物かごに商品が入りました。");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			throw new SQLException(e);
@@ -62,7 +60,7 @@ public class CartDao {
 	 * @return
 	 * @throws SQLException
 	 */
-	public static ArrayList<ItemBeans> showCart(String loginId) throws SQLException {
+	public static ArrayList<CartBeans> showCart(String loginId) throws SQLException {
 		Connection con = null;
 		PreparedStatement st = null;
 
@@ -70,26 +68,29 @@ public class CartDao {
 			con = DataBaseManager.getConnection();
 
 			st = con.prepareStatement("select "
-					+ " c1.login_id, c1.quality, "
-					+ " m1.name, m1.price, m1.file_name, "
-					+ " m1.id"
-					+ " from cart c1 "
-					+ " inner join m_item m1 "
-					+ " on c1.item_id = m1.id "
-					+ " where login_id = ?");
+					+" t.id, t.item_id, t.quality, t.login_id, "
+					+" m.name, m.file_name, m.price"
+					+" from cart t "
+					+" inner join m_item m"
+					+" on t.item_id = m.id "
+					+" where t.login_id = ? ");
 
 			st.setString(1, loginId);
 
 			ResultSet rs = st.executeQuery();
 
-			ArrayList<ItemBeans> showCartList = new ArrayList<ItemBeans>();
+			ArrayList<CartBeans> showCartList = new ArrayList<CartBeans>();
 
 			while(rs.next()) {
-				ItemBeans cart = new ItemBeans();
+				CartBeans cart = new CartBeans();
 				cart.setId(rs.getInt("id"));
-				cart.setName(rs.getString("name"));
+				cart.setItem_id(rs.getInt("item_id"));
+				cart.setQuality(rs.getInt("quality"));
+				cart.setLogin_id(rs.getString("login_id"));
 				cart.setPrice(rs.getInt("price"));
-				cart.setFileName(rs.getString("file_name"));
+				cart.setFile_name(rs.getString("file_name"));
+				cart.setName(rs.getString("name"));
+
 				showCartList.add(cart);
 			}
 			System.out.println("買い物かごの中身です。");
@@ -178,6 +179,13 @@ public class CartDao {
 		}
 	}
 
+	/**
+	 * カートに既に入っている状態で再度登録した場合、個数を更新する。
+	 *
+	 * @param q
+	 * @param cb
+	 * @throws SQLException
+	 */
 	public static  void qualityUpdateCart(int q, CartBeans cb) throws SQLException {
 		CartBeans cartcb = new CartBeans();
 		Connection con = null;
@@ -190,19 +198,18 @@ public class CartDao {
 			st.setInt(1, cb.getQuality() + q);
 			st.setInt(2, cb.getId());;
 			st.executeUpdate();
-			System.out.println("新しい書き方試し");
 
-			st = con.prepareStatement("select quality from cart");
+			st = con.prepareStatement("select * from cart");
 			ResultSet rs = st.executeQuery();
 
 			while (rs.next()) {
-//				cartcb.setId(rs.getInt("id"));
-//				cartcb.setLogin_id(rs.getString("login_id"));
+				cartcb.setId(rs.getInt("id"));
+				cartcb.setLogin_id(rs.getString("login_id"));
 				cartcb.setQuality(rs.getInt("quality"));
-//				cartcb.setItem_id(rs.getInt("item_id"));
+				cartcb.setItem_id(rs.getInt("item_id"));
 			}
 			st.close();
-			System.out.println("点数変更出来てますように");
+			System.out.println("個数を変更しました。");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			throw new SQLException(e);
@@ -212,4 +219,44 @@ public class CartDao {
 			}
 		}
 	}
+
+	public static  CartBeans qualityChange(int quality, String loginId, int itemId) throws SQLException {
+		CartBeans ccb = new CartBeans();
+		Connection con = null;
+		PreparedStatement st = null;
+
+		try {
+			con = DataBaseManager.getConnection();
+
+			st = con.prepareStatement("update cart t inner join m_item m "
+										+ " on t.item_id = m.id  "
+										+ " set t.quality = ? "
+										+ " where t.login_id = ? and t.item_id = ? ");
+			st.setInt(1, quality);
+			st.setString(2, loginId);
+			st.setInt(3, itemId);
+			st.executeUpdate();
+
+			st = con.prepareStatement("select quality from cart where login_id = "+ loginId +" and item_id = " + itemId);
+			ResultSet rs = st.executeQuery();
+
+			while (rs.next()) {
+				ccb.setId(rs.getInt("id"));
+				ccb.setLogin_id(rs.getString("login_id"));
+				ccb.setQuality(rs.getInt("quality"));
+				ccb.setItem_id(rs.getInt("item_id"));
+			}
+			System.out.println("カートから個数を更新しました。");
+			return ccb;
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			throw new SQLException(e);
+		} finally {
+			if (con != null) {
+				con.close();
+			}
+		}
+	}
+
 }

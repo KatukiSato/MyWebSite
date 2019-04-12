@@ -48,6 +48,8 @@ public class TopPage extends HttpServlet {
 			session.removeAttribute("udb");
 			session.removeAttribute("validationMessage");
 			session.removeAttribute("userId");
+			request.getAttribute("qchange");
+			session.removeAttribute("qchange");
 
 			//セッションにsearchが入っていたら破棄する
 			String searchWord = (String)session.getAttribute("search");

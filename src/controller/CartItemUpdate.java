@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import beans.ItemBeans;
+import beans.CartBeans;
 import dao.CartDao;
 
 /**
@@ -34,20 +33,20 @@ public class CartItemUpdate extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		HttpSession session = request.getSession();
-		String login = (String) session.getAttribute("logId");
-
-		//カートに入れられた商品を表示する処理
-		try {
-			ArrayList<ItemBeans> show = CartDao.showCart(login);
-
-			session.setAttribute("show", show);
-			session.getAttribute("cart");
-		} catch (SQLException e) {
-			// TODO 自動生成された catch ブロック
-			e.printStackTrace();
-		}
-		request.getRequestDispatcher(Helper.CART_PAGE).forward(request, response);
+//		HttpSession session = request.getSession();
+//		String login = (String) session.getAttribute("logId");
+//
+//		//カートに入れられた商品を表示する処理
+//		try {
+//			ArrayList<CartBeans> show = CartDao.showCart(login);
+//
+//			session.setAttribute("show", show);
+//			session.getAttribute("cart");
+//		} catch (SQLException e) {
+//			// TODO 自動生成された catch ブロック
+//			e.printStackTrace();
+//		}
+//		request.getRequestDispatcher(Helper.CART_PAGE).forward(request, response);
 	}
 
 	/**
@@ -58,6 +57,7 @@ public class CartItemUpdate extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		String login = (String) session.getAttribute("logId");
+		int itemId = Integer.parseInt(request.getParameter("qualityChange"));
 		String command = request.getParameter("cart_button");
 
 		switch(command) {
@@ -70,6 +70,21 @@ public class CartItemUpdate extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+			break;
+
+		case "Change":
+			int qualityChange = Integer.parseInt(request.getParameter("qualityChange"));
+
+			try {
+				CartBeans qChange = CartDao.qualityChange(qualityChange,login, itemId);
+				session.setAttribute("qchange", qChange);
+				request.getRequestDispatcher(Helper.CART_PAGE).forward(request, response);
+			} catch (SQLException e) {
+				// TODO 自動生成された catch ブロック
+				e.printStackTrace();
+			}
+			break;
+
 		}
 
 //		request.getRequestDispatcher(Helper.CART_PAGE).forward(request, response);
