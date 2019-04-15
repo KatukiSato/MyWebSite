@@ -79,59 +79,59 @@
 		</h3>
 
 		<c:forEach var="item" items="${itemList}">
-			<div class="container">
-				<br> <br> <br> <br>
-				<div class="row">
-					<div class="col s6">
-						<div class="card-image">
-							<img src="img/${item.fileName}" alt="サンプル"
-								class="img-container--absolute-position">
-						</div>
-					</div>
-					<div class="col s6">
-						<br>
-						<h4>${item.name}</h4>
-						<br>
-						<h5>${item.price}円</h5>
-						<br>
-						<p>商品説明</p>
-						<p>${item.detail}</p>
-					</div>
-				</div>
-
-				<br> <br>
-
-				<form action="Cart" method="POST">
+				<div class="container">
+					<br> <br> <br> <br>
 					<div class="row">
-						<div class="col-6">購入数</div>
-						<div class="col-2">
-							<select name="quality">
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-							</select>
+						<div class="col s6">
+							<div class="card-image">
+								<img src="img/${item.fileName}" alt="サンプル"
+									class="img-container--absolute-position">
+							</div>
 						</div>
-						<div class="col-4">
-							<input type="hidden" name="item_id" value="${item.id}"
-								value="quality">
-							<button class="btn btn-success " type="submit">買い物かごに追加
-							</button>
+						<div class="col s6">
+							<br>
+							<h4>${item.name}</h4>
+							<br>
+							<h5>${item.priceStr}円</h5>
+							<br>
+							<p>商品説明</p>
+							<p>${item.detail}</p>
 						</div>
 					</div>
-				</form>
 
-				<br> <br>
-				<c:if test="${search != null}">
-					<a class="btn btn-primary btn-block" type="submit"
-						href="Index?search=${search}"> 検索結果へ戻る </a>
-				</c:if>
+					<br> <br>
+
+					<form action="Cart" method="POST">
+						<div class="row">
+							<div class="col-6">購入数</div>
+							<div class="col-2">
+								<select name="quality">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+								</select>
+							</div>
+							<div class="col-4">
+								<input type="hidden" name="item_id" value="${item.id}"
+									value="quality">
+								<button class="btn btn-success " type="submit">買い物かごに追加
+								</button>
+							</div>
+						</div>
+					</form>
+
+					<br> <br>
+					<c:if test="${search != null}">
+						<a class="btn btn-primary btn-block" type="submit"
+							href="Index?search=${search}"> 検索結果へ戻る </a>
+					</c:if>
 
 
-				<%-- <c:redirect url ="Cart" > 検索結果へ戻る </c:redirect> --%>
-			</div>
-
+					<%-- <c:redirect url ="Cart" > 検索結果へ戻る </c:redirect> --%>
+				</div>
+			</fmt:formatNumber>
 		</c:forEach>
 	</div>
 
