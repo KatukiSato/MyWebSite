@@ -1,8 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,20 +9,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import beans.ItemBeans;
-import dao.ItemDao;
-
 /**
- * Servlet implementation class ItemDetail
+ * Servlet implementation class RegisterConfirm
  */
-@WebServlet("/ItemDetail")
-public class ItemDetail extends HttpServlet {
+@WebServlet("/RegisterConfirm")
+public class RegisterConfirm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ItemDetail() {
+    public RegisterConfirm() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,23 +30,11 @@ public class ItemDetail extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
-
-		int id = Integer.parseInt(request.getParameter("item_id"));
-
 		session.getAttribute("show");
+		session.getAttribute("totalprice");
 
-		request.setAttribute("cartMessage", "一度に購入できるのは５個までです。");
-
-		try {
-			ArrayList<ItemBeans> item = ItemDao.getItem(id);
-
-			request.setAttribute("itemList", item);
-		} catch (SQLException e) {
-			e.printStackTrace();
-			session.setAttribute("errorMessage", e.toString());
-		}
-
-		request.getRequestDispatcher(Helper.ITEM_PAGE).forward(request, response);
+		System.out.println("購入の最終確認です。");
+		request.getRequestDispatcher(Helper.REGISTER_CONFIRM_PAGE).forward(request, response);
 	}
 
 	/**

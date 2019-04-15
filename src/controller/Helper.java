@@ -4,8 +4,11 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 import javax.xml.bind.DatatypeConverter;
+
+import beans.CartBeans;
 
 
 public class Helper {
@@ -41,6 +44,9 @@ public class Helper {
 	//お買い物かご
 	static final String CART_PAGE = "/WEB-INF/jsp/cart.jsp";
 
+	static final String REGISTER_PAGE = "/WEB-INF/jsp/Register.jsp";
+
+	static final String REGISTER_CONFIRM_PAGE = "/WEB-INF/jsp/RegisterConfirm.jsp";
 
 	/**
 	 * @param isLoginIdform
@@ -75,5 +81,13 @@ public class Helper {
 			String result = DatatypeConverter.printHexBinary(bytes);
 
 		return result;
+	}
+
+	public static int getTotalItemPrice(ArrayList<CartBeans> items) {
+		int total = 0;
+		for (CartBeans item : items) {
+			total += item.getPrice() * item.getQuality();
+		}
+		return total;
 	}
 }

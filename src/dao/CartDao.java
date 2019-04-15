@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import base.DataBaseManager;
 import beans.CartBeans;
+import controller.Helper;
 
 public class CartDao {
 
@@ -81,6 +82,8 @@ public class CartDao {
 
 			ArrayList<CartBeans> showCartList = new ArrayList<CartBeans>();
 
+
+
 			while(rs.next()) {
 				CartBeans cart = new CartBeans();
 				cart.setId(rs.getInt("id"));
@@ -93,6 +96,7 @@ public class CartDao {
 
 				showCartList.add(cart);
 			}
+			int totalprice = Helper.getTotalItemPrice(showCartList);
 			System.out.println("買い物かごの中身です。");
 			return showCartList;
 		} catch (Exception e) {
@@ -237,7 +241,7 @@ public class CartDao {
 			st.setInt(3, itemId);
 			st.executeUpdate();
 
-			st = con.prepareStatement("select quality from cart where login_id = "+ loginId +" and item_id = " + itemId);
+			st = con.prepareStatement("select * from cart where login_id = '"+ loginId +"' and item_id = " + itemId);
 			ResultSet rs = st.executeQuery();
 
 			while (rs.next()) {

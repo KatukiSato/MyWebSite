@@ -40,12 +40,10 @@ public class Cart extends HttpServlet {
 
 		try {
 			ArrayList<CartBeans> show = CartDao.showCart(login);
-
 			session.setAttribute("show", show);
-			session.getAttribute("show");
-			session.getAttribute("cart");
-			session.getAttribute("qchange");
-			session.removeAttribute("qchange");
+
+			int totalprice = Helper.getTotalItemPrice(show);
+			session.setAttribute("totalprice", totalprice);
 
 		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック
@@ -69,9 +67,7 @@ public class Cart extends HttpServlet {
 			String login = (String) session.getAttribute("logId");
 			int quality = Integer.parseInt (request.getParameter("quality"));
 			int itemId = Integer.parseInt(request.getParameter("item_id")) ;
-//			int id = Integer.parseInt(request.getParameter("id")) ;
 			CartBeans check = CartDao.checkCartItem(login, itemId);
-
 
 			CartBeans cb = new CartBeans();
 			cb.setUp(login, quality, itemId);
@@ -80,31 +76,41 @@ public class Cart extends HttpServlet {
 
 			} else if(login != null){
 
-
+				//カートに新規でいれる処理と既に入っている状態なら個数を追加する処理。
 				if (check.getQuality() == 0 && check.getItem_id() == 0) {
 
-					//商品をカートに入れる処理
 					CartDao.insertItem(cb,itemId);
-
-					//カートに入れられた商品を表示する処理
 					ArrayList<CartBeans> show = CartDao.showCart(login);
 
+					int totalprice = Helper.getTotalItemPrice(show);
+					session.setAttribute("totalprice", totalprice);
 
-					//セッションだとダメなので、修正するかも
 					session.setAttribute("show", show);
-					session.setAttribute("cart", cb);
+
 					System.out.println("完全に新規です。");
 					request.getRequestDispatcher(Helper.CART_PAGE).forward(request, response);
 
 				} else {
-					//既にカートに商品が登録されている時。
+					if(check.getQuality()+quality <= 5) {
 					CartDao.qualityUpdateCart(cb.getQuality(), check);
 
 					ArrayList<CartBeans> show = CartDao.showCart(login);
+
+					int totalprice = Helper.getTotalItemPrice(show);
+					session.setAttribute("totalprice", totalprice);
 					session.setAttribute("show", show);
 					System.out.println("選んだ商品が重複していたので、個数を追加しました。");
-					session.setAttribute("cart2", cb);
+
 					request.getRequestDispatcher(Helper.CART_PAGE).forward(request, response);
+
+					} else {
+						System.out.println("一度に購入できるのは５個までです。");
+
+//						request.setAttribute("cartMessage", "一度に購入できるのは５個までです。<br><br>");
+//						request.getRequestDispatcher(Helper.ITEM_PAGE).forward(request, response);
+
+						response.sendRedirect("ItemDetail?item_id=" + itemId + "&cartMessage");
+					}
 				}
 			}
 

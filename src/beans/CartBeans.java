@@ -13,6 +13,8 @@ public class CartBeans implements Serializable{
 	private String name;
 	private String file_name;
 
+	private int totalprice;
+
 
 	public int getId() {
 		return id;
@@ -61,6 +63,12 @@ public class CartBeans implements Serializable{
 		this.login_id = loginId;
 		this.quality = quality;
 		this.item_id = item_id;
+	}
+	public int getTotalprice() {
+		return totalprice;
+	}
+	public void setTotalprice(int totalprice) {
+		this.totalprice = totalprice;
 	}
 
 }

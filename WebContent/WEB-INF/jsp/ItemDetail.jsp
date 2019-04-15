@@ -72,6 +72,12 @@
 	<span class="display-3">商品詳細</span>
 
 	<div class="card">
+
+
+		<h3>
+			<font color="blue">${cartMessage}</font>
+		</h3>
+
 		<c:forEach var="item" items="${itemList}">
 			<div class="container">
 				<br> <br> <br> <br>
@@ -121,6 +127,9 @@
 					<a class="btn btn-primary btn-block" type="submit"
 						href="Index?search=${search}"> 検索結果へ戻る </a>
 				</c:if>
+
+
+				<%-- <c:redirect url ="Cart" > 検索結果へ戻る </c:redirect> --%>
 			</div>
 
 		</c:forEach>

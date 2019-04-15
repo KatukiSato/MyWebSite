@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import beans.CartBeans;
 import dao.CartDao;
 
 /**
@@ -32,21 +31,6 @@ public class CartItemUpdate extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-//		HttpSession session = request.getSession();
-//		String login = (String) session.getAttribute("logId");
-//
-//		//カートに入れられた商品を表示する処理
-//		try {
-//			ArrayList<CartBeans> show = CartDao.showCart(login);
-//
-//			session.setAttribute("show", show);
-//			session.getAttribute("cart");
-//		} catch (SQLException e) {
-//			// TODO 自動生成された catch ブロック
-//			e.printStackTrace();
-//		}
-//		request.getRequestDispatcher(Helper.CART_PAGE).forward(request, response);
 	}
 
 	/**
@@ -57,7 +41,6 @@ public class CartItemUpdate extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		String login = (String) session.getAttribute("logId");
-		int itemId = Integer.parseInt(request.getParameter("qualityChange"));
 		String command = request.getParameter("cart_button");
 
 		switch(command) {
@@ -73,12 +56,12 @@ public class CartItemUpdate extends HttpServlet {
 			break;
 
 		case "Change":
+			int itemId = Integer.parseInt(request.getParameter("test"));
 			int qualityChange = Integer.parseInt(request.getParameter("qualityChange"));
 
 			try {
-				CartBeans qChange = CartDao.qualityChange(qualityChange,login, itemId);
-				session.setAttribute("qchange", qChange);
-				request.getRequestDispatcher(Helper.CART_PAGE).forward(request, response);
+				CartDao.qualityChange(qualityChange,login, itemId);
+				response.sendRedirect("Cart");
 			} catch (SQLException e) {
 				// TODO 自動生成された catch ブロック
 				e.printStackTrace();
@@ -86,8 +69,6 @@ public class CartItemUpdate extends HttpServlet {
 			break;
 
 		}
-
-//		request.getRequestDispatcher(Helper.CART_PAGE).forward(request, response);
 
 	}
 

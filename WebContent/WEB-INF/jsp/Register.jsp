@@ -15,7 +15,7 @@
 <meta name="author" content="">
 
 
-<title>お買い物かご</title>
+<title>購入方法選択画面</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -70,87 +70,92 @@
 
 	</nav>
 
-	<span class="display-3"><font color="limegreen">${logId}</font>さんの買い物かごの中身</span>
+	<span class="display-3">購入方法の選択</span>
 
 	<div class="card">
-
 		<div class="container">
 			<div class="row">
 				<div class="col-1"></div>
-				<div class="col-4">商品</div>
+				<div class="col-6">商品</div>
 				<div class="col-2">単価</div>
 				<div class="col-1">数量</div>
-				<div class="col-2">変更</div>
 				<div class="col-2">価格</div>
 			</div>
+
 			<c:forEach var="item" items="${show}">
-				<hr class="borderline2">
+
+				<hr class="borderline">
+
 				<div class="row">
-
-					<!-- 複数削除は後回し！ -->
-					<div class="col-1">
-
-						<form action="CartItemUpdate" method="POST">
-							<input type="checkbox" value="${item.item_id}"
-								name="deleteCartItem">
-							<button class="btn btn-danger btn-block" type="submit"
-								name="cart_button" value="delete">削除</button>
-
-						</form>
-					</div>
-
-					<div class="col-2">
+					<div class="col-1"></div>
+					<div class="col-sm-2">
 						<a href="ItemDetail?item_id=${item.item_id}"><img
 							src="img/${item.file_name}" alt="サンプル" class="item-card"></a>
 					</div>
-					<div class="col-2">
+					<div class="col-4">
 						<a href="ItemDetail?item_id=${item.item_id}">${item.name}</a>
 					</div>
 					<div class="col-2">${item.price}円</div>
-
-					<div class="col-1">${item.quality}</div>
-
-					<div class="col-2">
-						<form action="CartItemUpdate" method="POST">
-							<select name="qualityChange">
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-							</select>
-
-							<div class="col align-self-center">
-								<input type="hidden" name="test" value="${item.item_id}">
-								<button class="btn btn-primary" type="submit" name="cart_button"
-									value="Change">変更</button>
-							</div>
-						</form>
-					</div>
-
+					<div class="col-1">${item.quality}個</div>
 					<div class="col-2">${item.price * item.quality}円</div>
 				</div>
-				<br>
-				<br>
 			</c:forEach>
-			<hr class="borderline ">
 
-			<div class="row">
-				<div class="col-9"></div>
-				<div class="col-1">合計</div>
-				<div class="col-2">${totalprice}円</div>
-			</div>
-			<br>
-			<div class="container">
+				<hr class="borderline ">
+
 				<div class="row">
-
-
-					<div class="col align-self-end">
-						<a class="btn btn-success btn-block" type="submit"
-							href="http://localhost:8080/MyWebSite/Register">レジへ進む</a>
+					<div class="col-9"></div>
+					<div class="col-1">支払方法</div>
+					<div class="col-2">
+						<select name="pay_method">
+							<option value="1">コンビニ支払い</option>
+							<option value="2">現金引換</option>
+						</select>
 					</div>
 				</div>
-			</div>
+
+				<br>
+
+				<div class="row">
+					<div class="col-9"></div>
+					<div class="col-1">配送方法</div>
+					<div class="col-2">
+						<select name="delivery_method">
+							<option value="1">通常配送</option>
+							<option value="2">お急ぎ配送</option>
+							<option value="3">日時指定配送</option>
+						</select>
+					</div>
+				</div>
+
+				<br>
+				<br>
+
+				<div class="row">
+					<div class="col-9"></div>
+					<div class="col-1">合計</div>
+					<div class="col-2">${totalprice}円</div>
+				</div>
+
+				<br>
+				<div class="container">
+					<div class="row">
+						<div class="col align-self-start">
+							<div class="text-left">
+								<a class="btn btn-danger" type="submit" href="Cart">買い物かごへ戻る</a>
+							</div>
+						</div>
+
+						<div class="col align-self-end">
+							<a class="btn btn-success btn-block" type="submit"
+								href="RegisterConfirm">確認画面へ進む</a>
+						</div>
+					</div>
+				</div>
 		</div>
+	</div>
+</body>
+</html>
+
 </body>
 </html>
