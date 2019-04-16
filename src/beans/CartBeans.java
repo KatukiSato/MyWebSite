@@ -72,4 +72,7 @@ public class CartBeans implements Serializable{
 		return price * quality;
 	}
 
+	public String getTotalpriceStr() {
+		return String.format("%,d",  price * quality);
+	}
 }
