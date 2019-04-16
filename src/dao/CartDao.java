@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import base.DataBaseManager;
 import beans.CartBeans;
-import controller.Helper;
 
 public class CartDao {
 
@@ -96,7 +95,7 @@ public class CartDao {
 
 				showCartList.add(cart);
 			}
-			int totalprice = Helper.getTotalItemPrice(showCartList);
+//			int totalprice = Helper.getTotalItemPrice(showCartList);
 			System.out.println("買い物かごの中身です。");
 			return showCartList;
 		} catch (Exception e) {

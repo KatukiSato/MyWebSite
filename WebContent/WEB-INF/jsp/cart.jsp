@@ -106,9 +106,9 @@
 					<div class="col-2">
 						<a href="ItemDetail?item_id=${item.item_id}">${item.name}</a>
 					</div>
-					<div class="col-2">${item.price}円</div>
+					<div class="col-2">${item.priceStr}円</div>
 
-					<div class="col-1">${item.quality}</div>
+					<div class="col-1">${item.quality}個</div>
 
 					<div class="col-2">
 						<form action="CartItemUpdate" method="POST">
@@ -128,7 +128,7 @@
 						</form>
 					</div>
 
-					<div class="col-2">${item.price * item.quality}円</div>
+					<div class="col-2">${item.totalpriceStr}円</div>
 				</div>
 				<br>
 				<br>

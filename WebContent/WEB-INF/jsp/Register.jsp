@@ -95,9 +95,9 @@
 					<div class="col-4">
 						<a href="ItemDetail?item_id=${item.item_id}">${item.name}</a>
 					</div>
-					<div class="col-2">${item.price}円</div>
+					<div class="col-2"><strong>${item.priceStr}円</strong></div>
 					<div class="col-1">${item.quality}個</div>
-					<div class="col-2">${item.price * item.quality}円</div>
+					<div class="col-2"><strong>${item.totalpriceStr}円</strong></div>
 				</div>
 			</c:forEach>
 
@@ -134,7 +134,7 @@
 				<div class="row">
 					<div class="col-9"></div>
 					<div class="col-1">合計</div>
-					<div class="col-2">${totalprice}円</div>
+					<div class="col-2"><strong>${totalprice}円</strong></div>
 				</div>
 
 				<br>
@@ -142,7 +142,7 @@
 					<div class="row">
 						<div class="col align-self-start">
 							<div class="text-left">
-								<a class="btn btn-danger" type="submit" href="Cart">買い物かごへ戻る</a>
+								<a class="btn btn-danger btn-block" type="submit" href="Cart">買い物かごへ戻る</a>
 							</div>
 						</div>
 

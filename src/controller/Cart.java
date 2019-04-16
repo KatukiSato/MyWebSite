@@ -42,7 +42,8 @@ public class Cart extends HttpServlet {
 			ArrayList<CartBeans> show = CartDao.showCart(login);
 			session.setAttribute("show", show);
 
-			int totalprice = Helper.getTotalItemPrice(show);
+			String totalprice = Helper.getTotalItemPrice(show);
+
 			session.setAttribute("totalprice", totalprice);
 
 		} catch (SQLException e) {
@@ -82,7 +83,7 @@ public class Cart extends HttpServlet {
 					CartDao.insertItem(cb,itemId);
 					ArrayList<CartBeans> show = CartDao.showCart(login);
 
-					int totalprice = Helper.getTotalItemPrice(show);
+					String totalprice = Helper.getTotalItemPrice(show);
 					session.setAttribute("totalprice", totalprice);
 
 					session.setAttribute("show", show);
@@ -96,7 +97,7 @@ public class Cart extends HttpServlet {
 
 					ArrayList<CartBeans> show = CartDao.showCart(login);
 
-					int totalprice = Helper.getTotalItemPrice(show);
+					String totalprice = Helper.getTotalItemPrice(show);
 					session.setAttribute("totalprice", totalprice);
 					session.setAttribute("show", show);
 					System.out.println("選んだ商品が重複していたので、個数を追加しました。");

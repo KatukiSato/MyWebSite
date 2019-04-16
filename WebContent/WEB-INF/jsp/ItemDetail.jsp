@@ -92,7 +92,7 @@
 							<br>
 							<h4>${item.name}</h4>
 							<br>
-							<h5>${item.priceStr}円</h5>
+							<h5><strong>${item.priceStr}円</strong></h5>
 							<br>
 							<p>商品説明</p>
 							<p>${item.detail}</p>
@@ -131,7 +131,6 @@
 
 					<%-- <c:redirect url ="Cart" > 検索結果へ戻る </c:redirect> --%>
 				</div>
-			</fmt:formatNumber>
 		</c:forEach>
 	</div>
 

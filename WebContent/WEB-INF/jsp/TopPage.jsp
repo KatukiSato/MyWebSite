@@ -92,7 +92,7 @@
 								class="img-container--absolute-position"></a>
 							<div class="card-body">
 								<p class="textOverflow">${item.name}</p>
-								<p class="textOverflow">${item.price}円</p>
+								<p><strong>${item.priceStr}円</strong></p>
 								<div class="d-flex justify-content-between align-items-center">
 									<div class="btn-group">
 										<a type="button" class="btn btn-sm btn-outline-secondary"
@@ -136,7 +136,7 @@
 								 class="img-container--absolute-position"></a>
 							<div class="card-body">
 								<p class="textOverflow">${item.name}</p>
-								<p class="textOverflow">${item.price}円</p>
+								<p><strong>${item.priceStr}円</strong></p>
 								<div class="d-flex justify-content-between align-items-center">
 									<div class="btn-group">
 										<a type="button" class="btn btn-sm btn-outline-secondary"

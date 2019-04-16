@@ -31,7 +31,6 @@ public class ItemBeans implements Serializable{
 	public int getPrice() {
 		return price;
 	}
-
 	public String getPriceStr() {
 		return String.format("%,d", price);
 	}

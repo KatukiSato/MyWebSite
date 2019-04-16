@@ -13,8 +13,6 @@ public class CartBeans implements Serializable{
 	private String name;
 	private String file_name;
 
-	private int totalprice;
-
 
 	public int getId() {
 		return id;
@@ -31,6 +29,9 @@ public class CartBeans implements Serializable{
 	public int getQuality() {
 		return quality;
 	}
+	public String getQualityStr() {
+		return String.format("%,d", quality);
+	}
 	public void setQuality(int quality) {
 		this.quality = quality;
 	}
@@ -42,6 +43,9 @@ public class CartBeans implements Serializable{
 	}
 	public int getPrice() {
 		return price;
+	}
+	public String getPriceStr() {
+		return  String.format("%,d", price);
 	}
 	public void setPrice(int price) {
 		this.price = price;
@@ -65,10 +69,15 @@ public class CartBeans implements Serializable{
 		this.item_id = item_id;
 	}
 	public int getTotalprice() {
-		return totalprice;
+		return price * quality;
 	}
-	public void setTotalprice(int totalprice) {
-		this.totalprice = totalprice;
+
+	public String getTotalpriceStr() {
+		return String.format("%,d",  price * quality);
+	}
+
+	public String getTotalpricetest() {
+		return String.format("%,c",  price * quality);
 	}
 
 }

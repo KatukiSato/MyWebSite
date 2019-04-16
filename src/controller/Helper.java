@@ -83,11 +83,11 @@ public class Helper {
 		return result;
 	}
 
-	public static int getTotalItemPrice(ArrayList<CartBeans> items) {
-		int total = 0;
+	public static String getTotalItemPrice(ArrayList<CartBeans> items) {
+		int total =0;
 		for (CartBeans item : items) {
-			total += item.getPrice() * item.getQuality();
+			total += item.getTotalprice();
 		}
-		return total;
+		return String.format("%,d",  total);
 	}
 }
