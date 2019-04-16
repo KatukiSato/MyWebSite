@@ -95,21 +95,27 @@
 					<div class="col-4">
 						<a href="ItemDetail?item_id=${item.item_id}">${item.name}</a>
 					</div>
-					<div class="col-2"><strong>${item.priceStr}円</strong></div>
+					<div class="col-2">
+						<strong>${item.priceStr}円</strong>
+					</div>
 					<div class="col-1">${item.quality}個</div>
-					<div class="col-2"><strong>${item.totalpriceStr}円</strong></div>
+					<div class="col-2">
+						<strong>${item.totalpriceStr}円</strong>
+					</div>
 				</div>
 			</c:forEach>
 
-				<hr class="borderline ">
+			<hr class="borderline ">
+
+			<form action="RegisterConfirm" method="POST">
 
 				<div class="row">
 					<div class="col-9"></div>
 					<div class="col-1">支払方法</div>
 					<div class="col-2">
 						<select name="pay_method">
-							<option value="1">コンビニ支払い</option>
-							<option value="2">現金引換</option>
+							<option value="1">現金引換</option>
+							<option value="2">コンビニ支払い</option>
 						</select>
 					</div>
 				</div>
@@ -128,13 +134,14 @@
 					</div>
 				</div>
 
-				<br>
-				<br>
+				<br> <br>
 
 				<div class="row">
 					<div class="col-9"></div>
 					<div class="col-1">合計</div>
-					<div class="col-2"><strong>${totalprice}円</strong></div>
+					<div class="col-2">
+						<strong>${totalprice}円</strong>
+					</div>
 				</div>
 
 				<br>
@@ -147,11 +154,11 @@
 						</div>
 
 						<div class="col align-self-end">
-							<a class="btn btn-success btn-block" type="submit"
-								href="RegisterConfirm">確認画面へ進む</a>
+							<button class="btn btn-success btn-block" type="submit">確認画面へ進む</button>
 						</div>
 					</div>
 				</div>
+			</form>
 		</div>
 	</div>
 </body>

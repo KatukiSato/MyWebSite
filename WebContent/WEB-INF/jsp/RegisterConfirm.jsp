@@ -111,7 +111,7 @@
 
 			<div class="row">
 				<div class="col-2">支払方法</div>
-				<div class="col-6">選択したもの</div>
+				<div class="col-6">${pmb.name}</div>
 				<div class="col-4"></div>
 			</div>
 
@@ -119,9 +119,9 @@
 
 			<div class="row">
 				<div class="col-2">配送方法</div>
-				<div class="col-6">選択したもの</div>
+				<div class="col-6">${dmb.name}</div>
 				<div class="col-2"></div>
-				<div class="col-2">○○円</div>
+				<div class="col-2"><strong>${dmb.priceStr}円</strong></div>
 			</div>
 
 			<br> <br>
@@ -129,7 +129,7 @@
 			<div class="row">
 				<div class="col-9"></div>
 				<div class="col-1">合計</div>
-				<div class="col-2"><strong>${totalprice}円</strong></div>
+				<div class="col-2"><strong>${test}円</strong></div>
 			</div>
 
 			<br> <br>

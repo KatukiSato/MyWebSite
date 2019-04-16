@@ -4,11 +4,14 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.xml.bind.DatatypeConverter;
 
 import beans.CartBeans;
+import beans.DeliveryMethodBeans;
+import dao.DeliveryMethodDao;
 
 
 public class Helper {
@@ -44,8 +47,10 @@ public class Helper {
 	//お買い物かご
 	static final String CART_PAGE = "/WEB-INF/jsp/cart.jsp";
 
+	//購入方法確認
 	static final String REGISTER_PAGE = "/WEB-INF/jsp/Register.jsp";
 
+	//購入最終確認
 	static final String REGISTER_CONFIRM_PAGE = "/WEB-INF/jsp/RegisterConfirm.jsp";
 
 	/**
@@ -83,11 +88,39 @@ public class Helper {
 		return result;
 	}
 
+	/**
+	 * 合計金額
+	 * @param items
+	 * @return
+	 */
 	public static String getTotalItemPrice(ArrayList<CartBeans> items) {
-		int total =0;
+		int total = 0;
 		for (CartBeans item : items) {
 			total += item.getTotalprice();
 		}
+
+		DeliveryMethodBeans pp = new DeliveryMethodBeans();
+		total += pp.getPrice();
+
+		return String.format("%,d",  total);
+	}
+
+
+	/**
+	 * 配送料金を加えた合計金額。最終確認につかう。
+	 * @param items
+	 * @param deliId
+	 * @return
+	 * @throws SQLException
+	 */
+	public static String getFinalTotalPrice(ArrayList<CartBeans> items, int deliId) throws SQLException {
+		int total = 0;
+		for (CartBeans item : items) {
+			total += item.getTotalprice();
+		}
+		DeliveryMethodBeans pp = DeliveryMethodDao.getDeliveryMethodDataBeansByID(deliId);
+		total += pp.getPrice();
+
 		return String.format("%,d",  total);
 	}
 }

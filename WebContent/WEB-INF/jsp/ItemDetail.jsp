@@ -92,7 +92,7 @@
 							<br>
 							<h4>${item.name}</h4>
 							<br>
-							<h5><strong>${item.priceStr}円</strong></h5>
+							<h5><strong><font size ="5">${item.priceStr}円</font></strong></h5>
 							<br>
 							<p>商品説明</p>
 							<p>${item.detail}</p>
