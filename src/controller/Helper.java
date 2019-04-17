@@ -56,6 +56,12 @@ public class Helper {
 	//購入完了
 	static final String BUY_COMPLETE_PAGE = "/WEB-INF/jsp/BuyComplete.jsp";
 
+	//お客様情報
+	static final String USER_DETAIL_PAGE = "/WEB-INF/jsp/UserDetail.jsp";
+
+	//購入履歴一覧
+	static final String BUY_HISTORY_PAGE = "/WEB-INF/jsp/BuyHistory.jsp";
+
 
 	/**
 	 * @param isLoginIdform

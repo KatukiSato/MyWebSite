@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 
 import base.DataBaseManager;
 import beans.CustomerDataBeans;
@@ -106,7 +107,6 @@ public class CustomerDao {
 			while(rs.next()) {
 				if(Helper.getAngo(password).equals(rs.getString("login_password"))) {
 					customerId = rs.getInt("id");
-					System.out.println("これでどう？");
 					break;
 				}
 			}
@@ -117,6 +117,37 @@ public class CustomerDao {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			throw new SQLException(e);
+		} finally {
+			if (con != null) {
+				con.close();
+			}
+		}
+	}
+
+	public static ArrayList<CustomerDataBeans>  getUserInfoByUserId(int userId) throws SQLException {
+		ArrayList<CustomerDataBeans> cdbList = new ArrayList<CustomerDataBeans>();
+		Connection con = null;
+		PreparedStatement st = null;
+		try {
+			con = DataBaseManager.getConnection();
+
+			st = con.prepareStatement("select login_id, name, mail, phone, address from t_user where id =  " + userId);
+			ResultSet rs = st.executeQuery();
+
+			while(rs.next()) {
+				CustomerDataBeans cdb = new CustomerDataBeans();
+				cdb.setLogin_id(rs.getString("login_id"));
+				cdb.setName(rs.getString("name"));
+				cdb.setMail(rs.getString("mail"));
+				cdb.setPhone(rs.getString("phone"));
+				cdb.setAddress(rs.getString("address"));
+
+				cdbList.add(cdb);
+			}
+
+			System.out.println("DBからユーザー情報を取得");
+			return cdbList;
+
 		} finally {
 			if (con != null) {
 				con.close();

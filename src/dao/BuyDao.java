@@ -12,6 +12,12 @@ import base.DataBaseManager;
 import beans.BuyHistryBeans;
 
 public class BuyDao {
+	/**
+	 * 購入処理
+	 * @param bdb
+	 * @return
+	 * @throws SQLException
+	 */
 	public static int insertBuy(BuyHistryBeans bdb) throws SQLException {
 		Connection con = null;
 		PreparedStatement st = null;
@@ -40,6 +46,19 @@ public class BuyDao {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			throw new SQLException(e);
+		} finally {
+			if (con != null) {
+				con.close();
+			}
+		}
+	}
+
+	public static BuyHistryBeans getBuyDataBeansByBuyId(int buyId) throws SQLException {
+		Connection con = null;
+		PreparedStatement st = null;
+
+		try {
+			con = DataBaseManager.getConnection();
 		} finally {
 			if (con != null) {
 				con.close();

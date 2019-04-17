@@ -14,6 +14,9 @@ public class BuyHistryBeans {
 
 	private String total_priceStr;
 
+	private String pay_method_name;
+	private String delivery_method_name;
+	private int delivery_method_price;
 
 	public int getId() {
 		return id;
@@ -58,11 +61,31 @@ public class BuyHistryBeans {
 		SimpleDateFormat dformat = new SimpleDateFormat("yyyy年MM月dd日HH時mm分");
 		return dformat.format(create_date);
 	}
+
+	//必要かどうか不明
 	public String getTotal_priceStr() {
 		return total_priceStr;
 	}
 	public void setTotal_priceStr(String total_priceStr) {
 		this.total_priceStr = total_priceStr;
+	}
+	public String getPay_method_name() {
+		return pay_method_name;
+	}
+	public void setPay_method_name(String pay_method_name) {
+		this.pay_method_name = pay_method_name;
+	}
+	public String getDelivery_method_name() {
+		return delivery_method_name;
+	}
+	public void setDelivery_method_name(String delivery_method_name) {
+		this.delivery_method_name = delivery_method_name;
+	}
+	public int getDelivery_method_price() {
+		return delivery_method_price;
+	}
+	public void setDelivery_method_price(int delivery_method_price) {
+		this.delivery_method_price = delivery_method_price;
 	}
 
 }

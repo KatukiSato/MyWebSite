@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import beans.BuyHistryBeans;
 import dao.BuyDao;
+import dao.CartDao;
 
 /**
  * Servlet implementation class BuyComplete
@@ -52,8 +53,16 @@ public class BuyComplete extends HttpServlet {
 			session.getAttribute("show");
 
 			BuyHistryBeans bhb = (BuyHistryBeans) session.getAttribute("bhb");
+			int userid = (int)session.getAttribute("userId");
+			String loginid = (String)session.getAttribute("logId");
 
+			//購入処理
 			int test = BuyDao.insertBuy(bhb);
+
+
+
+			//買い物かごの商品を削除
+			CartDao.deleteItemCart(loginid);
 		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();

@@ -50,19 +50,9 @@
 			<ul class="navbar-nav">
 				<c:if test="${logId == null}">
 					<li class="nav-item active"><a class="nav-link"
-						href="http://localhost:8080/MyWebSite/Login">ログイン</a></li>
+						href="Login">ログイン</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="http://localhost:8080/MyWebSite/NewEntry">新規登録</a></li>
-				</c:if>
-
-				<!--ログイン状態の時に出すコマンド  -->
-				<c:if test="${logId != null}">
-					<li class="nav-item"><a class="nav-link"
-						href="http://localhost:8080/MyWebSite/Cart">買い物かご</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="http://localhost:8080/MyWebSite/Mock/UserDetail.html">お客様情報</a></li>
-					<li class="nav-item active"><a class="nav-link"
-						href="http://localhost:8080/MyWebSite/Logout">ログアウト</a></li>
+						href="NewEntry">新規登録</a></li>
 				</c:if>
 			</ul>
 		</div>

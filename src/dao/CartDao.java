@@ -268,7 +268,13 @@ public class CartDao {
 		}
 	}
 
-	public static  int deleteItemCart(int id) throws SQLException {
+	/**
+	 * 購入完了したら買った商品買い物かごから削除
+	 * @param loginId
+	 * @return
+	 * @throws SQLException
+	 */
+	public static  int deleteItemCart(String loginId) throws SQLException {
 		Connection con = null;
 		PreparedStatement st = null;
 
@@ -276,10 +282,11 @@ public class CartDao {
 			con = DataBaseManager.getConnection();
 
 			st = con.prepareStatement("delete from cart where login_id = ?");
-			st.setInt(1, id);
+			st.setString(1, loginId);
 
 			int rs = st.executeUpdate();
 
+			System.out.println("カート内のアイテムを削除しました。");
 			return rs;
 
 		} catch (Exception e) {
