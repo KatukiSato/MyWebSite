@@ -53,6 +53,10 @@ public class Helper {
 	//購入最終確認
 	static final String REGISTER_CONFIRM_PAGE = "/WEB-INF/jsp/RegisterConfirm.jsp";
 
+	//購入完了
+	static final String BUY_COMPLETE_PAGE = "/WEB-INF/jsp/BuyComplete.jsp";
+
+
 	/**
 	 * @param isLoginIdform
 	 * @return

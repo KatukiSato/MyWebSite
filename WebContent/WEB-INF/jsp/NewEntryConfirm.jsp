@@ -30,7 +30,7 @@
 <body class="text-center">
 
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark mt-3 mb-3">
-		<a class="navbar-brand" href="http://localhost:8080/MyWebSite/TopPage">ＥＣサイト</a>
+		<a class="navbar-brand" href="TopPage">ＥＣサイト</a>
 	</nav>
 	<div class="card-midium2">
 		<div class="text-center">

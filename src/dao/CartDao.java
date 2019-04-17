@@ -81,8 +81,6 @@ public class CartDao {
 
 			ArrayList<CartBeans> showCartList = new ArrayList<CartBeans>();
 
-
-
 			while(rs.next()) {
 				CartBeans cart = new CartBeans();
 				cart.setId(rs.getInt("id"));
@@ -95,7 +93,7 @@ public class CartDao {
 
 				showCartList.add(cart);
 			}
-//			int totalprice = Helper.getTotalItemPrice(showCartList);
+			//			int totalprice = Helper.getTotalItemPrice(showCartList);
 			System.out.println("買い物かごの中身です。");
 			return showCartList;
 		} catch (Exception e) {
@@ -223,6 +221,14 @@ public class CartDao {
 		}
 	}
 
+	/**
+	 * 買い物かご画面で個数の更新を行う処理
+	 * @param quality
+	 * @param loginId
+	 * @param itemId
+	 * @return
+	 * @throws SQLException
+	 */
 	public static  CartBeans qualityChange(int quality, String loginId, int itemId) throws SQLException {
 		CartBeans ccb = new CartBeans();
 		Connection con = null;
@@ -232,9 +238,9 @@ public class CartDao {
 			con = DataBaseManager.getConnection();
 
 			st = con.prepareStatement("update cart t inner join m_item m "
-										+ " on t.item_id = m.id  "
-										+ " set t.quality = ? "
-										+ " where t.login_id = ? and t.item_id = ? ");
+					+ " on t.item_id = m.id  "
+					+ " set t.quality = ? "
+					+ " where t.login_id = ? and t.item_id = ? ");
 			st.setInt(1, quality);
 			st.setString(2, loginId);
 			st.setInt(3, itemId);
@@ -251,6 +257,30 @@ public class CartDao {
 			}
 			System.out.println("カートから個数を更新しました。");
 			return ccb;
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			throw new SQLException(e);
+		} finally {
+			if (con != null) {
+				con.close();
+			}
+		}
+	}
+
+	public static  int deleteItemCart(int id) throws SQLException {
+		Connection con = null;
+		PreparedStatement st = null;
+
+		try {
+			con = DataBaseManager.getConnection();
+
+			st = con.prepareStatement("delete from cart where login_id = ?");
+			st.setInt(1, id);
+
+			int rs = st.executeUpdate();
+
+			return rs;
 
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

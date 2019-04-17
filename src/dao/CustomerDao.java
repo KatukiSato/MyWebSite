@@ -84,6 +84,7 @@ public class CustomerDao {
 
 	/**
 	 * ユーザーテーブルからログインIdとパスワードを探すだけ。
+	 * 照合完了出来たらidを取得する。
 	 * @param loginId
 	 * @param password
 	 * @return

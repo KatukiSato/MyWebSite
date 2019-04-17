@@ -30,7 +30,7 @@
 <body class="text-center">
 
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark mt-3 mb-3">
-		<a class="navbar-brand" href="http://localhost:8080/MyWebSite/TopPage">ＥＣサイト</a>
+		<a class="navbar-brand" href="TopPage">ＥＣサイト</a>
 
 		<!--bootstrap.minの変更-->
 		<form action="Index" class="form-inline">
@@ -50,9 +50,9 @@
 			<ul class="navbar-nav">
 				<c:if test="${logId == null}">
 					<li class="nav-item active"><a class="nav-link"
-						href="http://localhost:8080/MyWebSite/Login">ログイン</a></li>
+						href="Login">ログイン</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="http://localhost:8080/MyWebSite/NewEntry">新規登録</a></li>
+						href="NewEntry">新規登録</a></li>
 				</c:if>
 
 				<!--ログイン状態の時に出すコマンド  -->
@@ -60,9 +60,9 @@
 					<li class="nav-item"><a class="nav-link"
 						href="Cart?login_id=${logId}">買い物かご</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="UserDetail.html">お客様情報</a></li>
+						href="http://localhost:8080/MyWebSite/Mock/UserDetail.html">お客様情報</a></li>
 					<li class="nav-item active"><a class="nav-link"
-						href="http://localhost:8080/MyWebSite/Logout">ログアウト</a></li>
+						href="Logout">ログアウト</a></li>
 				</c:if>
 			</ul>
 		</div>

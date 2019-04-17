@@ -45,11 +45,11 @@ public class TopPage extends HttpServlet {
 			/*登録確認画面でＴＯＰペーシに戻った場合、入力情報を捨てる。エラーメッセージも？？
 			追記：　多分いらないと思うので、最終的に確認したら削除する　2019/04/08 14:11　　　　　　　
 			*/
-			session.removeAttribute("udb");
-			session.removeAttribute("validationMessage");
-			session.removeAttribute("userId");
-			request.getAttribute("qchange");
-			session.removeAttribute("qchange");
+//			session.removeAttribute("udb");
+//			session.removeAttribute("validationMessage");
+//			session.removeAttribute("userId");
+//			request.getAttribute("qchange");
+//			session.removeAttribute("qchange");
 
 			//セッションにsearchが入っていたら破棄する
 			String searchWord = (String)session.getAttribute("search");

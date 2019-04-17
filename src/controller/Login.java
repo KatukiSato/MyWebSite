@@ -60,7 +60,9 @@ public class Login extends HttpServlet {
 				session.setAttribute("logId", loginId);
 				response.sendRedirect("TopPage");
 				System.out.println("ログイン処理完了！");
+
 			}else{
+
 				session.setAttribute("loginId", loginId);
 				request.setAttribute("loginErrorMessage", "入力内容が正しくありません<br><br>正しいものを入力してください。");
 				System.out.println("エラーがでました。");
