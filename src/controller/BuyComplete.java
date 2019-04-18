@@ -14,7 +14,6 @@ import javax.servlet.http.HttpSession;
 import beans.BuyDetailBeans;
 import beans.BuyHistryBeans;
 import beans.CartBeans;
-import beans.ItemBeans;
 import dao.BuyDao;
 import dao.BuyDetailDao;
 import dao.CartDao;
@@ -39,12 +38,6 @@ public class BuyComplete extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		//画面チェック用。　完成したら消す。
-//		HttpSession session = request.getSession();
-//		session.getAttribute("show");
-//
-//		request.getRequestDispatcher(Helper.BUY_COMPLETE_PAGE).forward(request, response);
-
 	}
 
 	/**
@@ -58,12 +51,12 @@ public class BuyComplete extends HttpServlet {
 			ArrayList<CartBeans> cart = (ArrayList<CartBeans>)session.getAttribute("show");
 
 			BuyHistryBeans bhb = (BuyHistryBeans) session.getAttribute("bhb");
-			int userid = (int)session.getAttribute("userId");
 			String loginid = (String)session.getAttribute("logId");
 
 			//購入処理
 			int buyItem = BuyDao.insertBuy(bhb);
 
+			//商品の情報の概略を紐付け
 			for(CartBeans summaryItem : cart) {
 				BuyDetailBeans dItem = new BuyDetailBeans();
 				dItem.setHistory_id(buyItem);
@@ -72,7 +65,7 @@ public class BuyComplete extends HttpServlet {
 				BuyDetailDao.getBuyItemSummary(dItem);
 			}
 
-			ArrayList<ItemBeans> detailItem = BuyDetailDao.getBuyItemDetail(buyItem);
+//			ArrayList<ItemBeans> detailItem = BuyDetailDao.getBuyItemDetail(buyItem);
 
 			//買い物かごの商品を削除
 			CartDao.deleteItemCart(loginid);
@@ -80,7 +73,6 @@ public class BuyComplete extends HttpServlet {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}
-
 
 		request.getRequestDispatcher(Helper.BUY_COMPLETE_PAGE).forward(request, response);
 

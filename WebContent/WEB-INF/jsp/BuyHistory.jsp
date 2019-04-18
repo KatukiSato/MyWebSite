@@ -86,77 +86,78 @@
 
 	<div class="card-History">
 		<div class="panel-group" id="accordion">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<div class="row">
-						<div class="col-6">
-							<h4 class="panel-title">
-								<a data-toggle="collapse" data-parent="#accordion1"
-									href="#accordion1">2019/03/28 14:48 </a>
-							</h4>
+			<c:forEach var="otamesi" items="${test}">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="row">
+							<div class="col-6">
+								<h4 class="panel-title">
+									<a data-toggle="collapse" data-parent="#accordion${otamesi.id}"
+										href="#accordion${otamesi.id}">${otamesi.formatDate} </a>
+								</h4>
+							</div>
+							<div class="col-6">${otamesi.total_priceStr}円</div>
 						</div>
-						<div class="col-6">123456789円</div>
+					</div>
+					<div id="accordion${otamesi.id}" class="panel-collapse collapse">
+
+						<br>
+
+						<div class="row">
+							<div class="col-1"></div>
+							<div class="col-6">商品</div>
+							<div class="col-2">単価</div>
+							<div class="col-1">数量</div>
+							<div class="col-2">価格</div>
+						</div>
+
+
+						<hr class="borderline">
+
+						<div class="row">
+							<div class="col-1"></div>
+							<div class="col-sm-2">
+								<a href="ItemDetail.html"><img src="img/5c35bd53.jpg"
+									alt="サンプル" width="150" height="100%" class="card-img-top"></a>
+							</div>
+							<div class="col-4">
+								<a href="ItemDetail.html">商品を書くんだひゃっはああああああああああああああああひゃっはああああああああああああああああ</a>
+							</div>
+							<div class="col-2">123456789円</div>
+							<div class="col-1">○○個</div>
+							<div class="col-2">123456789円</div>
+						</div>
+
+						<br>
+
+						<hr class="borderline">
+
+						<div class="row">
+							<div class="col-2">支払方法</div>
+							<div class="col-6">${otamesi.pay_method_name}</div>
+							<div class="col-4"></div>
+						</div>
+
+						<br>
+
+						<div class="row">
+							<div class="col-2">配送方法</div>
+							<div class="col-6">${otamesi.delivery_method_name}</div>
+							<div class="col-2"></div>
+							<div class="col-2">${otamesi.delivery_method_price}円</div>
+						</div>
+
+						<br>
+						<div class="row">
+							<div class="col-9"></div>
+							<div class="col-1">合計</div>
+							<div class="col-2">${otamesi.total_priceStr}円</div>
+						</div>
+						<br>
 					</div>
 				</div>
-				<div id="accordion1" class="panel-collapse collapse">
-
-					<br>
-
-					<div class="row">
-						<div class="col-1"></div>
-						<div class="col-6">商品</div>
-						<div class="col-2">単価</div>
-						<div class="col-1">数量</div>
-						<div class="col-2">価格</div>
-					</div>
-
-
-					<hr class="borderline">
-
-					<div class="row">
-						<div class="col-1"></div>
-						<div class="col-sm-2">
-							<a href="ItemDetail.html"><img src="img/5c35bd53.jpg"
-								alt="サンプル" width="150" height="100%" class="card-img-top"></a>
-						</div>
-						<div class="col-4">
-							<a href="ItemDetail.html">商品を書くんだひゃっはああああああああああああああああひゃっはああああああああああああああああ</a>
-						</div>
-						<div class="col-2">123456789円</div>
-						<div class="col-1">○○個</div>
-						<div class="col-2">123456789円</div>
-					</div>
-
-					<br>
-
-					<hr class="borderline">
-
-					<div class="row">
-						<div class="col-2">支払方法</div>
-						<div class="col-6">選択したもの</div>
-						<div class="col-4"></div>
-					</div>
-
-					<br>
-
-					<div class="row">
-						<div class="col-2">配送方法</div>
-						<div class="col-6">選択したもの</div>
-						<div class="col-2"></div>
-						<div class="col-2">○○円</div>
-					</div>
-
-					<br>
-					<div class="row">
-						<div class="col-9"></div>
-						<div class="col-1">合計</div>
-						<div class="col-2">○○円</div>
-					</div>
-					<br>
-				</div>
-			</div>
+			</c:forEach>
 		</div>
-
 	</div>
 </body>
 </html>

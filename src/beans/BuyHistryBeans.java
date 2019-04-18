@@ -1,6 +1,7 @@
 package beans;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class BuyHistryBeans {
@@ -17,6 +18,8 @@ public class BuyHistryBeans {
 	private String pay_method_name;
 	private String delivery_method_name;
 	private int delivery_method_price;
+
+	private ArrayList<BuyDetailBeans> BuyDetailBeans;
 
 	public int getId() {
 		return id;
@@ -86,6 +89,12 @@ public class BuyHistryBeans {
 	}
 	public void setDelivery_method_price(int delivery_method_price) {
 		this.delivery_method_price = delivery_method_price;
+	}
+	public ArrayList<BuyDetailBeans> getBuyDetailBeans() {
+		return BuyDetailBeans;
+	}
+	public void setBuyDetailBeans(ArrayList<BuyDetailBeans> buyDetailBeans) {
+		BuyDetailBeans = buyDetailBeans;
 	}
 
 }
