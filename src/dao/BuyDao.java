@@ -53,17 +53,17 @@ public class BuyDao {
 		}
 	}
 
-	public static BuyHistryBeans getBuyDataBeansByBuyId(int buyId) throws SQLException {
-		Connection con = null;
-		PreparedStatement st = null;
-
-		try {
-			con = DataBaseManager.getConnection();
-		} finally {
-			if (con != null) {
-				con.close();
-			}
-		}
-	}
+//	public static BuyHistryBeans getBuyDataBeansByBuyId(int buyId) throws SQLException {
+//		Connection con = null;
+//		PreparedStatement st = null;
+//
+//		try {
+//			con = DataBaseManager.getConnection();
+//		} finally {
+//			if (con != null) {
+//				con.close();
+//			}
+//		}
+//	}
 
 }

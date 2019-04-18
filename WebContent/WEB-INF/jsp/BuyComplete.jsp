@@ -45,14 +45,12 @@
 			</div>
 		</form>
 
-				<!--非ログイン状態の時に出すコマンド  -->
+		<!--非ログイン状態の時に出すコマンド  -->
 		<div class="collapse navbar-collapse justify-content-end">
 			<ul class="navbar-nav">
 				<c:if test="${logId == null}">
-					<li class="nav-item active"><a class="nav-link"
-						href="Login">ログイン</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="NewEntry">新規登録</a></li>
+					<li class="nav-item active"><a class="nav-link" href="Login">ログイン</a></li>
+					<li class="nav-item"><a class="nav-link" href="NewEntry">新規登録</a></li>
 				</c:if>
 
 				<!--ログイン状態の時に出すコマンド  -->
@@ -61,8 +59,7 @@
 						href="Cart?login_id=${logId}">買い物かご</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="http://localhost:8080/MyWebSite/Mock/UserDetail.html">お客様情報</a></li>
-					<li class="nav-item active"><a class="nav-link"
-						href="Logout">ログアウト</a></li>
+					<li class="nav-item active"><a class="nav-link" href="Logout">ログアウト</a></li>
 				</c:if>
 			</ul>
 		</div>
@@ -77,17 +74,16 @@
 	<span class="display-4">以下の商品を購入完了しました</span>
 
 	<div class="card">
-		<c:forEach var="item" items="${show}">
-			<div class="container">
-				<div class="row">
-					<div class="col-1"></div>
-					<div class="col-6">商品</div>
-					<div class="col-2">単価</div>
-					<div class="col-1">数量</div>
-					<div class="col-2">価格</div>
-				</div>
-
-				<hr class="borderline2">
+		<div class="container">
+			<div class="row">
+				<div class="col-1"></div>
+				<div class="col-6">商品</div>
+				<div class="col-2">単価</div>
+				<div class="col-1">数量</div>
+				<div class="col-2">価格</div>
+			</div>
+			<hr class="borderline2">
+			<c:forEach var="item" items="${show}">
 				<div class="row">
 					<div class="col-1"></div>
 					<div class="col-sm-2">
@@ -95,43 +91,50 @@
 							src="img/${item.file_name}" alt="サンプル" class="item-card"></a>
 					</div>
 					<div class="col-4">
-<a href="ItemDetail?item_id=${item.item_id}">${item.name}</a>					</div>
-					<div class="col-2"><strong>${item.priceStr}円</strong></div>
+						<a href="ItemDetail?item_id=${item.item_id}">${item.name}</a>
+					</div>
+					<div class="col-2">
+						<strong>${item.priceStr}円</strong>
+					</div>
 					<div class="col-1">${item.quality}個</div>
-					<div class="col-2"><strong>${item.totalpriceStr}円</strong></div>
+					<div class="col-2">
+						<strong>${item.totalpriceStr}円</strong>
+					</div>
 				</div>
-				<br> <br>
-
 				<br>
-				<hr class="borderline ">
-
-				<div class="row">
-					<div class="col-2">支払方法</div>
-					<div class="col-6">${dmb.name}</div>
-					<div class="col-4"></div>
-				</div>
-
 				<br>
+				<br>
+			</c:forEach>
+		</div>
+		<div class="container">
+			<hr class="borderline">
 
-				<div class="row">
-					<div class="col-2">配送方法</div>
-					<div class="col-6">選択したもの</div>
-					<div class="col-2"></div>
-					<div class="col-2"><strong>${dmb.priceStr}円</strong></div>
-				</div>
-
-				<br> <br>
-
-				<div class="row">
-					<div class="col-9"></div>
-					<div class="col-1">合計</div>
-					<div class="col-2"><strong>${test}円</div>
-				</div>
-
-				<br> <a class="btn btn-primary" type="submit"
-					href="TopPage">ＴＯＰページへ戻る</a>
+			<div class="row">
+				<div class="col-2">支払方法</div>
+				<div class="col-6">${dmb.name}</div>
+				<div class="col-4"></div>
 			</div>
-		</c:forEach>
+			<br>
+			<div class="row">
+				<div class="col-2">配送方法</div>
+				<div class="col-6">選択したもの</div>
+				<div class="col-2"></div>
+				<div class="col-2">
+					<strong>${dmb.priceStr}円</strong>
+				</div>
+			</div>
+
+			<br> <br>
+
+			<div class="row">
+				<div class="col-9"></div>
+				<div class="col-1">合計</div>
+				<div class="col-2">
+					<strong>${test}円</strong>
+				</div>
+			</div>
+			<br> <a class="btn btn-primary" type="submit" href="TopPage">ＴＯＰページへ戻る</a>
+		</div>
 	</div>
 </body>
 </html>
