@@ -74,6 +74,8 @@
 	<br>
 	<br>
 
+
+
 	<form class="form-inline">
 		<div class="container">
 			<div class="text-center" style="padding: 3px;">
@@ -86,20 +88,20 @@
 
 	<div class="card-History">
 		<div class="panel-group" id="accordion">
-			<c:forEach var="otamesi" items="${test}">
+			<c:forEach var="root" items="${test}">
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<div class="row">
 							<div class="col-6">
 								<h4 class="panel-title">
-									<a data-toggle="collapse" data-parent="#accordion${otamesi.id}"
-										href="#accordion${otamesi.id}">${otamesi.formatDate} </a>
+									<a data-toggle="collapse" data-parent="#accordion${root.id}"
+										href="#accordion${root.id}">${root.formatDate} </a>
 								</h4>
 							</div>
-							<div class="col-6">${otamesi.total_priceStr}円</div>
+							<div class="col-6">${root.total_priceStr}円</div>
 						</div>
 					</div>
-					<div id="accordion${otamesi.id}" class="panel-collapse collapse">
+					<div id="accordion${root.id}" class="panel-collapse collapse">
 
 						<br>
 
@@ -111,23 +113,22 @@
 							<div class="col-2">価格</div>
 						</div>
 
-
 						<hr class="borderline">
-
-						<div class="row">
-							<div class="col-1"></div>
-							<div class="col-sm-2">
-								<a href="ItemDetail.html"><img src="img/5c35bd53.jpg"
-									alt="サンプル" width="150" height="100%" class="card-img-top"></a>
+						<c:forEach var="detail" items="${root.buyDetailBeans}">
+							<div class="row">
+								<div class="col-1"></div>
+								<div class="col-sm-2">
+									<a href="ItemDetail.html"><img src="img/5c35bd53.jpg"
+										alt="サンプル" width="150" height="100%" class="card-img-top"></a>
+								</div>
+								<div class="col-4">
+									<a href="ItemDetail.html">${detail.name }</a>
+								</div>
+								<div class="col-2">${detail.price}円</div>
+								<div class="col-1">${detail.quality }個</div>
+								<div class="col-2">${detail.price }円</div>
 							</div>
-							<div class="col-4">
-								<a href="ItemDetail.html">商品を書くんだひゃっはああああああああああああああああひゃっはああああああああああああああああ</a>
-							</div>
-							<div class="col-2">123456789円</div>
-							<div class="col-1">○○個</div>
-							<div class="col-2">123456789円</div>
-						</div>
-
+						</c:forEach>
 						<br>
 
 						<hr class="borderline">

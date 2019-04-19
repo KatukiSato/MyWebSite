@@ -19,7 +19,7 @@ public class BuyHistryBeans {
 	private String delivery_method_name;
 	private int delivery_method_price;
 
-	private ArrayList<BuyDetailBeans> BuyDetailBeans;
+	private ArrayList<BuyDetailBeans> buyDetailBeans;
 
 	public int getId() {
 		return id;
@@ -91,10 +91,10 @@ public class BuyHistryBeans {
 		this.delivery_method_price = delivery_method_price;
 	}
 	public ArrayList<BuyDetailBeans> getBuyDetailBeans() {
-		return BuyDetailBeans;
+		return buyDetailBeans;
 	}
 	public void setBuyDetailBeans(ArrayList<BuyDetailBeans> buyDetailBeans) {
-		BuyDetailBeans = buyDetailBeans;
+		this.buyDetailBeans = buyDetailBeans;
 	}
 
 }

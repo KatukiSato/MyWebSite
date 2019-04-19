@@ -81,6 +81,12 @@ public class BuyDetailDao {
 		}
 	}
 
+	/**
+	 * 親明細の取得
+	 * @param userId
+	 * @return
+	 * @throws SQLException
+	 */
 	public static ArrayList<BuyHistryBeans> getHistoryList (int userId) throws SQLException{
 		Connection con = null;
 		PreparedStatement st = null;
@@ -112,6 +118,7 @@ public class BuyDetailDao {
 				test.setDelivery_method_name(rs.getString("deliveryname"));
 				test.setCreate_date(rs.getTimestamp("create_date"));
 				test.setDelivery_method_price(rs.getInt("deliveryprice"));
+//				test.setBuyDetailBeans(rs.getArray("id"));
 				hisList.add(test);
 			}
 
@@ -125,38 +132,12 @@ public class BuyDetailDao {
 		}
 	}
 
-	public static ArrayList<BuyHistryBeans> getHistoryParent(int userId) throws SQLException{
-		Connection con = null;
-		PreparedStatement st = null;
-		 ArrayList<BuyHistryBeans> itemList= new ArrayList<BuyHistryBeans>();
-
-		try {
-			con = DataBaseManager.getConnection();
-
-			st = con.prepareStatement("select * from m_buy_history where user_id = ?");
-
-			st.setInt(1, userId);
-
-			ResultSet rs = st.executeQuery();
-
-			while(rs.next()) {
-				BuyHistryBeans oya = new BuyHistryBeans();
-				oya.setId(rs.getInt("id"));
-				oya.setUser_id(rs.getInt("user_id"));
-//				oya.setBuyDetailBeans(rs.);
-				itemList.add(oya);
-			}
-
-			System.out.println("ラスト！！");
-
-			return itemList;
-		} finally {
-			if (con != null) {
-				con.close();
-			}
-		}
-	}
-
+	/**
+	 * 子明細の取得
+	 * @param historyId
+	 * @return
+	 * @throws SQLException
+	 */
 	public static ArrayList<BuyDetailBeans> getHistoryChild(int historyId) throws SQLException{
 		Connection con = null;
 		PreparedStatement st = null;
@@ -165,7 +146,11 @@ public class BuyDetailDao {
 		try {
 			con = DataBaseManager.getConnection();
 
-			st = con.prepareStatement("select * from m_buy_detail where history_id = ?");
+			st = con.prepareStatement("select * from "
+					+ " m_buy_detail d1"
+					+ " inner join m_item m2"
+					+ " on d1.item_id = m2.id"
+					+ " where history_id = ?");
 
 			st.setInt(1, historyId);
 
@@ -177,17 +162,22 @@ public class BuyDetailDao {
 				child.setHistory_id(rs.getInt("history_id"));
 				child.setItem_id(rs.getInt("item_id"));
 				child.setQuality(rs.getInt("quality"));
+				child.setName(rs.getString("name"));
+				child.setDetail(rs.getString("detail"));
+				child.setPrice(rs.getInt("price"));
+				child.setFile_name(rs.getString("file_name"));
 				buyDetailList.add(child);
 			}
 
 			System.out.println("ラスト！！");
 
+			return buyDetailList;
 		} finally {
 			if (con != null) {
 				con.close();
 			}
 		}
-		return buyDetailList;
+
 	}
 
 }

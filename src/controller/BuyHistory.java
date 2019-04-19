@@ -45,8 +45,8 @@ public class BuyHistory extends HttpServlet {
 				int id = value.getId();
 				value.setBuyDetailBeans(BuyDetailDao.getHistoryChild(id));
 			}
-			request.setAttribute("test", testList);
 
+			request.setAttribute("test", testList);
 
 		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック
