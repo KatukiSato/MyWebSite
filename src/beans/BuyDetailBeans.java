@@ -12,6 +12,9 @@ public class BuyDetailBeans {
 	private int price;
 	private String file_name;
 
+//	private int totalprice;
+//	private String totalpriceStr;
+
 	public int getId() {
 		return id;
 	}
@@ -51,6 +54,9 @@ public class BuyDetailBeans {
 	public int getPrice() {
 		return price;
 	}
+	public String getPriceStr() {
+		return String.format("%,d", price);
+	}
 	public void setPrice(int price) {
 		this.price = price;
 	}
@@ -61,4 +67,11 @@ public class BuyDetailBeans {
 		this.file_name = file_name;
 	}
 
+	public int getTotalprice() {
+		return price * quality;
+	}
+
+	public String getTotalpriceStr() {
+		return String.format("%,d",  price * quality);
+	}
 }

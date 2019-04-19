@@ -21,6 +21,9 @@ public class BuyHistryBeans {
 
 	private ArrayList<BuyDetailBeans> buyDetailBeans;
 
+	private String filename;
+
+
 	public int getId() {
 		return id;
 	}
@@ -95,6 +98,12 @@ public class BuyHistryBeans {
 	}
 	public void setBuyDetailBeans(ArrayList<BuyDetailBeans> buyDetailBeans) {
 		this.buyDetailBeans = buyDetailBeans;
+	}
+	public String getFilename() {
+		return filename;
+	}
+	public void setFilename(String filename) {
+		this.filename = filename;
 	}
 
 }

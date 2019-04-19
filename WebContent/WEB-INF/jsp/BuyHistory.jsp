@@ -98,7 +98,7 @@
 										href="#accordion${root.id}">${root.formatDate} </a>
 								</h4>
 							</div>
-							<div class="col-6">${root.total_priceStr}円</div>
+							<div class="col-6"><strong>${root.total_priceStr}円</strong></div>
 						</div>
 					</div>
 					<div id="accordion${root.id}" class="panel-collapse collapse">
@@ -118,15 +118,15 @@
 							<div class="row">
 								<div class="col-1"></div>
 								<div class="col-sm-2">
-									<a href="ItemDetail.html"><img src="img/5c35bd53.jpg"
+									<a href="ItemDetail?item_id=${detail.item_id}"><img src="img/${detail.file_name}"
 										alt="サンプル" width="150" height="100%" class="card-img-top"></a>
 								</div>
 								<div class="col-4">
-									<a href="ItemDetail.html">${detail.name }</a>
+									<a href="ItemDetail?item_id=${detail.item_id}">${detail.name }</a>
 								</div>
-								<div class="col-2">${detail.price}円</div>
+								<div class="col-2"><strong>${detail.priceStr}円</strong></div>
 								<div class="col-1">${detail.quality }個</div>
-								<div class="col-2">${detail.price }円</div>
+								<div class="col-2"><strong>${detail.totalpriceStr}円</strong></div>
 							</div>
 						</c:forEach>
 						<br>
@@ -135,7 +135,7 @@
 
 						<div class="row">
 							<div class="col-2">支払方法</div>
-							<div class="col-6">${otamesi.pay_method_name}</div>
+							<div class="col-6">${root.pay_method_name}</div>
 							<div class="col-4"></div>
 						</div>
 
@@ -143,16 +143,16 @@
 
 						<div class="row">
 							<div class="col-2">配送方法</div>
-							<div class="col-6">${otamesi.delivery_method_name}</div>
+							<div class="col-6">${root.delivery_method_name}</div>
 							<div class="col-2"></div>
-							<div class="col-2">${otamesi.delivery_method_price}円</div>
+							<div class="col-2"><strong>${root.delivery_method_price}円</strong></div>
 						</div>
 
 						<br>
 						<div class="row">
 							<div class="col-9"></div>
 							<div class="col-1">合計</div>
-							<div class="col-2">${otamesi.total_priceStr}円</div>
+							<div class="col-2"><strong>${root.total_priceStr}円</strong></div>
 						</div>
 						<br>
 					</div>

@@ -143,4 +143,44 @@ public class ItemDao {
 			}
 		}
 	}
+
+	public static ArrayList<ItemBeans> itemRanking (int rank) throws SQLException{
+		Connection con = null;
+		PreparedStatement st = null;
+
+		ArrayList<ItemBeans> rankList = new ArrayList<ItemBeans>();
+		try {
+			con =DataBaseManager.getConnection();
+
+			st = con.prepareStatement("select "
+					+ " sum(d1.quality) as ranking, "
+					+ " m2.name, m2.price, m2.file_name, m2.id as itemid "
+					+ " from m_buy_detail d1"
+					+ " inner join m_item m2"
+					+ " on d1.item_id = m2.id "
+					+ " group by d1.item_id"
+					+ " order by ranking desc limit ?");
+
+			st.setInt(1, rank);
+
+			ResultSet rs = st.executeQuery();
+
+			while(rs.next()) {
+				ItemBeans ranking = new ItemBeans();
+				ranking.setId(rs.getInt("itemid"));
+				ranking.setName(rs.getString("name"));
+				ranking.setPrice(rs.getInt("price"));
+				ranking.setFileName(rs.getString("file_name"));
+				rankList.add(ranking);
+			}
+
+			System.out.println("このサイトで売れている商品です。");
+
+			return rankList;
+		} finally {
+			if (con != null) {
+				con.close();
+			}
+		}
+	}
 }

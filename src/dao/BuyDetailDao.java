@@ -118,7 +118,6 @@ public class BuyDetailDao {
 				test.setDelivery_method_name(rs.getString("deliveryname"));
 				test.setCreate_date(rs.getTimestamp("create_date"));
 				test.setDelivery_method_price(rs.getInt("deliveryprice"));
-//				test.setBuyDetailBeans(rs.getArray("id"));
 				hisList.add(test);
 			}
 

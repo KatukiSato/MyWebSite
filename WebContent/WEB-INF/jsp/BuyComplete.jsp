@@ -58,7 +58,7 @@
 					<li class="nav-item"><a class="nav-link"
 						href="Cart?login_id=${logId}">買い物かご</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="http://localhost:8080/MyWebSite/Mock/UserDetail.html">お客様情報</a></li>
+						href="UserDetail">お客様情報</a></li>
 					<li class="nav-item active"><a class="nav-link" href="Logout">ログアウト</a></li>
 				</c:if>
 			</ul>
