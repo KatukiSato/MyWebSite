@@ -7,6 +7,7 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
 import javax.xml.bind.DatatypeConverter;
 
 import beans.CartBeans;
@@ -64,6 +65,12 @@ public class Helper {
 
 	//ユーザ情報更新
 	static final String USER_UPDATE_PAGE = "/WEB-INF/jsp/UserUpdate.jsp";
+
+	//情報更新確認
+	static final String USER_UPDATE_CONFIRM_PAGE = "/WEB-INF/jsp/UserUpdateConfirm.jsp";
+
+	//情報更新完了
+	static final String UPDATE_SUCCESS_PAGE = "/WEB-INF/jsp/UpdateSuccess.jsp";
 
 	/**
 	 * @param isLoginIdform
@@ -134,5 +141,12 @@ public class Helper {
 		total += pp.getPrice();
 
 		return String.format("%,d",  total);
+	}
+
+	public static Object cutSessionAttribute(HttpSession session, String str) {
+		Object test = session.getAttribute(str);
+		session.removeAttribute(str);
+
+		return test;
 	}
 }

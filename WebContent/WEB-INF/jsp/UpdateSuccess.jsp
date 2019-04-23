@@ -13,7 +13,7 @@
 <meta name="author" content="">
 
 
-<title>ユーザ情報更新</title>
+<title>更新完了！</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -45,7 +45,6 @@
 			</div>
 		</form>
 
-		<!--非ログイン状態の時に出すコマンド  -->
 		<div class="collapse navbar-collapse justify-content-end">
 			<ul class="navbar-nav">
 				<!--ログイン状態の時に出すコマンド  -->
@@ -60,48 +59,24 @@
 
 	</nav>
 
-	<div class="card-midium2">
-		<div class="text-center"></div>
+	<div class="card-midium">
+		<div class="form-signin2">
+			<div class="important">
+				<h1>更新が完了しました！</h1>
+				<br>
+			</div>
+			<div class="big">
+				<p>引き続き素敵な買い物をお楽しみください！</p>
+				<br>
+			</div>
 
-	<form class="form-signin" action ="UserUpdateConfirm" method = "POST">
-		<h1>お客様情報変更</h1>
-		<br>
-		<br>
-		<div class="bottom">
-		<c:forEach var="info" items="${user}">
-			<label for="inputloginId">ログインID</label>
-				<input type="text" id="inputloginId" class=".form-signin" value="${info.login_id}"
-				required="" autofocus="" name= "loginId">
+			<a class="btn btn-lg btn-success btn-block" type="submit"
+				href="UserDetail">お客様情報へ戻る</a> <br> <br>
 
-			<label for="inputName">ユーザ名</label>
-				<input type="text" id="inputName" class=".form-signin"
-					value="${info.name}" required="" autofocus="" name="name">
+			<a class="btn btn-lg btn-primary btn-primary" type="submit"
+				href="TopPage">ＴＯＰページへ</a>
 
-			<label for="inputMail">メールアドレス</label>
-				<input type="text" id="inputMail"class=".form-signin"
-					value="${info.mail}" required="" autofocus="" name="mail">
-
-			<label for="inputPhone">電話番号</label>
-				<input type="text" id="inputPhone" class=".form-signin"
-					value="${info.phone}" required=""autofocus="" name ="phone">
-
-			<label for="inputAddress">住所</label>
-				<input type="text" id="inputAddress" class=".form-signin" value="${info.address}"
-				required="" autofocus="" name ="address">
-
-			<label for="inputPassword">パスワード</label>
-			<input type="text" id="inputPassword" class=".form-signin" placeholder="パスワード"
-				autofocus="" name ="pass">
-
-			<label for="inputCheck">確認のためもう一度パスワードを入力してください。</label>
-				<input type="text" id="inputCheck" class=".form-signin" placeholder="パスワード（確認）"
-				autofocus="" name ="check">
-
-			<button class="btn btn-lg btn-primary btn-block" type="submit"
-				>確認画面へ</button>
-		</c:forEach>
 		</div>
-	</form>
 	</div>
 </body>
 </html>

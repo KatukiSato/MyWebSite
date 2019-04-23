@@ -107,7 +107,7 @@
 
 	<div class="album py-5 bg-light">
 		<div class="container">
-			<h2>ランキング</h2>
+			<h2><font color =red>売り上げランキング！！</font></h2>
 			<div class="row">
 				<div class="col-4">
 					<h1>

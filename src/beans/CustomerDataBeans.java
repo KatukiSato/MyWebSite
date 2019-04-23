@@ -21,6 +21,18 @@ public class CustomerDataBeans {
 		this.login_password = "";
 	}
 
+
+	//情報更新に使っている
+	public CustomerDataBeans(CustomerDataBeans cdb) {
+		this.id =cdb.getId();
+		this.login_id = cdb.getLogin_id();
+		this.name = cdb.getName();
+		this.mail = cdb.getMail();
+		this.phone = cdb.getPhone();
+		this.address = cdb.getAddress();
+	}
+
+
 	public int getId() {
 		return id;
 	}

@@ -13,7 +13,7 @@
 <meta name="author" content="">
 
 
-<title>ユーザ情報更新</title>
+<title>更新確認</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -45,7 +45,6 @@
 			</div>
 		</form>
 
-		<!--非ログイン状態の時に出すコマンド  -->
 		<div class="collapse navbar-collapse justify-content-end">
 			<ul class="navbar-nav">
 				<!--ログイン状態の時に出すコマンド  -->
@@ -60,48 +59,43 @@
 
 	</nav>
 
-	<div class="card-midium2">
-		<div class="text-center"></div>
-
-	<form class="form-signin" action ="UserUpdateConfirm" method = "POST">
-		<h1>お客様情報変更</h1>
-		<br>
-		<br>
-		<div class="bottom">
-		<c:forEach var="info" items="${user}">
-			<label for="inputloginId">ログインID</label>
-				<input type="text" id="inputloginId" class=".form-signin" value="${info.login_id}"
-				required="" autofocus="" name= "loginId">
-
-			<label for="inputName">ユーザ名</label>
-				<input type="text" id="inputName" class=".form-signin"
-					value="${info.name}" required="" autofocus="" name="name">
-
-			<label for="inputMail">メールアドレス</label>
-				<input type="text" id="inputMail"class=".form-signin"
-					value="${info.mail}" required="" autofocus="" name="mail">
-
-			<label for="inputPhone">電話番号</label>
-				<input type="text" id="inputPhone" class=".form-signin"
-					value="${info.phone}" required=""autofocus="" name ="phone">
-
-			<label for="inputAddress">住所</label>
-				<input type="text" id="inputAddress" class=".form-signin" value="${info.address}"
-				required="" autofocus="" name ="address">
-
-			<label for="inputPassword">パスワード</label>
-			<input type="text" id="inputPassword" class=".form-signin" placeholder="パスワード"
-				autofocus="" name ="pass">
-
-			<label for="inputCheck">確認のためもう一度パスワードを入力してください。</label>
-				<input type="text" id="inputCheck" class=".form-signin" placeholder="パスワード（確認）"
-				autofocus="" name ="check">
-
-			<button class="btn btn-lg btn-primary btn-block" type="submit"
-				>確認画面へ</button>
-		</c:forEach>
+	<div class="text-center">
+		<span class="display-3">お客様情報 変更内容確認</span>
+		<div class="important">
+			<h3>以下の内容で情報を変更します。 よろしいですか？</h3>
 		</div>
-	</form>
+	</div>
+
+	<div class="card-midium2">
+
+		<form class="form-signin3" action="UpdateSuccess" method="POST">
+				<p>ログインID</p>
+				<p>${updateInfoExceptPass.login_id}</p>
+				<hr class="borderline2">
+
+				<p>ユーザ名</p>
+				<p>${updateInfoExceptPass.name}</p>
+				<hr class="borderline2">
+
+				<p>メールアドレス</p>
+				<p>${updateInfoExceptPass.mail}</p>
+				<hr class="borderline2">
+
+				<p>電話番号</p>
+				<p>${updateInfoExceptPass.phone}</p>
+				<hr class="borderline2">
+
+				<p>住所</p>
+				<p>${updateInfoExceptPass.address}</p>
+				<hr class="borderline2">
+
+			<div class="form-inline">
+				<button class="btn btn-lg btn-danger btn-block" type="submit"
+					name = "updete_button" value = "cancel">修正</button>
+				<button class="btn btn-lg btn-primary btn-block" type="submit"
+					name = "updete_button" value = "update">登録</button>
+			</div>
+		</form>
 	</div>
 </body>
 </html>

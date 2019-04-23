@@ -138,7 +138,7 @@ public class CustomerDao {
 		try {
 			con = DataBaseManager.getConnection();
 
-			st = con.prepareStatement("select login_id, name, mail, phone, address from t_user where id =  " + userId);
+			st = con.prepareStatement("select login_id, name, mail, phone, address,login_password from t_user where id =  " + userId);
 			ResultSet rs = st.executeQuery();
 
 			while(rs.next()) {
@@ -148,6 +148,7 @@ public class CustomerDao {
 				cdb.setMail(rs.getString("mail"));
 				cdb.setPhone(rs.getString("phone"));
 				cdb.setAddress(rs.getString("address"));
+				cdb.setLogin_password(rs.getString("login_password"));
 
 				cdbList.add(cdb);
 			}
@@ -160,5 +161,103 @@ public class CustomerDao {
 				con.close();
 			}
 		}
+	}
+
+	public  static CustomerDataBeans
+	updateInfoExceptPass(CustomerDataBeans cdb) throws SQLException{
+		ArrayList<CustomerDataBeans> cdbList = new ArrayList<CustomerDataBeans>();
+		Connection con = null;
+		PreparedStatement st = null;
+		try {
+			con = DataBaseManager.getConnection();
+
+			st = con.prepareStatement("update t_user set login_id = ?, name = ?, mail = ?, phone = ?, address = ? where id = ?");
+			st.setString(1,cdb.getLogin_id());
+			st.setString(2, cdb.getName());
+			st.setString(3, cdb.getMail());
+			st.setString(4, cdb.getPhone());
+			st.setString(5, cdb.getAddress());
+			st.setInt(6, cdb.getId());
+
+			int rs = st.executeUpdate();
+
+			CustomerDataBeans customer = new CustomerDataBeans(cdb);
+			cdbList.add(customer);
+
+			System.out.println("情報更新に成功しました！");
+			return customer;
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new SQLException(e);
+		} finally {
+			if (con != null) {
+				con.close();
+			}
+		}
+	}
+
+	public  static CustomerDataBeans
+	updateInfoAll(CustomerDataBeans cdb) throws SQLException{
+		ArrayList<CustomerDataBeans> cdbList = new ArrayList<CustomerDataBeans>();
+		Connection con = null;
+		PreparedStatement st = null;
+		try {
+			con = DataBaseManager.getConnection();
+
+			st = con.prepareStatement("update t_user set login_id = ?, name = ?, mail = ?, phone = ?, address = ?, login_password = ? where id = ?");
+			st.setString(1,cdb.getLogin_id());
+			st.setString(2, cdb.getName());
+			st.setString(3, cdb.getMail());
+			st.setString(4, cdb.getPhone());
+			st.setString(5, cdb.getAddress());
+			st.setString(6, cdb.getLogin_password());
+			st.setInt(7, cdb.getId());
+
+			int rs = st.executeUpdate();
+
+			CustomerDataBeans customer = new CustomerDataBeans(cdb);
+			cdbList.add(customer);
+
+			System.out.println("情報更新に成功しました！パスワードも変更しました！");
+			return customer;
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new SQLException(e);
+		} finally {
+			if (con != null) {
+				con.close();
+			}
+		}
+	}
+
+	public static boolean isMatchPass(String pass) throws SQLException {
+
+		boolean isMatch = true;
+		Connection con = null;
+		PreparedStatement st = null;
+
+		try {
+			con = DataBaseManager.getConnection();
+
+			st = con.prepareStatement("SELECT login_password FROM t_user WHERE login_password = ?");
+			st.setString(1,pass);
+
+			ResultSet rs = st.executeQuery();
+
+			System.out.println("パスワードが重複していないか確認しています。");
+
+			if (rs.next()) {
+				isMatch = false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw new SQLException(e);
+		}
+
+		System.out.println("パスワードの確認が完了しました。");
+		return isMatch;
+
 	}
 }
