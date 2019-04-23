@@ -62,6 +62,8 @@ public class Helper {
 	//購入履歴一覧
 	static final String BUY_HISTORY_PAGE = "/WEB-INF/jsp/BuyHistory.jsp";
 
+	//ユーザ情報更新
+	static final String USER_UPDATE_PAGE = "/WEB-INF/jsp/UserUpdate.jsp";
 
 	/**
 	 * @param isLoginIdform

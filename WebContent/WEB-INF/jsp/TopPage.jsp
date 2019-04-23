@@ -95,12 +95,6 @@
 									<div class="btn-group">
 										<a type="button" class="btn btn-sm btn-outline-secondary"
 											href="ItemDetail?item_id=${item.id}">商品詳細</a>
-
-										<form action="Register" method="POST">
-											<input type="hidden" name="test" value="${item.id}">
-											<button class="btn btn-sm btn-primary" type="submit">すぐかう！</button>
-										</form>
-
 									</div>
 								</div>
 							</div>

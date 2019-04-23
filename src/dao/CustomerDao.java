@@ -124,6 +124,13 @@ public class CustomerDao {
 		}
 	}
 
+
+	/**
+	 * 詳細情報の表示処理
+	 * @param userId
+	 * @return
+	 * @throws SQLException
+	 */
 	public static ArrayList<CustomerDataBeans>  getUserInfoByUserId(int userId) throws SQLException {
 		ArrayList<CustomerDataBeans> cdbList = new ArrayList<CustomerDataBeans>();
 		Connection con = null;

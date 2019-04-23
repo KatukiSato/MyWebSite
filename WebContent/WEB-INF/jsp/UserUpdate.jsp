@@ -13,7 +13,7 @@
 <meta name="author" content="">
 
 
-<title>お客様情報</title>
+<title>ユーザ情報更新</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -28,6 +28,7 @@
 </head>
 
 <body class="text-center">
+
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark mt-3 mb-3">
 		<a class="navbar-brand" href="TopPage">ＥＣサイト</a>
 
@@ -47,11 +48,6 @@
 		<!--非ログイン状態の時に出すコマンド  -->
 		<div class="collapse navbar-collapse justify-content-end">
 			<ul class="navbar-nav">
-				<c:if test="${logId == null}">
-					<li class="nav-item active"><a class="nav-link" href="Login">ログイン</a></li>
-					<li class="nav-item"><a class="nav-link" href="NewEntry">新規登録</a></li>
-				</c:if>
-
 				<!--ログイン状態の時に出すコマンド  -->
 				<c:if test="${logId != null}">
 					<li class="nav-item"><a class="nav-link"
@@ -63,69 +59,47 @@
 		</div>
 
 	</nav>
-
-	<div class="text-center">
-		<span class="display-3">お客様情報</span>
-	</div>
-
 	<div class="card-midium2">
-		<div class="form-signin3">
-			<div class="text-left">
+		<div class="text-center"></div>
 
-				<c:forEach var="info" items="${userInfo}">
-					<p>ログインID</p>
-					<p>${info.login_id}</p>
+	<form class="form-signin">
+		<h1>お客様情報変更</h1>
+		<br>
+		<br>
+		<div class="bottom">
+		<c:forEach var="info" items="${userInfo}">
+			<label for="inputloginId">ログインID</label>
+				<input type="text" id="inputloginId" class=".form-signin" value="${info.login_id}"
+				required="" autofocus="">
 
-					<hr class="borderline2">
+			<label for="inputName">ユーザ名</label>
+				<input type="text" id="inputName" class=".form-signin"
+					value="${info.name}" required="" autofocus="">
 
-					<p>ユーザ名</p>
-					<p>${info.name}</p>
-					<hr class="borderline2">
+			<label for="inputMail">メールアドレス</label>
+				<input type="text" id="inputMail"class=".form-signin"
+					value="${info.mail}" required="" autofocus="">
 
-					<p>メールアドレス</p>
-					<p>${info.mail}</p>
-					<hr class="borderline2">
+			<label for="inputPhone">電話番号</label>
+				<input type="text" id="inputPhone" class=".form-signin" value="${info.phone}" required=""autofocus="">
 
-					<p>電話番号</p>
-					<p>${info.phone}</p>
-					<hr class="borderline2">
+			<label for="inputAddress">住所</label>
+				<input type="text" id="inputAddress" class=".form-signin" value="${info.address}"
+				required="" autofocus="">
 
-					<p>住所</p>
-					<p>${info.address}</p>
-					<hr class="borderline2">
+			<label for="inputPassword">パスワード</label>
+			<input type="text" id="inputPassword" class=".form-signin" placeholder="パスワード"
+				required="" autofocus="">
 
+			<label for="inputCheck">確認のためもう一度パスワードを入力してください。</label>
+				<input type="text" id="inputCheck" class=".form-signin" placeholder="パスワード（確認）"
+				required="" autofocus="">
 
-					<div class="row">
-						<div class="col align-self-start">
-							<div class="text-center">
-								<a class="btn btn-danger btn-block" type="submit"
-									href="UserUpdate">情報修正</a>
-							</div>
-						</div>
-
-						<div class="col align-self-	center">
-							<form action="BuyHistory" method="POST">
-
-								<div class="text-center">
-									<a class="btn btn-success btn-block" type="submit"
-										href="BuyHistory">購入履歴</a>
-								</div>
-							</form>
-						</div>
-
-						<div class="col align-self-end">
-							<div class="text-center">
-								<a class="btn btn-primary btn-block" type="submit"
-									href="TopPage">ＴＯＰページ</a>
-							</div>
-						</div>
-					</div>
-				</c:forEach>
-			</div>
+			<a class="btn btn-lg btn-primary btn-block" type="submit"
+				href="UserUpdateConfirm.html">確認画面へ</a>
+		</c:forEach>
 		</div>
-	</div>
-
 	</form>
-
+	</div>
 </body>
 </html>

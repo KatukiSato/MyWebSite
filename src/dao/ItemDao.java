@@ -183,4 +183,34 @@ public class ItemDao {
 			}
 		}
 	}
+
+	public static int itemCount(String searchWord) throws SQLException {
+
+		Connection con = null;
+		PreparedStatement st = null;
+		try {
+			con = DataBaseManager.getConnection();
+			st = con.prepareStatement("select count(*) as count from m_item where name like ?");
+			st.setString(1, "%" + searchWord + "%");
+
+			ResultSet rs =st.executeQuery();
+
+			int count = 0;
+
+			while(rs.next()) {
+				count = Integer.parseInt(rs.getString("count"));
+			}
+
+			System.out.println("検索件数はこちらです！");
+			return count;
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new SQLException(e);
+		} finally {
+			if (con != null) {
+				con.close();
+			}
+		}
+	}
 }

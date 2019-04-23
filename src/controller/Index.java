@@ -37,10 +37,12 @@ public class Index extends HttpServlet {
 		HttpSession session = request.getSession();
 		try {
 			String searchWord = request.getParameter("search");
-
 			session.setAttribute("search", searchWord);
 
+			int itemCount = ItemDao.itemCount(searchWord);
+			request.setAttribute("itemCount", itemCount);
 
+			//検索関係
 			ArrayList<ItemBeans> resultItemList = ItemDao.resultIndex(searchWord);
 			request.setAttribute("itemList", resultItemList);
 

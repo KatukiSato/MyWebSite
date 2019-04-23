@@ -75,7 +75,7 @@
 			<c:choose>
 			<c:when test = "${search != null}">
 			<h2>検索内容：${search}</h2>
-			<h2>○○件の商品が検索と一致しました。</h2>
+			<h2>${itemCount }件の商品が検索と一致しました。</h2>
 			</c:when>
 			<c:otherwise>
 			<h3>商品を全て表示してあります。</h3>
