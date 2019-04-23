@@ -66,6 +66,7 @@
 	<form class="form-signin" action ="UserUpdateConfirm" method = "POST">
 		<h1>お客様情報変更</h1>
 		<br>
+			<p><font color=red><strong>${validationMessage}</strong></font></p>
 		<br>
 		<div class="bottom">
 		<c:forEach var="info" items="${user}">
@@ -90,11 +91,11 @@
 				required="" autofocus="" name ="address">
 
 			<label for="inputPassword">パスワード</label>
-			<input type="text" id="inputPassword" class=".form-signin" placeholder="パスワード"
+			<input type="password" id="inputPassword" class=".form-signin" placeholder="パスワード"
 				autofocus="" name ="pass">
 
 			<label for="inputCheck">確認のためもう一度パスワードを入力してください。</label>
-				<input type="text" id="inputCheck" class=".form-signin" placeholder="パスワード（確認）"
+				<input type="password" id="inputCheck" class=".form-signin" placeholder="パスワード（確認）"
 				autofocus="" name ="check">
 
 			<button class="btn btn-lg btn-primary btn-block" type="submit"

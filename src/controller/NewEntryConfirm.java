@@ -27,15 +27,6 @@ public class NewEntryConfirm extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
@@ -69,7 +60,7 @@ public class NewEntryConfirm extends HttpServlet {
 
 			// ログインIDの入力規則チェック 英数字 ハイフン のみ入力可能
 			if (!Helper.isLoginIdform(cdb.getLogin_id())) {
-				validationMessage += "ログインIDは半角英数とハイフンのみ入力できます";
+				validationMessage += "ログインIDは半角英数とハイフンのみ入力できます。";
 			}
 
 			// loginIdの重複をチェック

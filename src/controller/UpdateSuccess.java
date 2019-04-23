@@ -43,6 +43,8 @@ public class UpdateSuccess extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
+		session.removeAttribute("validationMessage");
+
 
 		ArrayList<CustomerDataBeans> cusList = new ArrayList<CustomerDataBeans>();
 		CustomerDataBeans cus =(CustomerDataBeans) session.getAttribute("updateInfoExceptPass");

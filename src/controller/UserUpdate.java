@@ -32,30 +32,15 @@ public class UserUpdate extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+
 		//初期表示用に使っている。
 		ArrayList<CustomerDataBeans> cdb = session.getAttribute("userInfo")!= null?(ArrayList<CustomerDataBeans>)
 				Helper.cutSessionAttribute(session, "userInfo"):(ArrayList<CustomerDataBeans>)session.getAttribute("userInfo");;
 
 		request.setAttribute("user", cdb);
+		request.getAttribute("validationMessage");
 		request.getRequestDispatcher(Helper.USER_UPDATE_PAGE).forward(request, response);
 
 	}
-
-//	/**
-//	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-//	 */
-//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		HttpSession session = request.getSession();
-//		CustomerDataBeans customer = (CustomerDataBeans) session.getAttribute("userInfo");
-//
-//		try {
-//			CustomerDataBeans updateInfoExceptPass = CustomerDao.updateInfoExceptPass(customer);
-//		} catch (SQLException e) {
-//			// TODO 自動生成された catch ブロック
-//			e.printStackTrace();
-//		}
-//
-//		request.getRequestDispatcher(Helper.USER_UPDATE_PAGE).forward(request, response);
-//	}
 
 }

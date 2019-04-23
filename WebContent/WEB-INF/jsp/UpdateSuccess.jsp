@@ -60,6 +60,7 @@
 	</nav>
 
 	<div class="card-midium">
+
 		<div class="form-signin2">
 			<div class="important">
 				<h1>更新が完了しました！</h1>

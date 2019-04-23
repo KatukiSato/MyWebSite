@@ -47,11 +47,6 @@
 		<!--非ログイン状態の時に出すコマンド  -->
 		<div class="collapse navbar-collapse justify-content-end">
 			<ul class="navbar-nav">
-				<c:if test="${logId == null}">
-					<li class="nav-item active"><a class="nav-link" href="Login">ログイン</a></li>
-					<li class="nav-item"><a class="nav-link" href="NewEntry">新規登録</a></li>
-				</c:if>
-
 				<!--ログイン状態の時に出すコマンド  -->
 				<c:if test="${logId != null}">
 					<li class="nav-item"><a class="nav-link"

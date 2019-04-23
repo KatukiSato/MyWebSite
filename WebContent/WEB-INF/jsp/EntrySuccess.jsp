@@ -46,24 +46,11 @@
 			</div>
 		</form>
 
-				<!--非ログイン状態の時に出すコマンド  -->
 		<div class="collapse navbar-collapse justify-content-end">
 			<ul class="navbar-nav">
 				<c:if test="${logId == null}">
 					<li class="nav-item active"><a class="nav-link"
 						href="Login">ログイン</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="NewEntry">新規登録</a></li>
-				</c:if>
-
-				<!--ログイン状態の時に出すコマンド  -->
-				<c:if test="${logId != null}">
-					<li class="nav-item"><a class="nav-link"
-						href="Cart?login_id=${logId}">買い物かご</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="http://localhost:8080/MyWebSite/Mock/UserDetail.html">お客様情報</a></li>
-					<li class="nav-item active"><a class="nav-link"
-						href="Logout">ログアウト</a></li>
 				</c:if>
 			</ul>
 		</div>
@@ -72,17 +59,22 @@
 
 	<div class="card-midium">
 		<div class="form-signin2">
+
 			<div class="important">
 				<h1>登録が完了しました！</h1>
 				<br>
 			</div>
+
 			<div class="big">
 				<p>素敵な買い物をお楽しみください！</p>
 				<br>
 			</div>
 
+			<a class="btn btn-lg btn-success" type="submit"
+				href="Login">ログイン</a>
+
 			<a class="btn btn-lg btn-primary" type="submit"
-				href="http://localhost:8080/MyWebSite/TopPage">ＴＯＰページへ戻る</a>
+				href="TopPage">ＴＯＰページへ戻る</a>
 
 		</div>
 	</div>

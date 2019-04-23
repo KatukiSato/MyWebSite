@@ -67,7 +67,7 @@
 			</div>
 			<!--bootstrap.min の変更  -->
 			<a class="btn btn-lg btn-primary btn-block" type="submit"
-				href="http://localhost:8080/MyWebSite/TopPage">ＴＯＰページへ戻る</a>
+				href="TopPage">ＴＯＰページへ戻る</a>
 
 		</div>
 	</div>

@@ -34,14 +34,10 @@ public class NewEntry extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 
-		CustomerDataBeans cdb = (CustomerDataBeans) session.getAttribute("udb");
+		CustomerDataBeans cdb = session.getAttribute("udb")!= null?(CustomerDataBeans)
+				Helper.cutSessionAttribute(session, "udb"):new CustomerDataBeans();;
 
-		if(cdb == null) {
-			System.out.println("真っ新な状態で出ています。");
-		}else {
-			System.out.println("入力情報が残っています。");
-		}
-
+		request.setAttribute("udb", cdb);
 		request.getAttribute("validationMessage");
 
 		request.getRequestDispatcher(Helper.NEWENTRY_PAGE).forward(request, response);

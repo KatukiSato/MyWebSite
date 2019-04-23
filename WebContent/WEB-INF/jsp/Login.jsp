@@ -54,7 +54,7 @@
 
 				<br> <br> <a type="button"
 					class="btn btn-sm btn-outline-gray"
-					href="http://localhost:8080/MyWebSite/NewEntry">
+					href="NewEntry">
 					初めての方はこちらからユーザ情報を登録してください。 </a>
 
 			</div>
@@ -63,7 +63,7 @@
 				name="action">ログイン</button>
 
 			<a class="btn btn-lg btn-danger btn-block"
-				href="http://localhost:8080/MyWebSite/TopPage">ＴＯＰページへ</a>
+				href="TopPage">ＴＯＰページへ</a>
 
 		</form>
 	</div>

@@ -61,12 +61,10 @@ public class Login extends HttpServlet {
 				response.sendRedirect("TopPage");
 				System.out.println("ログイン処理完了！");
 
-			}else{
+			} else {
 
 				session.setAttribute("loginId", loginId);
 				request.setAttribute("loginErrorMessage", "入力内容が正しくありません<br><br>正しいものを入力してください。");
-				System.out.println("エラーがでました。");
-
 				request.getRequestDispatcher(Helper.LOGIN_PAGE).forward(request, response);
 			}
 

@@ -35,37 +35,32 @@
 	<div class="card-midium2">
 		<div class="text-center">
 			<h3>登録する情報を確認してください</h3>
-
 		</div>
 
-		<form  action="EntrySuccess" method="POST" class="form-signin3">
+		<form action="EntrySuccess" method="POST" class="form-signin3">
 			<p class="text-left">ログインID</p>
 			<p>${udb.login_id}</p>
 			<hr class="borderline">
 
-			<br>
-			<br>
+			<br> <br>
 
 			<p class="text-left">ユーザ名</p>
 			<p>${udb.name}</p>
 			<hr class="borderline">
 
-			<br>
-			<br>
+			<br> <br>
 
 			<p class="text-left">メールアドレス</p>
 			<p>${udb.mail}</p>
 			<hr class="borderline">
 
-			<br>
-			<br>
+			<br> <br>
 
 			<p class="text-left">電話番号</p>
 			<p>${udb.phone}</p>
 			<hr class="borderline">
 
-			<br>
-			<br>
+			<br> <br>
 
 			<p class="text-left">住所</p>
 			<p>${udb.address}</p>
@@ -73,15 +68,14 @@
 
 
 
-			<br> <br> <br>
-			<br>
+			<br> <br> <br> <br>
 			<button class="btn btn-lg btn-danger btn-block" type="submit"
-				name = "entry_button" value = "cancel">修正</button>
+				name="entry_button" value="cancel">修正</button>
 
 			<button class="btn btn-lg btn-primary btn-block" type="submit"
-				name = "entry_button" value = "entry">登録</button>
+				name="entry_button" value="entry">登録</button>
+		</form>
 	</div>
-	</form>
 
 </body>
 </html>

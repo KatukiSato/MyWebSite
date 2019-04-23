@@ -39,19 +39,12 @@ public class TopPage extends HttpServlet {
 			//商品情報を取得
 			ArrayList<ItemBeans>item = ItemDao.getRandItem(4);
 
+			//ランキング情報を取得
 			ArrayList<ItemBeans> sellranking = ItemDao.itemRanking(3);
+
 			//リクエストスコープにセット
 			request.setAttribute("itemList", item);
 			request.setAttribute("ranking", sellranking);
-
-			/*登録確認画面でＴＯＰペーシに戻った場合、入力情報を捨てる。エラーメッセージも？？
-			追記：　多分いらないと思うので、最終的に確認したら削除する　2019/04/08 14:11　　　　　　　
-			*/
-//			session.removeAttribute("udb");
-//			session.removeAttribute("validationMessage");
-//			session.removeAttribute("userId");
-//			request.getAttribute("qchange");
-//			session.removeAttribute("qchange");
 
 			//セッションにsearchが入っていたら破棄する
 			String searchWord = (String)session.getAttribute("search");
@@ -65,15 +58,6 @@ public class TopPage extends HttpServlet {
 			session.setAttribute("errorMessage", e.toString());
 			response.sendRedirect("Error");
 		}
-	}
-
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }
