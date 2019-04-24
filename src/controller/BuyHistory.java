@@ -44,9 +44,11 @@ public class BuyHistory extends HttpServlet {
 		}
 
 		try {
+			session.getAttribute("logId");
 
 			int userId = (int) session.getAttribute("userId");
 			ArrayList<BuyHistryBeans> testList = BuyDetailDao.getHistoryList(userId);
+
 			for(BuyHistryBeans value : testList) {
 				int id = value.getId();
 				value.setBuyDetailBeans(BuyDetailDao.getHistoryChild(id));

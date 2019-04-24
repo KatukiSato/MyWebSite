@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>購入履歴一覧</title>
+<title>購入履歴</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -63,12 +63,14 @@
 
 	</nav>
 <body>
-	<span class="display-3">購入履歴一覧</span>
+	<span class="display-3"><font color ="limegreen">${logId}</font>さんの購入履歴</span>
 
 	<br>
 	<h2>日時をクリックすると購入詳細が確認出来ます。</h2>
 
 	<br>
+
+	<a class="btn btn-primary " type="submit" href="TopPage">ＴＯＰページへ戻る</a>
 
 	<div class="card-History">
 		<div class="panel-group" id="accordion">
@@ -112,6 +114,7 @@
 								<div class="col-1">${detail.quality }個</div>
 								<div class="col-2"><strong>${detail.totalpriceStr}円</strong></div>
 							</div>
+							<br><br>
 						</c:forEach>
 						<br>
 
