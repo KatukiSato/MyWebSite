@@ -133,7 +133,9 @@
 					<strong>${test}円</strong>
 				</div>
 			</div>
-			<br> <a class="btn btn-primary" type="submit" href="TopPage">ＴＯＰページへ戻る</a>
+			<br> <a class="btn btn-primary btn-block" type="submit" href="TopPage">ＴＯＰページへ戻る</a>
+			<br>
+			<br> <a class="btn btn-success btn-block" type="submit" href="BuyHistory">購入履歴一覧へ戻る</a>
 		</div>
 	</div>
 </body>

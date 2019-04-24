@@ -299,4 +299,34 @@ public class CartDao {
 		}
 	}
 
+	public static int cartCount(String loginId) throws SQLException {
+		Connection con = null;
+		PreparedStatement st = null;
+		try {
+			con = DataBaseManager.getConnection();
+			st = con.prepareStatement("select count(*) as count from cart where login_id = ?");
+			st.setString(1, loginId);
+
+			ResultSet rs =st.executeQuery();
+
+			int count = 0;
+
+			while(rs.next()) {
+				count = Integer.parseInt(rs.getString("count"));
+			}
+
+			System.out.println("買い物かごに入っている商品数はこちらです！");
+			return count;
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new SQLException(e);
+		} finally {
+			if (con != null) {
+				con.close();
+			}
+		}
+	}
+
+
 }

@@ -34,8 +34,14 @@ public class BuyHistory extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
 		HttpSession session = request.getSession();
+		Object logcheck = session.getAttribute("userId");
+
+		if (logcheck == null) {
+			System.out.println("飛びます！");
+			response.sendRedirect("TopPage");
+			return;
+		}
 
 		try {
 

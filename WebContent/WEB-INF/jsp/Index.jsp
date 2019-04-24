@@ -45,14 +45,12 @@
 			</div>
 		</form>
 
-				<!--非ログイン状態の時に出すコマンド  -->
+		<!--非ログイン状態の時に出すコマンド  -->
 		<div class="collapse navbar-collapse justify-content-end">
 			<ul class="navbar-nav">
 				<c:if test="${logId == null}">
-					<li class="nav-item active"><a class="nav-link"
-						href="Login">ログイン</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="NewEntry">新規登録</a></li>
+					<li class="nav-item active"><a class="nav-link" href="Login">ログイン</a></li>
+					<li class="nav-item"><a class="nav-link" href="NewEntry">新規登録</a></li>
 				</c:if>
 
 				<!--ログイン状態の時に出すコマンド  -->
@@ -61,8 +59,7 @@
 						href="Cart?login_id=${logId}">買い物かご</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="http://localhost:8080/MyWebSite/Mock/UserDetail.html">お客様情報</a></li>
-					<li class="nav-item active"><a class="nav-link"
-						href="Logout">ログアウト</a></li>
+					<li class="nav-item active"><a class="nav-link" href="Logout">ログアウト</a></li>
 				</c:if>
 			</ul>
 		</div>
@@ -72,24 +69,29 @@
 	<div class="album py-5 bg-light">
 		<div class="container">
 			<h1>検索結果</h1>
+
 			<c:choose>
-			<c:when test = "${search != null}">
-			<h2>検索内容：${search}</h2>
-			<h2>${itemCount }件の商品が検索と一致しました。</h2>
-			</c:when>
-			<c:otherwise>
-			<h3>商品を全て表示してあります。</h3>
-			</c:otherwise>
+				<c:when test="${itemCount != 0}">
+					<h2>検索内容：${search}</h2>
+					<h2>${itemCount}件の商品が検索と一致しました。</h2>
+				</c:when>
+				<c:otherwise>
+					<h3>商品を全て表示してあります。</h3>
+				</c:otherwise>
 			</c:choose>
+
 			<div class="row">
 				<c:forEach var="item" items="${itemList}" varStatus="status">
 					<div class="col-md-3">
 						<div class="item-card mb-4 shadow-sm">
-							<a href="ItemDetail?item_id=${item.id}"><img src="img/${item.fileName}"
-								 class="img-container--absolute-position"></a>
+							<a href="ItemDetail?item_id=${item.id}"><img
+								src="img/${item.fileName}"
+								class="img-container--absolute-position"></a>
 							<div class="card-body">
 								<p class="textOverflow">${item.name}</p>
-								<p><strong>${item.priceStr}円</strong></p>
+								<p>
+									<strong>${item.priceStr}円</strong>
+								</p>
 								<div class="d-flex justify-content-between align-items-center">
 									<div class="btn-group">
 										<a type="button" class="btn btn-sm btn-outline-secondary"

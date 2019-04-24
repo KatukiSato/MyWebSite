@@ -35,11 +35,20 @@ public class Cart extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		HttpSession session = request.getSession();
+		Object logcheck = session.getAttribute("userId");
+
+		if (logcheck == null) {
+			System.out.println("飛びます！");
+			response.sendRedirect("TopPage");
+			return;
+		}
 
 		String login = (String) session.getAttribute("logId");
 
 		try {
 			ArrayList<CartBeans> show = CartDao.showCart(login);
+			int cartCount = CartDao.cartCount(login);
+			request.setAttribute("cartCount", cartCount);
 			session.setAttribute("show", show);
 
 			String totalprice = Helper.getTotalItemPrice(show);
@@ -106,10 +115,6 @@ public class Cart extends HttpServlet {
 
 					} else {
 						System.out.println("一度に購入できるのは５個までです。");
-
-//						request.setAttribute("cartMessage", "一度に購入できるのは５個までです。<br><br>");
-//						request.getRequestDispatcher(Helper.ITEM_PAGE).forward(request, response);
-
 						response.sendRedirect("ItemDetail?item_id=" + itemId + "&cartMessage");
 					}
 				}

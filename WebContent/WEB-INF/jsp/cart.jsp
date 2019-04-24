@@ -46,24 +46,14 @@
 			</div>
 		</form>
 
-				<!--非ログイン状態の時に出すコマンド  -->
 		<div class="collapse navbar-collapse justify-content-end">
 			<ul class="navbar-nav">
-				<c:if test="${logId == null}">
-					<li class="nav-item active"><a class="nav-link"
-						href="Login">ログイン</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="NewEntry">新規登録</a></li>
-				</c:if>
-
 				<!--ログイン状態の時に出すコマンド  -->
 				<c:if test="${logId != null}">
 					<li class="nav-item"><a class="nav-link"
 						href="Cart?login_id=${logId}">買い物かご</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="UserDetail">お客様情報</a></li>
-					<li class="nav-item active"><a class="nav-link"
-						href="Logout">ログアウト</a></li>
+					<li class="nav-item"><a class="nav-link" href="UserDetail">お客様情報</a></li>
+					<li class="nav-item active"><a class="nav-link" href="Logout">ログアウト</a></li>
 				</c:if>
 			</ul>
 		</div>
@@ -74,83 +64,95 @@
 
 	<div class="card">
 
-		<div class="container">
-			<div class="row">
-				<div class="col-1"></div>
-				<div class="col-4">商品</div>
-				<div class="col-2">単価</div>
-				<div class="col-1">数量</div>
-				<div class="col-2">変更</div>
-				<div class="col-2">価格</div>
-			</div>
-			<c:forEach var="item" items="${show}">
-				<hr class="borderline2">
-				<div class="row">
+		<c:choose>
 
-					<!-- 複数削除は後回し！ -->
-					<div class="col-1">
+			<c:when test="${cartCount == 0}">
+				<span class="display-4"><font color="red">買い物かごの中身は空です。</font></span>
+				<a class="btn btn-primary btn-block" type="submit" href="TopPage">ＴＯＰページへ</a>
+			</c:when>
 
-						<form action="CartItemUpdate" method="POST">
-							<input type="hidden" value="${item.item_id}"
-								name="deleteCartItem">
-							<button class="btn btn-danger btn-block" type="submit"
-								name="cart_button" value="delete">削除</button>
-
-						</form>
-					</div>
-
-					<div class="col-2">
-						<a href="ItemDetail?item_id=${item.item_id}"><img
-							src="img/${item.file_name}" alt="サンプル" class="item-card"></a>
-					</div>
-					<div class="col-2">
-						<a href="ItemDetail?item_id=${item.item_id}">${item.name}</a>
-					</div>
-					<div class="col-2"><strong>${item.priceStr}円</strong></div>
-
-					<div class="col-1">${item.quality}個</div>
-
-					<div class="col-2">
-						<form action="CartItemUpdate" method="POST">
-							<select name="qualityChange">
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-							</select>
-
-							<div class="col align-self-center">
-								<input type="hidden" name="test" value="${item.item_id}">
-								<button class="btn btn-primary" type="submit" name="cart_button"
-									value="Change">変更</button>
-							</div>
-						</form>
-					</div>
-
-					<div class="col-2"><strong>${item.totalpriceStr}円</strong></div>
-				</div>
-				<br>
-				<br>
-			</c:forEach>
-			<hr class="borderline ">
-
-			<div class="row">
-				<div class="col-9"></div>
-				<div class="col-1">合計</div>
-				<div class="col-2">${totalprice}円</div>
-			</div>
-			<br>
+		<c:otherwise>
 			<div class="container">
 				<div class="row">
+					<div class="col-1"></div>
+					<div class="col-4">商品</div>
+					<div class="col-2">単価</div>
+					<div class="col-1">数量</div>
+					<div class="col-2">変更</div>
+					<div class="col-2">価格</div>
+				</div>
+				<c:forEach var="item" items="${show}">
+					<hr class="borderline2">
+					<div class="row">
+
+						<div class="col-1">
+							<form action="CartItemUpdate" method="POST">
+								<input type="hidden" value="${item.item_id}"
+									name="deleteCartItem">
+								<button class="btn btn-danger btn-block" type="submit"
+									name="cart_button" value="delete">削除</button>
+							</form>
+						</div>
+
+						<div class="col-2">
+							<a href="ItemDetail?item_id=${item.item_id}"><img
+								src="img/${item.file_name}" alt="サンプル" class="item-card"></a>
+						</div>
+						<div class="col-2">
+							<a href="ItemDetail?item_id=${item.item_id}">${item.name}</a>
+						</div>
+						<div class="col-2">
+							<strong>${item.priceStr}円</strong>
+						</div>
+
+						<div class="col-1">${item.quality}個</div>
+
+						<div class="col-2">
+							<form action="CartItemUpdate" method="POST">
+								<select name="qualityChange">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+									<option value="5">5</option>
+								</select>
+
+								<div class="col align-self-center">
+									<input type="hidden" name="test" value="${item.item_id}">
+									<button class="btn btn-primary" type="submit"
+										name="cart_button" value="Change">変更</button>
+								</div>
+							</form>
+						</div>
+
+						<div class="col-2">
+							<strong>${item.totalpriceStr}円</strong>
+						</div>
+					</div>
+					<br>
+					<br>
+				</c:forEach>
+				<hr class="borderline ">
+
+				<div class="row">
+					<div class="col-9"></div>
+					<div class="col-1">合計</div>
+					<div class="col-2">${totalprice}円</div>
+				</div>
+				<br>
+				<div class="container">
+					<div class="row">
 
 
-					<div class="col align-self-end">
-						<a class="btn btn-success btn-block" type="submit"
-							href="Register">レジへ進む</a>
+						<div class="col align-self-end">
+							<a class="btn btn-success btn-block" type="submit"
+								href="Register">レジへ進む</a>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+			</c:otherwise>
+		</c:choose>
+	</div>
 </body>
 </html>

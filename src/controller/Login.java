@@ -56,7 +56,9 @@ public class Login extends HttpServlet {
 
 			if(customer != 0){
 				session.setAttribute("isLogin", true);
+				//idを取得
 				session.setAttribute("userId", customer);
+				//ログインユーザー名を取得。
 				session.setAttribute("logId", loginId);
 				response.sendRedirect("TopPage");
 				System.out.println("ログイン処理完了！");

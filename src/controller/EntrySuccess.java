@@ -20,19 +20,27 @@ import dao.CustomerDao;
 public class EntrySuccess extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public EntrySuccess() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public EntrySuccess() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		request.getRequestDispatcher(Helper.NEW_ENTRY_SUCCESS_PAGE).forward(request, response);
+
+		HttpSession session = request.getSession();
+		Object logcheck = session.getAttribute("userId");
+
+		if (logcheck == null) {
+			System.out.println("飛びます！");
+			response.sendRedirect("TopPage");
+			return;
+		}
 	}
 
 	/**

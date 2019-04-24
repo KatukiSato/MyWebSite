@@ -69,22 +69,6 @@
 	<h2>日時をクリックすると購入詳細が確認出来ます。</h2>
 
 	<br>
-	<h2>日時の絞り込みができます</h2>
-
-	<br>
-	<br>
-
-
-
-	<form class="form-inline">
-		<div class="container">
-			<div class="text-center" style="padding: 3px;">
-				<input class="form-control mr-sm-1" type="date" size="140">
-				～ <input class="form-control mr-sm-1" type="date" size="140">
-				<a class="btn btn-primary" type="submit" href="BuyHistory">検索</a>
-			</div>
-		</div>
-	</form>
 
 	<div class="card-History">
 		<div class="panel-group" id="accordion">

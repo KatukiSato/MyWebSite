@@ -31,7 +31,15 @@ public class UserUpdate extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		HttpSession session = request.getSession();
+		Object logcheck = session.getAttribute("userId");
+
+		if (logcheck == null) {
+			System.out.println("飛びます！");
+			response.sendRedirect("TopPage");
+			return;
+		}
 
 		//初期表示用に使っている。
 		ArrayList<CustomerDataBeans> cdb = session.getAttribute("userInfo")!= null?(ArrayList<CustomerDataBeans>)
