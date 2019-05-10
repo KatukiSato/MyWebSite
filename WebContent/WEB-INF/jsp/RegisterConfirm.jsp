@@ -39,7 +39,7 @@
 				<div class="row">
 					<div class=".col-lg-12 form-inline" style="padding: 3px;">
 						<input class="form-control mr-sm-1" type="search" size="130"
-							name="search">
+							name="search" placeholder="商品名、または商品タグを入力してください">
 						<button class="btn btn-primary" type="submit">検索</button>
 					</div>
 				</div>

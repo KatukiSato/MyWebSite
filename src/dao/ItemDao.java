@@ -250,7 +250,8 @@ public class ItemDao {
 			con = DataBaseManager.getConnection();
 
 			st = con.prepareStatement("select "+
-					"tag.id, group_concat(tag.name separator ',') as tagname" +
+					"tag.id, "
+					+ " tag.name  as tagname" +
 					" from \r\n" +
 					"	m_item as item\r\n" +
 					"		inner join\r\n" +
