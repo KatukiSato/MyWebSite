@@ -144,6 +144,12 @@ public class ItemDao {
 		}
 	}
 
+	/**
+	 * 売れ筋ランキング
+	 * @param rank
+	 * @return
+	 * @throws SQLException
+	 */
 	public static ArrayList<ItemBeans> itemRanking (int rank) throws SQLException{
 		Connection con = null;
 		PreparedStatement st = null;
@@ -184,8 +190,13 @@ public class ItemDao {
 		}
 	}
 
+	/**
+	 * 検索件数の表示
+	 * @param searchWord
+	 * @return
+	 * @throws SQLException
+	 */
 	public static int itemCount(String searchWord) throws SQLException {
-
 		Connection con = null;
 		PreparedStatement st = null;
 		try {
