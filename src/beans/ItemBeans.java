@@ -10,6 +10,9 @@ public class ItemBeans implements Serializable{
 	private int price;
 	private String file_name;
 
+	private int tagId;
+	private String tagName;
+
 	public int getId() {
 		return id;
 	}
@@ -42,5 +45,17 @@ public class ItemBeans implements Serializable{
 	}
 	public void setFileName(String file_name) {
 		this.file_name = file_name;
+	}
+	public int getTagId() {
+		return tagId;
+	}
+	public void setTagId(int tagId) {
+		this.tagId = tagId;
+	}
+	public String getTagName() {
+		return tagName;
+	}
+	public void setTagName(String tagName) {
+		this.tagName = tagName;
 	}
 }

@@ -71,12 +71,11 @@
 			<h1>検索結果</h1>
 
 			<c:choose>
-				<c:when test="${itemCount != 0}">
+				<c:when test="${search != null}">
 					<h2>検索内容：${search}</h2>
-					<h2>${itemCount}件の商品が検索と一致しました。</h2>
 				</c:when>
 				<c:otherwise>
-					<h3>商品を全て表示してあります。</h3>
+					<h3>商品が見つかりませんでした。</h3>
 				</c:otherwise>
 			</c:choose>
 
@@ -103,6 +102,31 @@
 					</div>
 				</c:forEach>
 			</div>
+
+			<div class="row">
+				<c:forEach var="item" items="${resultSearchTag}" varStatus="status">
+					<div class="col-md-3">
+						<div class="item-card mb-4 shadow-sm">
+							<a href="ItemDetail?item_id=${item.id}"><img
+								src="img/${item.fileName}"
+								class="img-container--absolute-position"></a>
+							<div class="card-body">
+								<p class="textOverflow">${item.name}</p>
+								<p>
+									<strong>${item.priceStr}円</strong>
+								</p>
+								<div class="d-flex justify-content-between align-items-center">
+									<div class="btn-group">
+										<a type="button" class="btn btn-sm btn-outline-secondary"
+											href="http://localhost:8080/MyWebSite/ItemDetail?item_id=${item.id}">商品詳細</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
+
 		</div>
 	</div>
 </body>

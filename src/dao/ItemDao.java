@@ -99,7 +99,8 @@ public class ItemDao {
 	}
 
 	/**
-	 * 全一致検索と部分検索
+	 * 部分一致検索
+	 * タグ検索も追加　2019/05/10 16:09
 	 * @param searchWord
 	 * @return
 	 * @throws SQLException
@@ -111,13 +112,20 @@ public class ItemDao {
 		try {
 			con =DataBaseManager.getConnection();
 
-			if (searchWord.length() == 0) {
-				st = con.prepareStatement("select * from m_item");
-
-			}else {
-				st = con.prepareStatement("select * from m_item where name like ?");
+				st = con.prepareStatement("select "
+						+ "item.*, "
+						+ "tag.id as タグid, tag.name as タグの名前 "
+						+ "from m_item item "
+						+ "inner join relay re "
+						+ "on item.id = re.item_id "
+						+ "inner join tag "
+						+ "on re.tag_id = tag.id "
+						+ "where tag.name like ? "
+						+ "or item.name like ? "
+						+ "group by item.name");
 				st.setString(1,"%" + searchWord + "%");
-			}
+				st.setString(2,"%" + searchWord + "%");
+
 
 			ResultSet rs = st.executeQuery();
 			ArrayList<ItemBeans> itemList = new ArrayList<ItemBeans>();
@@ -129,6 +137,8 @@ public class ItemDao {
 				item.setDetail(rs.getString("detail"));
 				item.setPrice(rs.getInt("price"));
 				item.setFileName(rs.getString("file_name"));
+				item.setTagId(rs.getInt("タグid"));
+				item.setTagName(rs.getString("タグの名前"));
 				itemList.add(item);
 			}
 
@@ -226,6 +236,12 @@ public class ItemDao {
 		}
 	}
 
+	/**
+	 * タグ情報の取得
+	 * @param itemId
+	 * @return
+	 * @throws SQLException
+	 */
 	public static ArrayList<TagBeans> itemTag (int itemId) throws SQLException{
 		Connection con  = null;
 		PreparedStatement st = null;
@@ -233,9 +249,9 @@ public class ItemDao {
 		try {
 			con = DataBaseManager.getConnection();
 
-			st = con.prepareStatement("select\r\n" +
-					"	tag.* \r\n" +
-					"from \r\n" +
+			st = con.prepareStatement("select "+
+					"tag.id, group_concat(tag.name separator ',') as tagname" +
+					" from \r\n" +
 					"	m_item as item\r\n" +
 					"		inner join\r\n" +
 					"			relay as re\r\n" +
@@ -256,7 +272,7 @@ public class ItemDao {
 			while (rs.next()) {
 				TagBeans tag = new TagBeans();
 				tag.setId(rs.getInt("id"));
-				tag.setName(rs.getString("test"));
+				tag.setName(rs.getString("tagname"));
 				tagList.add(tag);
 			}
 
@@ -273,4 +289,5 @@ public class ItemDao {
 			}
 		}
 	}
+
 }
