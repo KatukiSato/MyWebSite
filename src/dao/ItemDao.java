@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import base.DataBaseManager;
 import beans.ItemBeans;
+import beans.TagBeans;
 
 public class ItemDao {
 
@@ -214,6 +215,54 @@ public class ItemDao {
 
 			System.out.println("検索件数はこちらです！");
 			return count;
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new SQLException(e);
+		} finally {
+			if (con != null) {
+				con.close();
+			}
+		}
+	}
+
+	public static ArrayList<TagBeans> itemTag (int itemId) throws SQLException{
+		Connection con  = null;
+		PreparedStatement st = null;
+
+		try {
+			con = DataBaseManager.getConnection();
+
+			st = con.prepareStatement("select\r\n" +
+					"	tag.* \r\n" +
+					"from \r\n" +
+					"	m_item as item\r\n" +
+					"		inner join\r\n" +
+					"			relay as re\r\n" +
+					"		on\r\n" +
+					"			item.id = re.item_id\r\n" +
+					"		inner join\r\n" +
+					"			tag\r\n" +
+					"		on\r\n" +
+					"			re.tag_id = tag.id\r\n" +
+					"where \r\n" +
+					"	item.id = ?");
+			st.setInt(1, itemId);
+
+			ResultSet rs = st.executeQuery();
+
+			ArrayList<TagBeans> tagList = new ArrayList<TagBeans>();
+
+			while (rs.next()) {
+				TagBeans tag = new TagBeans();
+				tag.setId(rs.getInt("id"));
+				tag.setName(rs.getString("test"));
+				tagList.add(tag);
+			}
+
+			System.out.println("タグの取得に成功しました。");
+
+			return tagList;
 
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

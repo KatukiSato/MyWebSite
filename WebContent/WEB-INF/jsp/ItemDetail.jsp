@@ -101,6 +101,11 @@
 
 					<br> <br>
 
+					<p>登録タグ</p>
+					<c:forEach var="tagname" items="${tag}">
+						${tagname.name}
+					</c:forEach>
+
 					<form action="Cart" method="POST">
 						<div class="row">
 							<div class="col-6">購入数</div>

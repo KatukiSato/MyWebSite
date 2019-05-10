@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import beans.ItemBeans;
+import beans.TagBeans;
 import dao.ItemDao;
 
 /**
@@ -45,6 +46,9 @@ public class ItemDetail extends HttpServlet {
 		try {
 			ArrayList<ItemBeans> item = ItemDao.getItem(id);
 
+			ArrayList<TagBeans> tag = ItemDao.itemTag(id);
+
+			request.setAttribute("tag", tag);
 			request.setAttribute("itemList", item);
 		} catch (SQLException e) {
 			e.printStackTrace();
