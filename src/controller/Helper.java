@@ -72,6 +72,15 @@ public class Helper {
 	//情報更新完了
 	static final String UPDATE_SUCCESS_PAGE = "/WEB-INF/jsp/UpdateSuccess.jsp";
 
+	//管理者コマンド一覧
+	static final String ADMIN_COMMAND_PAGE = "/WEB-INF/jsp/AdminCommand.jsp";
+
+	//新規タグ登録
+	static final String NEW_ENTRY_TAG_PAGE = "/WEB-INF/jsp/NewEntryTag.jsp";
+
+	//タグ登録確認
+	static final String NEW_ENTRY_TAG_CONFIRM_PAGE = "/WEB-INF/jsp/NewEntryTagConfirm.jsp";
+
 	/**
 	 * @param isLoginIdform
 	 * @return

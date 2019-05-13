@@ -13,7 +13,7 @@
 <meta name="author" content="">
 
 
-<title>お客様情報</title>
+<title>管理者コマンド一覧</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -28,6 +28,7 @@
 </head>
 
 <body class="text-center">
+
 	<nav class="navbar navbar-expand-sm navbar-dark bg-dark mt-3 mb-3">
 		<a class="navbar-brand" href="TopPage">ＥＣサイト</a>
 
@@ -44,14 +45,15 @@
 			</div>
 		</form>
 
-		<!--非ログイン状態の時に出すコマンド  -->
 		<div class="collapse navbar-collapse justify-content-end">
 			<ul class="navbar-nav">
+
 				<!--ログイン状態の時に出すコマンド  -->
 				<c:if test="${logId != null}">
 					<li class="nav-item"><a class="nav-link"
 						href="Cart?login_id=${logId}">買い物かご</a></li>
-					<li class="nav-item"><a class="nav-link" href="UserDetail">お客様情報</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="UserDetail">お客様情報</a></li>
 					<li class="nav-item active"><a class="nav-link" href="Logout">ログアウト</a></li>
 				</c:if>
 			</ul>
@@ -59,71 +61,27 @@
 
 	</nav>
 
-	<div class="text-center">
-		<span class="display-3">お客様情報</span>
-	</div>
+	<h1>管理者として行えるコマンド一覧です</h1>
 
 	<div class="card-midium2">
-		<div class="form-signin3">
-			<div class="text-left">
+		<h3>データベースに登録してある全ての商品を閲覧できます。</h3>
+		<h3>商品の情報更新はこちらから。</h3>
+		<a class="btn btn-primary btn-block" type="submit" href="TopPage">全商品一覧</a>
 
-				<c:forEach var="info" items="${userInfo}">
-					<p>ログインID</p>
-					<p>${info.login_id}</p>
+		<br> <br>
 
-					<hr class="borderline2">
+		<h3>データベースに登録してあるタグを閲覧できます。</h3>
+		<h3>タグの更新はこちらから。</h3>
+		<br> <a class="btn btn-success btn-block" type="submit"
+			href="TagList.html">全タグ一覧</a> <br>
 
-					<p>ユーザ名</p>
-					<p>${info.name}</p>
-					<hr class="borderline2">
+		<h3>データベースに新しい商品を登録します。</h3>
+		<br> <a class="btn btn-secondary btn-block" type="submit"
+			href="ItemNewEntryByAdmin.html">新規商品登録</a> <br>
 
-					<p>メールアドレス</p>
-					<p>${info.mail}</p>
-					<hr class="borderline2">
-
-					<p>電話番号</p>
-					<p>${info.phone}</p>
-					<hr class="borderline2">
-
-					<p>住所</p>
-					<p>${info.address}</p>
-					<hr class="borderline2">
-
-
-					<div class="row">
-						<div class="col align-self-start">
-							<div class="text-center">
-								<a class="btn btn-danger btn-block" type="submit"
-									href="UserUpdate">情報修正</a>
-							</div>
-						</div>
-
-						<div class="col align-self-	center">
-							<form action="BuyHistory" method="POST">
-
-								<div class="text-center">
-									<a class="btn btn-success btn-block" type="submit"
-										href="BuyHistory">購入履歴</a>
-								</div>
-							</form>
-						</div>
-
-						<div class="col align-self-end">
-							<div class="text-center">
-								<a class="btn btn-primary btn-block" type="submit"
-									href="TopPage">ＴＯＰページ</a>
-							</div>
-						</div>
-					</div>
-
-					<br>
-						<c:if test="${logId == 'admin'}">
-						<a class="btn btn-denger btn-block" type="submit"
-									href="AdminCommand">管理者コマンド</a>
-						</c:if>
-				</c:forEach>
-			</div>
-		</div>
+		<h3>データベースに新しいタグを登録します。</h3>
+		<br> <a class="btn btn-danger btn-block" type="submit"
+			href="NewEntryTag">新規タグ登録</a>
 	</div>
 
 </body>

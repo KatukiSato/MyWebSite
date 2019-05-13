@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en" class="">
 <head>
@@ -7,8 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-
-<title>タグ登録確認</title>
+<title>新規タグ登録</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -47,15 +51,12 @@
 				<li class="nav-item"><a class="nav-link" href="UserDetail">お客様情報</a></li>
 				<li class="nav-item active"><a class="nav-link" href="Logout">ログアウト</a></li>
 				<li class="nav-item active"><a class="nav-link"
-					href="AdminCommand.html">管理者コマンド</a></li>
+					href="AdminCommand">管理者コマンド</a></li>
 
 			</ul>
 		</div>
 
 	</nav>
-
-
-
 	<h1>タグ登録確認</h1>
 
 	<h2>以下のタグを登録します。 よろしいですか？</h2>
@@ -66,7 +67,7 @@
 				<p></p>
 
 				<p>登録予定のタグ</p>
-				<p>サンプル</p>
+				<p>${tag }</p>
 				<hr class="borderline">
 
 			<br><br>

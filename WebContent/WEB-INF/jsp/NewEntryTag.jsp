@@ -1,3 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en" class="">
 <head>
@@ -7,8 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-
-<title>タグ登録確認</title>
+<title>新規タグ登録</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -47,50 +51,32 @@
 				<li class="nav-item"><a class="nav-link" href="UserDetail">お客様情報</a></li>
 				<li class="nav-item active"><a class="nav-link" href="Logout">ログアウト</a></li>
 				<li class="nav-item active"><a class="nav-link"
-					href="AdminCommand.html">管理者コマンド</a></li>
+					href="AdminCommand">管理者コマンド</a></li>
 
 			</ul>
 		</div>
 
 	</nav>
 
+	<h1>新規タグ登録</h1>
 
-
-	<h1>タグ登録確認</h1>
-
-	<h2>以下のタグを登録します。 よろしいですか？</h2>
+	<h2>登録したいタグを入力してください。</h2>
 
 	<div class="card-midium2">
-		<form class="form-signin">
+		<form  action="NewEntryTagConfirm" method="POST" class="form-signin">
 			<div class="bottom">
-				<p></p>
 
-				<p>登録予定のタグ</p>
-				<p>サンプル</p>
-				<hr class="borderline">
+				<label for="inputName">タグ名</label>
+					<input type="text" id="inputName" class=".form-signin" placeholder="(必須)" name ="tag" value ="${tag }"required>
 
-			<br><br>
+					<button class="btn btn-lg btn-primary btn-block" type="submit">確認画面へ</button>
 
-		<div class= row>
-			<div class="col-6">
+					<a class="btn btn-lg btn-danger btn-block" type="submit"
+						href="AdminCommand">管理者コマンドへ</a>
 
-				<a class="btn btn-lg btn-primary btn-block" type="submit"
-					href="NewEntryTag">タグ入力画面へ</a>
-			</div>
-
-			<div class="col-6">
-				<a class="btn btn-lg btn-success btn-block" type="submit"
-						href="TagEntrySuccess.html">登録する</a>
-			</div>
-
-		</div>
-
-<br><br>
-
-				<a class="btn btn-lg btn-danger btn-block" type="submit"
-					href="AdminCommand">管理者コマンドへ</a>
 			</div>
 		</form>
 	</div>
 </body>
+
 </html>
