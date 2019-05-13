@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>新規タグ登録</title>
+<title>タグ登録完了！</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -57,42 +57,24 @@
 		</div>
 
 	</nav>
-	<h1>タグ登録確認</h1>
 
-	<h2>以下のタグを登録します。 よろしいですか？</h2>
+	<h1>タグ登録完了！</h1>
 
+	<h2>データベースに新しいタグが登録されました。</h2>
 
 	<div class="card-midium2">
-		<form class="form-signin">
-			<div class="bottom">
-				<p></p>
 
-				<p>登録予定のタグ</p>
-				<p>${tag }</p>
-				<hr class="borderline">
+	<h3>登録したタグを確認しましょう！</h3>
+			<a class="btn btn-lg btn-primary" type="submit"
+				href="TagList.html">　全タグ一覧へ　</a>
 
-			<br><br>
+	<br><br><br><br>
 
-		<div class= row>
-			<div class="col-6">
+			<a class="btn btn-lg btn-danger " type="submit"
+				href="AdminCommand">管理者コマンドへ</a>
 
-				<a class="btn btn-lg btn-primary btn-block" type="submit"
-					href="NewEntryTag">タグ入力画面へ</a>
-			</div>
-
-			<div class="col-6">
-				<a class="btn btn-lg btn-success btn-block" type="submit"
-						href="TagEntrySuccess">登録する</a>
-			</div>
-
-		</div>
-
-<br><br>
-
-				<a class="btn btn-lg btn-danger btn-block" type="submit"
-					href="AdminCommand">管理者コマンドへ</a>
-			</div>
-		</form>
 	</div>
+
 </body>
+
 </html>

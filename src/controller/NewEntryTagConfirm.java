@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import dao.TagDao;
 
 /**
  * Servlet implementation class NewEntryTagConfirm
@@ -46,14 +49,34 @@ public class NewEntryTagConfirm extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-
-
 		HttpSession session = request.getSession();
-		String test =request.getParameter("tag");
 
-		session.setAttribute("tag", test);
+		String tag =request.getParameter("tag");
 
-		request.getRequestDispatcher(Helper.NEW_ENTRY_TAG_CONFIRM_PAGE).forward(request, response);
+		String validationMessage = "";
+
+		//取りあえずタグの重複だけ確かめる。他にもあったら追加
+		try {
+			if (!TagDao.isMatchTag(tag)) {
+				validationMessage += "既にデータベースに登録されています。";
+			}
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+
+		if (validationMessage.length() == 0) {
+			session.setAttribute("tag", tag);
+			request.getRequestDispatcher(Helper.NEW_ENTRY_TAG_CONFIRM_PAGE).forward(request, response);
+
+		} else {
+			session.setAttribute("tag", tag);
+			session.setAttribute("validationMessage", validationMessage);
+			response.sendRedirect("NewEntryTag");
+		}
+
+
+
 	}
 
 }

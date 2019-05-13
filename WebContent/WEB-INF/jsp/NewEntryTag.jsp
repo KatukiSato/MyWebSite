@@ -66,6 +66,8 @@
 		<form  action="NewEntryTagConfirm" method="POST" class="form-signin">
 			<div class="bottom">
 
+				<h4><font color=red><strong>${validationMessage}</strong></font></h4>
+
 				<label for="inputName">タグ名</label>
 					<input type="text" id="inputName" class=".form-signin" placeholder="(必須)" name ="tag" value ="${tag }"required>
 

@@ -41,8 +41,10 @@ public class NewEntryTag extends HttpServlet {
 		//後で型の変更の必要あり？　2019/05/13 17:14
 		String tag = session.getAttribute("tag")!= null?(String)
 				Helper.cutSessionAttribute(session, "tag"):new String();;
+		String validationMessage = (String) Helper.cutSessionAttribute(session, "validationMessage");
 
 		request.setAttribute("tag", tag);
+		request.setAttribute("validationMessage",validationMessage);
 
 		request.getRequestDispatcher(Helper.NEW_ENTRY_TAG_PAGE).forward(request, response);
 	}
