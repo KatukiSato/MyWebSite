@@ -321,3 +321,10 @@ body, html {
 .static-padding {
 	padding-left: 230px;
 }
+
+/*チェックボックスを大きく！  */
+input[type=checkbox] {
+  -ms-transform: scale(1.5, 1.5);
+  -webkit-transform: scale(1.5, 1.5);
+  transform: scale(1.5, 1.5);
+}
