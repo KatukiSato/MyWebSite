@@ -68,7 +68,7 @@
 
 			<c:when test="${cartCount == 0}">
 				<span class="display-4"><font color="red">買い物かごの中身は空です。</font></span>
-				<a class="btn btn-primary btn-block" type="submit" href="TopPage">ＴＯＰページへ</a>
+				<a class="btn btn-primary btn-lg" type="submit" href="TopPage">ＴＯＰページへ</a>
 			</c:when>
 
 		<c:otherwise>
@@ -137,17 +137,18 @@
 				<div class="row">
 					<div class="col-9"></div>
 					<div class="col-1">合計</div>
-					<div class="col-2">${totalprice}円</div>
+					<div class="col-2"><strong>${totalprice}円</strong></div>
 				</div>
 				<br>
 				<div class="container">
 					<div class="row">
-
-
 						<div class="col align-self-end">
 							<a class="btn btn-success btn-block" type="submit"
 								href="Register">レジへ進む</a>
+							<br> <br>
+							<a class="btn btn-primary btn-block" type="submit" href="TopPage">ＴＯＰページへ戻る</a>
 						</div>
+
 					</div>
 				</div>
 			</div>

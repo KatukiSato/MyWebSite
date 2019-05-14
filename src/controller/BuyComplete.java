@@ -78,7 +78,6 @@ public class BuyComplete extends HttpServlet {
 
 			//買い物かごの商品を削除
 			CartDao.deleteItemCart(loginid);
-			session.removeAttribute("test");
 		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
