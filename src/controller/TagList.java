@@ -1,12 +1,18 @@
 package controller;
 
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import beans.TagBeans;
+import dao.TagDao;
 
 /**
  * Servlet implementation class TagList
@@ -28,7 +34,19 @@ public class TagList extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.getRequestDispatcher(Helper.TAG_LIST_PAGE).forward(request, response);
+		HttpSession session = request.getSession();
+
+		TagDao tb = new TagDao();
+		try {
+			List<TagBeans> tagList = tb.tagList();
+			session.setAttribute("tagList", tagList);
+
+			request.getRequestDispatcher(Helper.TAG_LIST_PAGE).forward(request, response);
+		} catch (SQLException e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
+
 	}
 
 	/**

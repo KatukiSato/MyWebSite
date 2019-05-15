@@ -64,25 +64,27 @@
 
 	<div class="card-midium2">
 
-		<div class = "row">
-			<div class = "col-7">
-				サンプル（飲み物）
-			</div>
-			<div class = "col-1">
-				<a class="btn btn-lg btn-success" type="submit"
-					href="TagDetail.html">詳細</a>
-			</div>
-			<div class = "col-1">
-				<a class="btn btn-lg btn-secondary" type="submit"
-					href="TagUpdate.html">更新</a>
-			</div>
-			<div class = "col-1">
-				<a class="btn btn-lg btn-danger" type="submit"
-					href="TagDelete.html">削除</a>
-			</div>
-		</div>
+		<c:forEach var="tag" items="${tagList }">
 
-		<hr class ="borderline2">
+			<div class="row">
+				<div class="col-7">${tag.name }</div>
+				<div class="col-1">
+					<a class="btn btn-lg btn-success" type="submit"
+						href="TagDetail.html">詳細</a>
+				</div>
+				<div class="col-1">
+					<a class="btn btn-lg btn-secondary" type="submit"
+						href="TagUpdate.html">更新</a>
+				</div>
+				<div class="col-1">
+					<a class="btn btn-lg btn-danger" type="submit"
+						href="TagDelete.html">削除</a>
+				</div>
+			</div>
+
+			<hr class="borderline3">
+
+		</c:forEach>
 
 	</div>
 

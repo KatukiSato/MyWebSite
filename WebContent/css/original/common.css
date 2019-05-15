@@ -75,6 +75,13 @@ body, html {
 	margin-bottom: 50px;
 }
 
+.borderline3{
+	height: 1px;
+	background-color: #000000;
+	color: #000000;
+	margin-bottom: 50px;
+}
+
 /*  商品説明に使用*/
 .card-title {
 	display: block;

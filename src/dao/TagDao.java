@@ -4,8 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import base.DataBaseManager;
+import beans.TagBeans;
 
 public class TagDao {
 
@@ -58,6 +61,38 @@ public class TagDao {
 			System.out.println("データベースにタグが登録されました。");
 
 		}catch (SQLException  e) {
+			System.out.println(e.getMessage());
+			throw new SQLException(e);
+		} finally {
+			if (con != null) {
+				con.close();
+			}
+		}
+	}
+
+	public List<TagBeans> tagList() throws SQLException {
+		Connection con = null;
+		PreparedStatement st = null;
+		List<TagBeans> TagBeansList = new ArrayList<TagBeans>();
+
+		try {
+			con = DataBaseManager.getConnection();
+
+			st= con.prepareStatement("select * from tag");
+
+			ResultSet rs = st.executeQuery();
+
+			while(rs.next()) {
+				TagBeans tb = new TagBeans();
+				tb.setId(rs.getInt("id"));
+				tb.setName(rs.getString("name"));
+
+				TagBeansList.add(tb);
+			}
+			System.out.println("タグ一覧です！");
+
+			return TagBeansList;
+		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			throw new SQLException(e);
 		} finally {
