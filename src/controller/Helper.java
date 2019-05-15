@@ -84,6 +84,8 @@ public class Helper {
 	//タグ登録完了
 	static final String TAG_ENTRY_SUCCESS_PAGE = "/WEB-INF/jsp/TagEntrySuccess.jsp";
 
+	//タグ一覧
+	static final String TAG_LIST_PAGE = "/WEB-INF/jsp/TagList.jsp";
 
 	/**
 	 * @param isLoginIdform

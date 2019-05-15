@@ -43,4 +43,27 @@ public class TagDao {
 		return isMatch;
 
 	}
+
+	public static void entryTag (String tag) throws SQLException {
+
+		Connection con = null;
+		PreparedStatement st = null;
+		try {
+			con = DataBaseManager.getConnection();
+
+			st = con.prepareStatement("insert into	tag (name) values (?)");
+			st.setString(1, tag);
+
+			st.executeUpdate();
+			System.out.println("データベースにタグが登録されました。");
+
+		}catch (SQLException  e) {
+			System.out.println(e.getMessage());
+			throw new SQLException(e);
+		} finally {
+			if (con != null) {
+				con.close();
+			}
+		}
+	}
 }

@@ -63,7 +63,7 @@
 
 
 	<div class="card-midium2">
-		<form class="form-signin">
+		<form action ="TagEntrySuccess" method ="POST" class="form-signin">
 			<div class="bottom">
 				<p></p>
 
@@ -76,13 +76,15 @@
 		<div class= row>
 			<div class="col-6">
 
-				<a class="btn btn-lg btn-primary btn-block" type="submit"
-					href="NewEntryTag">タグ入力画面へ</a>
+			<button class="btn btn-lg btn-danger btn-block" type="submit"
+				name="tag_button" value="cancel">タグ入力画面へ</button>
+
 			</div>
 
 			<div class="col-6">
-				<a class="btn btn-lg btn-success btn-block" type="submit"
-						href="TagEntrySuccess">登録する</a>
+
+			<button class="btn btn-lg btn-primary btn-block" type="submit"
+				name="tag_button" value="entry">登録する</button>
 			</div>
 
 		</div>

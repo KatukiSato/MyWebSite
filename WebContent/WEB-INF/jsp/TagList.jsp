@@ -12,8 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-
-<title>管理者コマンド一覧</title>
+<title>全タグ一覧</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -47,41 +46,44 @@
 
 		<div class="collapse navbar-collapse justify-content-end">
 			<ul class="navbar-nav">
+				<li class="nav-item"><a class="nav-link"
+					href="Cart?login_id=${logId}">買い物かご</a></li>
+				<li class="nav-item"><a class="nav-link" href="UserDetail">お客様情報</a></li>
+				<li class="nav-item active"><a class="nav-link" href="Logout">ログアウト</a></li>
+				<li class="nav-item active"><a class="nav-link"
+					href="AdminCommand">管理者コマンド</a></li>
 
-				<!--ログイン状態の時に出すコマンド  -->
-				<c:if test="${logId != null}">
-					<li class="nav-item"><a class="nav-link"
-						href="Cart?login_id=${logId}">買い物かご</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="UserDetail">お客様情報</a></li>
-					<li class="nav-item active"><a class="nav-link" href="Logout">ログアウト</a></li>
-				</c:if>
 			</ul>
 		</div>
 
 	</nav>
 
-	<h1>管理者として行えるコマンド一覧です</h1>
+	<h1>全タグ一覧</h1>
+
+	<h2>データベースに登録されているタグの一覧です。</h2>
 
 	<div class="card-midium2">
-		<h3>データベースに登録してある全ての商品を閲覧できます。</h3>
-		<h3>商品の情報更新はこちらから。</h3>
-		<a class="btn btn-primary btn-block" type="submit" href="TopPage">全商品一覧</a>
 
-		<br> <br>
+		<div class = "row">
+			<div class = "col-7">
+				サンプル（飲み物）
+			</div>
+			<div class = "col-1">
+				<a class="btn btn-lg btn-success" type="submit"
+					href="TagDetail.html">詳細</a>
+			</div>
+			<div class = "col-1">
+				<a class="btn btn-lg btn-secondary" type="submit"
+					href="TagUpdate.html">更新</a>
+			</div>
+			<div class = "col-1">
+				<a class="btn btn-lg btn-danger" type="submit"
+					href="TagDelete.html">削除</a>
+			</div>
+		</div>
 
-		<h3>データベースに登録してあるタグを閲覧できます。</h3>
-		<h3>タグの更新はこちらから。</h3>
-		<br> <a class="btn btn-success btn-block" type="submit"
-			href="TagList">全タグ一覧</a> <br>
+		<hr class ="borderline2">
 
-		<h3>データベースに新しい商品を登録します。</h3>
-		<br> <a class="btn btn-secondary btn-block" type="submit"
-			href="ItemNewEntryByAdmin.html">新規商品登録</a> <br>
-
-		<h3>データベースに新しいタグを登録します。</h3>
-		<br> <a class="btn btn-danger btn-block" type="submit"
-			href="NewEntryTag">新規タグ登録</a>
 	</div>
 
 </body>
