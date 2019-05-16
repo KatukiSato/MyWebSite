@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>全タグ一覧</title>
+<title>タグ更新確認</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -58,35 +58,22 @@
 
 	</nav>
 
-	<h1>タグ名変更</h1>
+	<h1>タグ名変更完了！</h1>
 
-	<h2>新しいタグ名を入力してください</h2>
+	<div class="card-midium2">
 
-		<div class="card-midium2">
 
-	<c:forEach var="tag" items="${tagName }">
-		<h3>現在のタグ名：　${tag.name }</h3>
-	</c:forEach>
-		<br><br><br>
+	<h2>タグ名が変更されました。</h2>
 
-		<form action = "TagUpdateConfirm" method ="POST" class="form-signin">
-			<div class="bottom">
-				<p></p>
-				<label for="inputTag">新しいタグ名</label>
-					<input type="text" id="inputTag" class=".form-signin" placeholder="タグ名　(入力必須)" name ="newTag"required>
-			</div>
+			<a class="btn btn-lg btn-primary" type="submit"
+				href="TagList">　全タグ一覧へ　</a>
 
-				<div class ="row">
-					<div class ="col-6">
-						<a class="btn btn-lg btn-danger" type="submit" href="TagList">タグ一覧へ</a>
-					</div>
+	<br><br>
 
-					<div class ="col-6">
-						<button class="btn btn-lg btn-primary " type="submit">確認画面へ</button>
-					</div>
-				</div>
-		</form>
+			<a class="btn btn-lg btn-danger " type="submit"
+				href="AdminCommand">管理者コマンドへ</a>
 
-		</div>
+	</div>
+
 </body>
 </html>

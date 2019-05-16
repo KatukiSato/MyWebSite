@@ -1,8 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,48 +9,36 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import beans.TagBeans;
-import dao.TagDao;
-
 /**
- * Servlet implementation class TagUpdate
+ * Servlet implementation class TagUpdateConfirm
  */
-@WebServlet("/TagUpdate")
-public class TagUpdate extends HttpServlet {
+@WebServlet("/TagUpdateConfirm")
+public class TagUpdateConfirm extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public TagUpdate() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public TagUpdateConfirm() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 
-		List<TagBeans> returntagName = (List<TagBeans>) session.getAttribute("tagName");
+		//更新前と後を比べるため両方とも値を取得
+		session.getAttribute("tagName");
 
-		if(returntagName == null) {
-			int id = Integer.parseInt(request.getParameter("id"));
+		String newTag = request.getParameter("newTag");
+		session.setAttribute("newTag", newTag);
 
-			try {
-				List<TagBeans> tagName = TagDao.tagName(id);
-
-				session.setAttribute("tagName", tagName);
-			} catch (SQLException e) {
-				// TODO 自動生成された catch ブロック
-				e.printStackTrace();
-			}
-		}else {
-			session.setAttribute("tagName", returntagName);
-		}
-		request.getRequestDispatcher(Helper.TAG_UPDATE_PAGE).forward(request, response);
+		request.getRequestDispatcher(Helper.TAG_UPDATE_CONFIRM_PAGE).forward(request, response);
 	}
 
 	/**

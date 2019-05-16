@@ -144,4 +144,28 @@ public class TagDao {
 			}
 		}
 	}
+
+	public static int updateTag (String tag, int id) throws SQLException {
+		Connection con = null;
+		PreparedStatement st = null;
+
+		try {
+			con = DataBaseManager.getConnection();
+
+			st = con.prepareStatement("update tag set name = ? where id = ?");
+			st.setString(1, tag);
+			st.setInt(2, id);
+
+			int result = st.executeUpdate();
+
+			return result;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new SQLException(e);
+		} finally {
+			if (con != null) {
+				con.close();
+			}
+		}
+	}
 }

@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>全タグ一覧</title>
+<title>タグ更新確認</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -58,35 +58,51 @@
 
 	</nav>
 
-	<h1>タグ名変更</h1>
+	<h1>タグ更新確認</h1>
 
-	<h2>新しいタグ名を入力してください</h2>
+	<h2>以下のタグを更新します。 よろしいですか？</h2>
 
-		<div class="card-midium2">
-
-	<c:forEach var="tag" items="${tagName }">
-		<h3>現在のタグ名：　${tag.name }</h3>
-	</c:forEach>
-		<br><br><br>
-
-		<form action = "TagUpdateConfirm" method ="POST" class="form-signin">
+	<div class="card-midium2">
+		<div class="form-signin">
 			<div class="bottom">
 				<p></p>
-				<label for="inputTag">新しいタグ名</label>
-					<input type="text" id="inputTag" class=".form-signin" placeholder="タグ名　(入力必須)" name ="newTag"required>
+
+				<p>更新前のタグ</p>
+				<c:forEach var="tag" items="${tagName }">
+					<p>${tag.name }</p>
+					<hr class="borderline">
+
+					<div class="text-center">
+						<h2>&#8659;</h2>
+					</div>
+
+					<form action="TagUpdateSuccess" method="POST">
+
+						<p>更新後のタグ</p>
+						<p>
+							<strong>${newTag }</strong>
+						</p>
+						<hr class="borderline">
+
+						<br> <br>
+
+						<div class=row>
+							<div class="col-6">
+								<button class="btn btn-lg btn-primary btn-block" type="submit"
+									name="update_button" value="correction">訂正する</button>
+							</div>
+
+							<div class="col-6">
+								<input type="hidden" value="${tag.id}" name="tagId">
+								<button class="btn btn-lg btn-success btn-block" type="submit"
+									name="update_button" value="update">更新する</button>
+							</div>
+						</div>
+					</form>
+				</c:forEach>
 			</div>
 
-				<div class ="row">
-					<div class ="col-6">
-						<a class="btn btn-lg btn-danger" type="submit" href="TagList">タグ一覧へ</a>
-					</div>
-
-					<div class ="col-6">
-						<button class="btn btn-lg btn-primary " type="submit">確認画面へ</button>
-					</div>
-				</div>
-		</form>
-
 		</div>
+	</div>
 </body>
 </html>

@@ -90,6 +90,12 @@ public class Helper {
 	//タグ更新
 	static final String TAG_UPDATE_PAGE = "/WEB-INF/jsp/TagUpdate.jsp";
 
+	//タグ更新確認
+	static final String TAG_UPDATE_CONFIRM_PAGE = "/WEB-INF/jsp/TagUpdateConfirm.jsp";
+
+	//タグ更新完了
+	static final String TAG_UPDATE_SUCCESS_PAGE = "/WEB-INF/jsp/TagUpdateSuccess.jsp";
+
 
 	/**
 	 * @param isLoginIdform
