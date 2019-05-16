@@ -87,6 +87,10 @@ public class Helper {
 	//タグ一覧
 	static final String TAG_LIST_PAGE = "/WEB-INF/jsp/TagList.jsp";
 
+	//タグ更新
+	static final String TAG_UPDATE_PAGE = "/WEB-INF/jsp/TagUpdate.jsp";
+
+
 	/**
 	 * @param isLoginIdform
 	 * @return

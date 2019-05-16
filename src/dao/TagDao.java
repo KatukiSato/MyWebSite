@@ -70,6 +70,11 @@ public class TagDao {
 		}
 	}
 
+	/**
+	 * タグの一覧表示
+	 * @return
+	 * @throws SQLException
+	 */
 	public List<TagBeans> tagList() throws SQLException {
 		Connection con = null;
 		PreparedStatement st = null;
@@ -90,6 +95,44 @@ public class TagDao {
 				TagBeansList.add(tb);
 			}
 			System.out.println("タグ一覧です！");
+
+			return TagBeansList;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+			throw new SQLException(e);
+		} finally {
+			if (con != null) {
+				con.close();
+			}
+		}
+	}
+
+	/**
+	 * タグ名を取得
+	 * @param id
+	 * @return
+	 * @throws SQLException
+	 */
+	public static List<TagBeans> tagName (int id) throws SQLException {
+		Connection con = null;
+		PreparedStatement st = null;
+		List<TagBeans> TagBeansList = new ArrayList<TagBeans>();
+
+		try {
+			con = DataBaseManager.getConnection();
+
+			st= con.prepareStatement("select * from tag where id = ?");
+			st.setInt(1, id);
+
+			ResultSet rs = st.executeQuery();
+
+			TagBeans tb = new TagBeans();
+			while(rs.next()) {
+				tb.setId(rs.getInt("id"));
+				tb.setName(rs.getString("name"));
+
+				TagBeansList.add(tb);
+			}
 
 			return TagBeansList;
 		} catch (SQLException e) {

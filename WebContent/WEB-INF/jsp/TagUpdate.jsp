@@ -58,38 +58,37 @@
 
 	</nav>
 
-	<h1>全タグ一覧</h1>
+	<h1>タグ名変更</h1>
 
-	<h2>データベースに登録されているタグの一覧です。</h2>
+	<h2>新しいタグ名を入力してください</h2>
 
-	<div class="card-midium2">
+		<div class="card-midium2">
 
-		<c:forEach var="tag" items="${tagList }">
+	<c:forEach var="tag" items="${tagName }">
+		<h3>現在のタグ名：　${tag.name }</h3>
+	</c:forEach>
+		<br><br><br>
 
-			<div class="row">
-				<div class="col-7">${tag.name }</div>
-				<div class="col-1">
-						<a class="btn btn-lg btn-success" type="submit"
-							href="Mock/TagDetail.html">詳細</a>
-				</div>
-				<div class="col-1">
-					<form action="TagUpdate">
-						<input type="hidden" value="${tag.id}" name="upId">
-							<a class="btn btn-lg btn-secondary" type="submit"
-								href="TagUpdate?id=${tag.id }">更新</a>
-					</form>
-				</div>
-				<div class="col-1">
-					<a class="btn btn-lg btn-danger" type="submit"
-						href="TagDelete.html">削除</a>
-				</div>
+		<form class="form-signin">
+			<div class="bottom">
+				<p></p>
+				<label for="inputTag">新しいタグ名</label>
+					<input type="text" id="inputTag" class=".form-signin" placeholder="タグ名　(入力必須)"required>
 			</div>
 
-			<hr class="borderline3">
+				<div class ="row">
+					<div class ="col-6">
+						<a class="btn btn-lg btn-primary " type="submit"
+							href="UpdateTagConfirm.html">確認画面へ</a>
+					</div>
 
-		</c:forEach>
+					<div class ="col-6">
+						<a class="btn btn-lg btn-danger" type="submit"
+							href="TagList">タグ一覧へ</a>
+					</div>
+				</div>
+		</form>
 
-	</div>
-
+		</div>
 </body>
 </html>
