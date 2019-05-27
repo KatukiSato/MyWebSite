@@ -13,7 +13,7 @@
 <meta name="author" content="">
 
 
-<title>管理者コマンド一覧</title>
+<title>新規商品登録</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -47,42 +47,42 @@
 
 		<div class="collapse navbar-collapse justify-content-end">
 			<ul class="navbar-nav">
-
-				<!--ログイン状態の時に出すコマンド  -->
-				<c:if test="${logId != null}">
 					<li class="nav-item"><a class="nav-link"
 						href="Cart?login_id=${logId}">買い物かご</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="UserDetail">お客様情報</a></li>
+					<li class="nav-item"><a class="nav-link" href="UserDetail">お客様情報</a></li>
 					<li class="nav-item active"><a class="nav-link" href="Logout">ログアウト</a></li>
-				</c:if>
+					<li class="nav-item active"><a class="nav-link" href="AdminCommand">管理者コマンド</a></li>
+
 			</ul>
 		</div>
 
 	</nav>
 
-	<h1>管理者として行えるコマンド一覧です</h1>
+		<h1>新規商品登録</h1>
 
-	<div class="card-midium2">
-		<h3>データベースに登録してある全ての商品を閲覧できます。</h3>
-		<h3>商品の情報更新はこちらから。</h3>
-		<a class="btn btn-primary btn-block" type="submit" href="TopPage">全商品一覧</a>
+			<div class="card-midium2">
+				<form class="form-signin" method="POST" enctype="multipart/form-data" action="ItemNewEntryConfirm">
+					<div class ="bottom">
+					<label for="inputName">商品名</label>
+					<input type="text" id="inputName" class=".form-signin"
+						placeholder="商品名" required="" name="name" value="${item.name }">
 
-		<br> <br>
+					<label for="inputDetail">商品説明</label>
+					<textarea rows="10" cols="48" id="inputDetail" placeholder="商品情報の説明" name="detail" value="${item.detail }"></textarea>
 
-		<h3>データベースに登録してあるタグを閲覧できます。</h3>
-		<h3>タグの更新はこちらから。</h3>
-		<br> <a class="btn btn-success btn-block" type="submit"
-			href="TagList">全タグ一覧</a> <br>
+					<label for="inputPrice">価格</label>
+					<input type="text" id="inputPrice" class=".form-signin"
+						placeholder="価格" required="" autofocus="" name="price" value="${item.price }">
 
-		<h3>データベースに新しい商品を登録します。</h3>
-		<br> <a class="btn btn-secondary btn-block" type="submit"
-			href="ItemNewEntryByAdmin">新規商品登録</a> <br>
+					<label for="inputFileName">画像</label>
+					<input type="file" id="inputFileName" class=".form-signin"
+						placeholder="画像" autofocus="" name="img">
 
-		<h3>データベースに新しいタグを登録します。</h3>
-		<br> <a class="btn btn-danger btn-block" type="submit"
-			href="NewEntryTag">新規タグ登録</a>
-	</div>
+					<br>
 
+					<button class="btn btn-lg btn-primary btn-block" type="submit">確認画面へ</button>
+					</div>
+				</form>
+			</div>
 </body>
 </html>

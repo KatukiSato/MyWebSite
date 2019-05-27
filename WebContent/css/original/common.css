@@ -358,3 +358,8 @@ img {
   bottom: 0;
   margin: auto;
 }
+
+.textarea{
+	width: 250px;
+	height: 10em;
+}

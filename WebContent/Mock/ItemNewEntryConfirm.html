@@ -1,8 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html lang="en" class="">
 <head>
@@ -13,7 +8,7 @@
 <meta name="author" content="">
 
 
-<title>管理者コマンド一覧</title>
+<title>新規商品登録</title>
 
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -47,41 +42,57 @@
 
 		<div class="collapse navbar-collapse justify-content-end">
 			<ul class="navbar-nav">
-
-				<!--ログイン状態の時に出すコマンド  -->
-				<c:if test="${logId != null}">
 					<li class="nav-item"><a class="nav-link"
 						href="Cart?login_id=${logId}">買い物かご</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="UserDetail">お客様情報</a></li>
+					<li class="nav-item"><a class="nav-link" href="UserDetail">お客様情報</a></li>
 					<li class="nav-item active"><a class="nav-link" href="Logout">ログアウト</a></li>
-				</c:if>
+					<li class="nav-item active"><a class="nav-link" href="AdminCommand.html">管理者コマンド</a></li>
+
 			</ul>
 		</div>
 
 	</nav>
 
-	<h1>管理者として行えるコマンド一覧です</h1>
+			<h1>新規商品登録確認</h1>
 
-	<div class="card-midium2">
-		<h3>データベースに登録してある全ての商品を閲覧できます。</h3>
-		<h3>商品の情報更新はこちらから。</h3>
-		<a class="btn btn-primary btn-block" type="submit" href="TopPage">全商品一覧</a>
+				<span class="display-3">登録する商品はこれでいいですか？</span>
 
-		<br> <br>
+	<div class="card">
+		<div class="container">
+			<br> <br> <br> <br>
+			<div class="row">
+				<div class="col s6">
+					<div class="card-image">
+						<img src="img/5c35bd53.jpg" alt="サンプル" width="350" height="100%">
+					</div>
+				</div>
+				<div class="col s6">
+					<br>
+					<h4>商品名</h4>
+					<br>
+					<h5>○○円</h5>
+					<br>
+					<p>商品説明</p>
 
-		<h3>データベースに登録してあるタグを閲覧できます。</h3>
-		<h3>タグの更新はこちらから。</h3>
-		<br> <a class="btn btn-success btn-block" type="submit"
-			href="TagList">全タグ一覧</a> <br>
+				</div>
+			</div>
 
-		<h3>データベースに新しい商品を登録します。</h3>
-		<br> <a class="btn btn-secondary btn-block" type="submit"
-			href="ItemNewEntryByAdmin">新規商品登録</a> <br>
+			<br> <br>
 
-		<h3>データベースに新しいタグを登録します。</h3>
-		<br> <a class="btn btn-danger btn-block" type="submit"
-			href="NewEntryTag">新規タグ登録</a>
+			<form action="ItemAdd" method="POST">
+				<div class="row">
+					<div class="col-6">
+						<a class="btn btn-lg btn-primary btn-block" type="submit" href="ItemNewEntryByAdmin.html">確認画面へ</a>
+					</div>
+
+					<div class="col-6">
+						<a class="btn btn-lg btn-success btn-block" type="submit" href="ItemNewEntryComplete.html">商品登録</a>
+					</div>
+				</div>
+			</form>
+
+		</div>
+
 	</div>
 
 </body>

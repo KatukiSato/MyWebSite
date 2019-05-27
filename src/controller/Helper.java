@@ -96,9 +96,14 @@ public class Helper {
 	//タグ更新完了
 	static final String TAG_UPDATE_SUCCESS_PAGE = "/WEB-INF/jsp/TagUpdateSuccess.jsp";
 
+	//新規商品入力フォーム
+	static final String Item_NEW_ENTRY_BY_ADMIN_PAGE = "/WEB-INF/jsp/ItemNewEntryByAdmin.jsp";
+
+	//商品登録確認
+	static final String ITEM_NEW_ENTRY_CONFIEM_PAGE = "/WEB-INF/jsp/ItemNewEntryConfirm.jsp";
+
 	//お試し
 	public static String SAMPLE_PAGE = "/WEB-INF/jsp/Sample.jsp";
-
 	public static String SAMPLE_upload_PAGE =  "/WEB-INF/jsp/sampleupload.jsp";
 	/**
 	 * @param isLoginIdform
