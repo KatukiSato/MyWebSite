@@ -96,7 +96,10 @@ public class Helper {
 	//タグ更新完了
 	static final String TAG_UPDATE_SUCCESS_PAGE = "/WEB-INF/jsp/TagUpdateSuccess.jsp";
 
+	//お試し
+	public static String SAMPLE_PAGE = "/WEB-INF/jsp/Sample.jsp";
 
+	public static String SAMPLE_upload_PAGE =  "/WEB-INF/jsp/sampleupload.jsp";
 	/**
 	 * @param isLoginIdform
 	 * @return
